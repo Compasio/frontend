@@ -28,11 +28,36 @@ const FirstPage = () => {
                     <button type="button">Adolescentes</button>
                 </div>
                 <div className="Cards">
-                    <NGOCard />
-                    <NGOCard />
-                    <NGOCard />
+                    <NGOCard descricao="A sua doação não 
+tem fronteiras!
+Doe para Médicos
+sem fronteiras e ajude 
+a levar cuidados para 
+quem precisa."/>
+                    <NGOCard descricao="O Mais Médicos compõe 
+um conjunto de ações e
+iniciativas do governo 
+para o fortalecimento 
+da Atenção Primária à 
+Saúde do país.  
+Ajude você também!"/>
+                    <NGOCard descricao="Somos um grupo 
+voluntários apaixonados
+por animais e juntos 
+realizamos um lindo 
+trabalho de defesa e
+proteção animal em
+nossa ONG."/>
                 </div>
             </main>
+            <footer className="FooterFirstPageNGO">
+                <span class="material-symbols-outlined">
+                    arrow_back
+                </span>
+                <span class="material-symbols-outlined">
+                    arrow_forward
+                </span>
+            </footer>
         </div>
     )
 }

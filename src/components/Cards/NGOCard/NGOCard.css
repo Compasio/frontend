@@ -1,0 +1,10 @@
+.Card {
+    height: 60vh;
+    width: 20vw;
+    background-color: var(--green-one);
+    padding: 1%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

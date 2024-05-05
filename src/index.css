@@ -49,3 +49,8 @@ p {
   font-style: normal;
   font-weight: 200;
 }
+
+span.material-symbols-outlined {
+  scale: 2;
+  cursor: pointer;
+}

@@ -4,12 +4,8 @@ import "./NGOCard.css"
 const NGOCard = (props) => {
     return (
         <div className="Card">
-            <figure>
-                <img src="#" alt="" />
-            </figure>
-            <span>
-                <p>{props.descricao}</p>
-            </span>
+            <img src={props.imgsrc} alt="" />
+            <p>{props.descricao}</p>
         </div>
     )
 }

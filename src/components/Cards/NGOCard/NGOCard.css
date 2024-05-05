@@ -5,6 +5,18 @@
     padding: 1%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    gap: 1.5rem;
+    border-radius: 5px;
     align-items: center;
+}
+
+.Card img {
+    border-radius: 5px;
+    width: 18vw;
+    height: 35vh;
+}
+
+.Card p {
+    color: var(--white);
+    text-align: center;
 }

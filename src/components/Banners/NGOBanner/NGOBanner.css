@@ -1,0 +1,21 @@
+.NGOBanner {
+    height: 38vh;
+    width: 70vw;
+    background-color: var(--green-one);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 5px;
+}
+
+.NGOBanner>span {
+    position: absolute;
+    left: 82.5%;
+    top: 15%;
+}
+
+.NGOBanner p {
+    width: 50%;
+    text-align: justify;
+    color: var(--white);
+}

@@ -1,0 +1,17 @@
+.Gallery {
+    background-color: var(--green-one);
+    height: 30vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    position: absolute;
+    bottom: 0;
+}
+
+.Gallery img {
+    width: 20vw;
+    height: 25vh;
+    border-radius: 5px;
+}

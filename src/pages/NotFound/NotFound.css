@@ -1,0 +1,20 @@
+.NotFound {
+    background-color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.NotFound h1 {
+    color: var(--green-one);
+}
+
+.NotFound p {
+    color: var(--black);
+}
+
+.NotFound a {
+    text-decoration: none;
+    color: var(--green-two);
+    font-weight: bold;
+}

@@ -14,7 +14,7 @@ function WebRoutes() {
                         <Route path="/" element={<LandingPage />} />
                         <Route path="/buscarONG" element={<FirstPageNGO />} />
                         <Route path="/ONG" element={<SecondPageNGO />} />
-                        <Route element={<NotFound />} />
+                        <Route path="*" element={<NotFound />} />
                     </Routes>
                 </Router>
             </div>

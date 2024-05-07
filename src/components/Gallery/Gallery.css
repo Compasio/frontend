@@ -15,3 +15,29 @@
     height: 25vh;
     border-radius: 5px;
 }
+
+@media screen and (max-width: 745px) {
+    .Gallery {
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .Gallery img {
+        width: 30vw;
+        height: 25vh;
+    }
+}
+
+
+@media screen and (max-width: 400px) {
+    .Gallery {
+        justify-content: center;
+        gap: 0.5rem;
+        height: 25vh;
+    }
+
+    .Gallery img {
+        width: 30vw;
+        height: 20vh;
+    }
+}

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import './Login.css';
+import HeaderPage from "./Headerpage";
 
 const EsqueceuASenha = ({ handleBack }) => {
   const [email, setEmail] = useState("");
@@ -10,27 +11,27 @@ const EsqueceuASenha = ({ handleBack }) => {
   };
 
   return (
-    <div className="login-page">
-      <br />
-      <h2 className="H22">Esqueceu a senha?</h2>
-      <form className="title" onSubmit={handleSubmit}>
+    <div className="page">
+      <HeaderPage />
+      <div className="recovery-page">
+        <br />
+        <h2 className="H22">Esqueceu a senha?</h2>
+        <p>Para recuperar a sua senha, digite seu e-mail cadastrado no campo abaixo.</p>
+        <form className="title" onSubmit={handleSubmit}>
 
-        <div className="container">
-          <label htmlFor="email"><b>Endereço de E-mail</b></label>
-          <input
-            type="email"
-            placeholder="E-mail registrado aqui"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-
-          <button type="submit">Enviar e-mail de redefinição</button>
-          <button type="button" className="voltar" onClick={handleBack}>Voltar</button>
-        </div>
-
-      </form>
+          <div className="container">
+            <input
+              type="email"
+              placeholder="Digite aqui..."
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <a type="submit"><img src="https://cdn-icons-png.flaticon.com/512/109/109617.png" alt="" /></a>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

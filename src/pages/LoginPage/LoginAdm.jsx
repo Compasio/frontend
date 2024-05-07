@@ -1,76 +1,69 @@
 import React, { useState } from "react";
-import './LoginAdm.css';
 import EsqueceuASenha from "./esqueceuasenha";
 
-const LoginAdm = () => {
-  const [UID, setUID] = useState("");
-  const [code, setCode] = useState("");
-  const [showRecuperarCodigo, setShowRecuperarCodigo] = useState(false);
-  
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (UID === "1" && code === "123") {
-      alert(`Login bem-sucedido, bem-vindo de volta adm ${UID}! Redirecionando para a página...`);
-    } else {
-      alert("UID ou código incorreto. Tente novamente.");
-    }
-  };
+const LoginOng = () => {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [rememberMe, setRememberMe] = useState(false);
+    const [showEsqueceuASenha, setShowEsqueceuASenha] = useState(false);
 
-  const handleRecuperarCodigo = () => {
-    setShowRecuperarCodigo(true);
-  };
+    const handleLogin = (event) => {
+        event.preventDefault();
+        if (username === "Adm" && password === "123") {
+            alert(`Login bem-sucedido, Bem-vindo ${username}! Redirecionando para a página...`);
+        } else {
+            alert("Nome de usuário ou senha incorretos. Tente novamente.");
+        }
+    };
 
-  const handleBackToLogin = () => {
-    setShowRecuperarCodigo(false);
-  };
+    const handleEsqueceuASenha = () => {
+        setShowEsqueceuASenha(true);
+    };
 
-  const handleEnviarCodigo = () => {
-    alert("Código de recuperação enviado para o seu e-mail!");
-  };
+    const handleBackToLogin = () => {
+        setShowEsqueceuASenha(false);
+    };
 
-  return (
-    <div className="login-page">
-      <br />
-      <div className="button-container">
-      </div>
-      <h2 className="H22">Administrador</h2>
-      {showRecuperarCodigo ? (
-        <EsqueceuASenha handleBack={handleBackToLogin} handleEnviarCodigo={handleEnviarCodigo} /> // Passando a função handleEnviarCodigo como prop
-      ) : (
-        <form className="title" onSubmit={handleSubmit}>
+    return (
+        <div>
 
-          <div className="container">
-            <label htmlFor="user"><b>UID</b></label>
-            <input
-              type="text"
-              inputMode="numeric"
-              placeholder="ID aqui"
-              name="user"
-              value={UID}
-              onChange={(e) => setUID(e.target.value)}
-              required
-            />
-
-            <label htmlFor="psw"><b>Code</b></label>
-            <input
-              type="password"
-              placeholder="Código aqui"
-              name="psw"
-              value={code}
-              onChange={(e) => setCode(e.target.value)}
-              required
-            />
-            <button type="submit">Entrar</button>
-
-          </div>
-
-          <div className="container" style={{ backgroundColor: '#f1f1f1' }}>
-            <button type="button" className="voltar" onClick={handleRecuperarCodigo}>Não recebeu o código?</button>
-          </div>
-        </form>
-      )}
-    </div>
-  );
+            {showEsqueceuASenha ? (
+                <EsqueceuASenha handleBack={handleBackToLogin} />
+            ) : (
+                <div className="login-page">
+                    <img src="https://img.freepik.com/fotos-premium/um-fundo-preto-com-um-fundo-branco-que-diz-nomade_662214-80304.jpg" alt="" />
+                    <div className="login-area">
+                        <img src="../img/logo.png" alt="" />
+                        <h2 className="H22">Login Administrador</h2>
+                        <form className="title" onSubmit={handleLogin}>
+                            <div className="container">
+                                <input
+                                    type="text"
+                                    placeholder="Usuário"
+                                    name="user"
+                                    value={username}
+                                    onChange={(e) => setUsername(e.target.value)}
+                                    required
+                                />
+                                <input
+                                    type="password"
+                                    placeholder="Código"
+                                    name="psw"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                />
+                                <div className="btn-area">
+                                    <button type="submit">Entrar</button>
+                                    <a type="button" className="esquecercod" onClick={handleEsqueceuASenha}>Esqueceu a senha?</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
 };
 
-export default LoginAdm;
+export default LoginOng;

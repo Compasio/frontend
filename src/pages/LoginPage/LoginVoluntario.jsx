@@ -1,80 +1,69 @@
 import React, { useState } from "react";
-import './Login.css';
 import EsqueceuASenha from "./esqueceuasenha";
 
-const LoginVoluntario = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
-  const [showEsqueceuASenha, setShowEsqueceuASenha] = useState(false);
+const LoginOng = () => {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [rememberMe, setRememberMe] = useState(false);
+    const [showEsqueceuASenha, setShowEsqueceuASenha] = useState(false);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (username === "voluntario" && password === "123") {
-      alert(`Login bem-sucedido, Bem-vindo ${username}! Redirecionando para a página...`);
-    } else {
-      alert("Nome de usuário ou senha incorretos. Tente novamente.");
-    }
-  };
+    const handleLogin = (event) => {
+        event.preventDefault();
+        if (username === "Voluntário" && password === "123") {
+            alert(`Login bem-sucedido, Bem-vindo ${username}! Redirecionando para a página...`);
+        } else {
+            alert("Nome de usuário ou senha incorretos. Tente novamente.");
+        }
+    };
 
-  const handleEsqueceuASenha = () => {
-    setShowEsqueceuASenha(true);
-  };
+    const handleEsqueceuASenha = () => {
+        setShowEsqueceuASenha(true);
+    };
 
-  const handleBackToLogin = () => {
-    setShowEsqueceuASenha(false);
-  };
+    const handleBackToLogin = () => {
+        setShowEsqueceuASenha(false);
+    };
 
-  return (
-    <div className="login-page">
-      <br />
-      <h2 className="H22">Login Voluntário</h2>
-      {showEsqueceuASenha ? (
-        <EsqueceuASenha handleBack={handleBackToLogin} />
-      ) : (
-        <form className="title" onSubmit={handleSubmit}>
-          <div className="container">
-            <label htmlFor="user"><b>Nome de Usuário</b></label>
-            <input
-              type="text"
-              placeholder="Nome de usuário aqui"
-              name="user"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
+    return (
+        <div>
 
-            <label htmlFor="psw"><b>Senha</b></label>
-            <input
-              type="password"
-              placeholder="Senha aqui"
-              name="psw"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-
-            <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent:'space-between' }}>
-              <label>
-                
-                <input
-                  type="checkbox"
-                  name="remember"
-                  checked={rememberMe}
-                  onChange={() => setRememberMe(!rememberMe)}
-                /> 
-                Lembrar-me?
-              </label>
-              
-              <span className="psw" onClick={handleEsqueceuASenha} style={{ textDecoration: 'underline' }}>Esqueceu a senha?</span>              
-            </div>
-
-            <button type="submit">Entrar</button>
-          </div>
-        </form>
-      )}
-    </div>
-  );
+            {showEsqueceuASenha ? (
+                <EsqueceuASenha handleBack={handleBackToLogin} />
+            ) : (
+                <div className="login-page">
+                    <img src="https://img.freepik.com/fotos-premium/um-fundo-preto-com-um-fundo-branco-que-diz-nomade_662214-80304.jpg" alt="" />
+                    <div className="login-area">
+                        <img src="../img/logo.png" alt="" />
+                        <h2 className="H22">Login Voluntário</h2>
+                        <form className="title" onSubmit={handleLogin}>
+                            <div className="container">
+                                <input
+                                    type="text"
+                                    placeholder="E-mail"
+                                    name="user"
+                                    value={username}
+                                    onChange={(e) => setUsername(e.target.value)}
+                                    required
+                                />
+                                <input
+                                    type="password"
+                                    placeholder="Código"
+                                    name="psw"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                />
+                                <div className="btn-area">
+                                    <button type="submit">Entrar</button>
+                                    <a type="button" className="esquecercod" onClick={handleEsqueceuASenha}>Esqueceu a senha?</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
 };
 
-export default LoginVoluntario;
+export default LoginOng;

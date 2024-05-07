@@ -10,16 +10,7 @@ function App() {
   return (
     <div className="App">
       {/* <webroutes> */}
-      <h1>IMPORTE A SUA PÁGINA E A COLOQUE AQUI</h1>
-      <Router>
-        <Routes>
-          <Route path="/loginAdmOng" element={<LoginAdmOng />} />
-          <Route path="/loginAdm" element={<LoginAdm />} />
-          <Route path="/loginONG" element={<LoginONG/>}/>
-          <Route path="/loginVoluntario" element={<LoginVoluntario/>}/>
-          <Route path="/" element={<WebRoutes />} />
-        </Routes>
-      </Router>
+      <LoginVoluntario></LoginVoluntario>
     </div>
   );
 }

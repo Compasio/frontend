@@ -9,7 +9,7 @@ const LoginAdmOng = () => {
 
     const handleLogin = (event) => {
         event.preventDefault();
-        if (username === "ONG" && password === "123") {
+        if (username === "AdmONG" && password === "123") {
             alert(`Login bem-sucedido, Bem-vindo ${username}! Redirecionando para a página...`);
         } else {
             alert("Nome de usuário ou senha incorretos. Tente novamente.");
@@ -25,45 +25,42 @@ const LoginAdmOng = () => {
     };
 
     return (
-        <div className="login-page">
-            <br />
-            <h2 className="H22">Login Administrador da ONG</h2>
+        <div>
+
             {showEsqueceuASenha ? (
                 <EsqueceuASenha handleBack={handleBackToLogin} />
             ) : (
-                <form className="title" onSubmit={handleLogin}>
-                    <div className="container">
-                        <label htmlFor="user"><b>Nome de Usuário</b></label>
-                        <input
-                            type="text"
-                            placeholder="Nome de usuário aqui"
-                            name="user"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            required
-                        />
-
-                        <label htmlFor="psw"><b>Senha</b></label>
-                        <input
-                            type="password"
-                            placeholder="Senha aqui"
-                            name="psw"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
-                        <label>
+                <div className="login-page">
+                    <img src="https://img.freepik.com/fotos-premium/um-fundo-preto-com-um-fundo-branco-que-diz-nomade_662214-80304.jpg" alt="" />
+                    <div className="login-area">
+                        <img src="../img/logo.png" alt="" />
+                        <h2 className="H22">Login ONG (ADM)</h2>
+                        <form className="title" onSubmit={handleLogin}>
+                            <div className="container">
                             <input
-                                type="checkbox"
-                                name="remember"
-                                checked={rememberMe}
-                                onChange={() => setRememberMe(!rememberMe)}
-                            /> Lembrar-me?
-                        </label>
-                        <button type="submit">Entrar</button>
-                        <button type="button" className="voltar" onClick={handleEsqueceuASenha}>Esqueceu a senha?</button>
+                                    type="text"
+                                    placeholder="Organização"
+                                    name="user"
+                                    value={username}
+                                    onChange={(e) => setUsername(e.target.value)}
+                                    required
+                                />
+                                <input
+                                    type="password"
+                                    placeholder="Senha"
+                                    name="psw"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                />
+                                <div className="btn-area">
+                                    <button type="submit">Entrar</button>
+                                    <a type="button" className="esquecercod" onClick={handleEsqueceuASenha}>Esqueceu a senha?</a>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </div>
             )}
         </div>
     );

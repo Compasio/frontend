@@ -55,7 +55,7 @@
 }
 
 .MainFirstPageNGO .Cards {
-    height: 70vh;
+    height: 75vh;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -74,4 +74,67 @@
     display: flex;
     justify-content: space-between;
     padding: 1%;
+}
+
+@media screen and (max-width: 745px) {
+    .HeaderFirstPageNGO nav input {
+        width: 30rem;
+    }
+
+    .HeaderFirstPageNGO nav span.Search {
+        left: 80%;
+    }
+
+    .HeaderFirstPageNGO nav span.Search {
+        left: 78%;
+    }
+
+    .MainFirstPageNGO {
+        gap: 1rem;
+    }
+
+    .MainFirstPageNGO .Buttons button {
+        font-size: 1rem;
+    }
+
+    .MainFirstPageNGO .Cards {
+        height: 80vh;
+        gap: 1rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .FooterFirstPageNGO {
+        justify-content: space-around;
+    }
+
+}
+
+@media screen and (max-width: 400px) {
+    .HeaderFirstPageNGO nav input {
+        width: 18rem;
+    }
+
+    .MainFirstPageNGO {
+        gap: 0.5rem;
+    }
+
+    .MainFirstPageNGO .Cards {
+        gap: 0.5rem;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .MainFirstPageNGO .Buttons {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .MainFirstPageNGO .Buttons button {
+        width: auto;
+        padding: 1%;
+        height: 2.5rem;
+    }
+    
 }

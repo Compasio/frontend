@@ -4,7 +4,8 @@
     background-color: var(--green-one);
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 5rem;
     border-radius: 5px;
 }
 
@@ -15,7 +16,44 @@
 }
 
 .NGOBanner p {
-    width: 50%;
     text-align: justify;
+    transform: scale(1.15);
+    width: 50%;
     color: var(--white);
+}
+
+@media screen and (max-width: 745px) {
+    .NGOBanner {
+        height: 40vh;
+        width: 90vw;
+    }
+
+    .NGOBanner>span {
+        left: 90%;
+        top: 14%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .NGOBanner {
+        height: 30vh;
+        width: 95vw;
+        padding: 2%;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .NGOBanner img {
+        width: 35%;
+    }
+
+    .NGOBanner p {
+        width: auto;
+        transform: scale(0.75);
+    }
+
+    .NGOBanner>span {
+        left: 5%;
+        top: 18%;
+    }
 }

@@ -1,0 +1,19 @@
+.FooterOne {
+    width: 100%;
+    height: 35vh;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2%;
+    background-color: var(--green-two);
+}
+
+.FooterOne .Column {
+    display: flex;
+    flex-direction: column;
+    align-items: self-start;
+    gap: 1rem;
+}

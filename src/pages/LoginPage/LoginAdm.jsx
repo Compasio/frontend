@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import EsqueceuASenha from "./esqueceuasenha";
 
-const LoginOng = () => {
+const LoginAdm = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [rememberMe, setRememberMe] = useState(false);
@@ -33,7 +33,7 @@ const LoginOng = () => {
                 <div className="login-page">
                     <img src="https://img.freepik.com/fotos-premium/um-fundo-preto-com-um-fundo-branco-que-diz-nomade_662214-80304.jpg" alt="" />
                     <div className="login-area">
-                        <img src="../img/logo.png" alt="" />
+                        <img src="../img/logo.png" className="logoo" alt="" />
                         <h2 className="H22">Login Administrador</h2>
                         <form className="title" onSubmit={handleLogin}>
                             <div className="container">
@@ -66,4 +66,4 @@ const LoginOng = () => {
     );
 };
 
-export default LoginOng;
+export default LoginAdm;

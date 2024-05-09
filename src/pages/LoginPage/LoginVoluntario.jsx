@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import EsqueceuASenha from "./esqueceuasenha";
 
-const LoginOng = () => {
+const Loginvoluntario = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [rememberMe, setRememberMe] = useState(false);
@@ -66,4 +66,4 @@ const LoginOng = () => {
     );
 };
 
-export default LoginOng;
+export default Loginvoluntario;

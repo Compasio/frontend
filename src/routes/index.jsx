@@ -22,4 +22,4 @@ function WebRoutes() {
     );
 }
 
-export { WebRoutes };
+export default WebRoutes;

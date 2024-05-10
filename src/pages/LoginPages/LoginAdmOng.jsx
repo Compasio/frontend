@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import EsqueceuASenha from "./esqueceuasenha";
+import EsqueceuASenha from "./PasswordRecovery";
 
-const Loginvoluntario = () => {
+const LoginAdmOng = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [rememberMe, setRememberMe] = useState(false);
@@ -9,7 +9,7 @@ const Loginvoluntario = () => {
 
     const handleLogin = (event) => {
         event.preventDefault();
-        if (username === "Voluntário" && password === "123") {
+        if (username === "AdmONG" && password === "123") {
             alert(`Login bem-sucedido, Bem-vindo ${username}! Redirecionando para a página...`);
         } else {
             alert("Nome de usuário ou senha incorretos. Tente novamente.");
@@ -34,12 +34,12 @@ const Loginvoluntario = () => {
                     <img src="https://img.freepik.com/fotos-premium/um-fundo-preto-com-um-fundo-branco-que-diz-nomade_662214-80304.jpg" alt="" />
                     <div className="login-area">
                         <img src="../img/logo.png" alt="" />
-                        <h2 className="H22">Login Voluntário</h2>
+                        <h2 className="H22">Login ONG (ADM)</h2>
                         <form className="title" onSubmit={handleLogin}>
                             <div className="container">
-                                <input
+                            <input
                                     type="text"
-                                    placeholder="E-mail"
+                                    placeholder="Organização"
                                     name="user"
                                     value={username}
                                     onChange={(e) => setUsername(e.target.value)}
@@ -47,7 +47,7 @@ const Loginvoluntario = () => {
                                 />
                                 <input
                                     type="password"
-                                    placeholder="Código"
+                                    placeholder="Senha"
                                     name="psw"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
@@ -66,4 +66,4 @@ const Loginvoluntario = () => {
     );
 };
 
-export default Loginvoluntario;
+export default LoginAdmOng;

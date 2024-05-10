@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import EsqueceuASenha from "./esqueceuasenha";
+import EsqueceuASenha from "./PasswordRecovery";
 
 const LoginOng = () => {
     const [username, setUsername] = useState("");

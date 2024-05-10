@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import EsqueceuASenha from "./esqueceuasenha";
+import EsqueceuASenha from "./PasswordRecovery";
 
-const LoginAdm = () => {
+const LoginVoluntario = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [rememberMe, setRememberMe] = useState(false);
@@ -9,7 +9,7 @@ const LoginAdm = () => {
 
     const handleLogin = (event) => {
         event.preventDefault();
-        if (username === "Adm" && password === "123") {
+        if (username === "Voluntário" && password === "123") {
             alert(`Login bem-sucedido, Bem-vindo ${username}! Redirecionando para a página...`);
         } else {
             alert("Nome de usuário ou senha incorretos. Tente novamente.");
@@ -33,13 +33,13 @@ const LoginAdm = () => {
                 <div className="login-page">
                     <img src="https://img.freepik.com/fotos-premium/um-fundo-preto-com-um-fundo-branco-que-diz-nomade_662214-80304.jpg" alt="" />
                     <div className="login-area">
-                        <img src="../img/logo.png" className="logoo" alt="" />
-                        <h2 className="H22">Login Administrador</h2>
+                        <img src="../img/logo.png" alt="" />
+                        <h2 className="H22">Login Voluntário</h2>
                         <form className="title" onSubmit={handleLogin}>
                             <div className="container">
                                 <input
                                     type="text"
-                                    placeholder="Usuário"
+                                    placeholder="E-mail"
                                     name="user"
                                     value={username}
                                     onChange={(e) => setUsername(e.target.value)}
@@ -66,4 +66,4 @@ const LoginAdm = () => {
     );
 };
 
-export default LoginAdm;
+export default LoginVoluntario;

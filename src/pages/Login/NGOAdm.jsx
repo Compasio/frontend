@@ -4,7 +4,7 @@ import SideBanner from "../../components/Banners/SideBanner/SideBanner";
 import Logo from "../../img/logo.png"
 import "./Login.css"
 
-const NGO = () => {
+const NGOAdm = () => {
     const [showPasswordRecovery, setShowPasswordRecovery] = useState(false);
 
     const handlePasswordRecovery = () => {
@@ -16,7 +16,8 @@ const NGO = () => {
     };
 
     return (
-        <div className="Body">
+        <div>
+
             {showPasswordRecovery ? (
                 <PasswordRecovery handleBack={handleBackToLogin} />
             ) : (
@@ -35,12 +36,6 @@ const NGO = () => {
                                 required
                             />
                             <input
-                                type="text"
-                                placeholder="Email"
-                                name="email"
-                                required
-                            />
-                            <input
                                 type="password"
                                 placeholder="Senha"
                                 name="senha"
@@ -56,4 +51,4 @@ const NGO = () => {
     );
 };
 
-export default NGO;
+export default NGOAdm;

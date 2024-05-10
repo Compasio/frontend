@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import PasswordRecovery from "./PasswordRecovery";
+import SideBanner from "../../components/Banners/SideBanner/SideBanner";
+import Logo from "../../img/logo.png"
+import "./Login.css"
 
 const Voluntary = () => {
     const [showPasswordRecovery, setShowPasswordRecovery] = useState(false);
@@ -18,36 +21,30 @@ const Voluntary = () => {
             {showPasswordRecovery ? (
                 <PasswordRecovery handleBack={handleBackToLogin} />
             ) : (
-                <div className="login-page">
-                    <img src="https://img.freepik.com/fotos-premium/um-fundo-preto-com-um-fundo-branco-que-diz-nomade_662214-80304.jpg" alt="" />
-                    <div className="login-area">
-                        <img src="../img/logo.png" alt="" />
-                        <h2 className="H22">Login Voluntário</h2>
-                        <form className="title" onSubmit={handleLogin}>
-                            <div className="container">
-                                <input
-                                    type="text"
-                                    placeholder="E-mail"
-                                    name="user"
-                                    value={username}
-                                    onChange={(e) => setUsername(e.target.value)}
-                                    required
-                                />
-                                <input
-                                    type="password"
-                                    placeholder="Código"
-                                    name="psw"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    required
-                                />
-                                <div className="btn-area">
-                                    <button type="submit">Entrar</button>
-                                    <a type="button" className="esquecercod" onClick={handlePasswordRecovery}>Esqueceu a senha?</a>
-                                </div>
-                            </div>
+                <div className="Login">
+                    <SideBanner />
+                    <section>
+                        <span>
+                            <img src={Logo} alt="" />
+                            <h2>Login ONG</h2>
+                        </span>
+                        <form>
+                            <input
+                                type="text"
+                                placeholder="Email"
+                                name="email"
+                                required
+                            />
+                            <input
+                                type="password"
+                                placeholder="Senha"
+                                name="senha"
+                                required
+                            />
+                            <button type="submit">Entrar</button>
+                            <p onClick={handlePasswordRecovery}>Esqueceu a senha?</p>
                         </form>
-                    </div>
+                    </section>
                 </div>
             )}
         </div>

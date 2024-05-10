@@ -1,34 +1,22 @@
 import React, { useState } from "react";
-import EsqueceuASenha from "./PasswordRecovery";
+import PasswordRecovery from "./PasswordRecovery";
 
-const LoginVoluntario = () => {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [rememberMe, setRememberMe] = useState(false);
-    const [showEsqueceuASenha, setShowEsqueceuASenha] = useState(false);
+const Voluntary = () => {
+    const [showPasswordRecovery, setShowPasswordRecovery] = useState(false);
 
-    const handleLogin = (event) => {
-        event.preventDefault();
-        if (username === "Voluntário" && password === "123") {
-            alert(`Login bem-sucedido, Bem-vindo ${username}! Redirecionando para a página...`);
-        } else {
-            alert("Nome de usuário ou senha incorretos. Tente novamente.");
-        }
-    };
-
-    const handleEsqueceuASenha = () => {
-        setShowEsqueceuASenha(true);
+    const handlePasswordRecovery = () => {
+        setShowPasswordRecovery(true);
     };
 
     const handleBackToLogin = () => {
-        setShowEsqueceuASenha(false);
+        setShowPasswordRecovery(false);
     };
 
     return (
         <div>
 
-            {showEsqueceuASenha ? (
-                <EsqueceuASenha handleBack={handleBackToLogin} />
+            {showPasswordRecovery ? (
+                <PasswordRecovery handleBack={handleBackToLogin} />
             ) : (
                 <div className="login-page">
                     <img src="https://img.freepik.com/fotos-premium/um-fundo-preto-com-um-fundo-branco-que-diz-nomade_662214-80304.jpg" alt="" />
@@ -55,7 +43,7 @@ const LoginVoluntario = () => {
                                 />
                                 <div className="btn-area">
                                     <button type="submit">Entrar</button>
-                                    <a type="button" className="esquecercod" onClick={handleEsqueceuASenha}>Esqueceu a senha?</a>
+                                    <a type="button" className="esquecercod" onClick={handlePasswordRecovery}>Esqueceu a senha?</a>
                                 </div>
                             </div>
                         </form>
@@ -66,4 +54,4 @@ const LoginVoluntario = () => {
     );
 };
 
-export default LoginVoluntario;
+export default Voluntary;

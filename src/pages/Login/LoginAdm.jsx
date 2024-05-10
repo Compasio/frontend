@@ -1,10 +1,11 @@
 import React from "react";
+import SideBanner from "../../components/Banners/SideBanner/SideBanner";
 
 const LoginAdm = () => {
     return (
         <div className="Body">
             <div className="Login">
-                <img src="https://img.freepik.com/fotos-premium/um-fundo-preto-com-um-fundo-branco-que-diz-nomade_662214-80304.jpg" alt="" />
+                <SideBanner />
                 <div className="login-area">
                     <img src="../img/logo.png" className="logoo" alt="" />
                     <h2 className="H22">Login Administrador</h2>

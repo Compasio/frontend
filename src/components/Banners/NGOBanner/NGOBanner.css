@@ -32,6 +32,12 @@
         left: 90%;
         top: 14%;
     }
+
+    .NGOBanner p {
+        text-align: center;
+        width: 40%;
+        transform: scale(1.1);
+    }
 }
 
 @media screen and (max-width: 400px) {

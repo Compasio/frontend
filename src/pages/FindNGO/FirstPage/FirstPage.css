@@ -1,11 +1,11 @@
-.HeaderFirstPageNGO {
+.FirstPage header {
     width: 100%;
     height: 10vh;
     padding: 1%;
     background-color: var(--green-two);
 }
 
-.HeaderFirstPageNGO nav {
+.FirstPage header nav {
     width: 100%;
     height: 100%;
     display: flex;
@@ -13,7 +13,7 @@
     justify-content: space-around;
 }
 
-.HeaderFirstPageNGO nav input {
+.FirstPage header nav input {
     width: 40rem;
     height: 2.5rem;
     padding: 1%;
@@ -21,13 +21,13 @@
     border-radius: 15px;
 }
 
-.HeaderFirstPageNGO nav span.Search {
+.FirstPage header nav span.Search {
     position: absolute;
     left: 70%;
     scale: 1.25;
 }
 
-.MainFirstPageNGO {
+.FirstPage main {
     height: 80vh;
     width: 100%;
     display: flex;
@@ -37,14 +37,14 @@
     padding: 1%;
 }
 
-.MainFirstPageNGO .Buttons {
+.FirstPage main .Buttons {
     width: 100%;
     display: flex;
     justify-content: center;
     gap: 3rem;
 }
 
-.MainFirstPageNGO .Buttons button {
+.FirstPage main .Buttons button {
     width: 10rem;
     height: 3rem;
     background-color: var(--green-two);
@@ -54,7 +54,7 @@
     border-radius: 5px;
 }
 
-.MainFirstPageNGO .Cards {
+.FirstPage main .Cards {
     height: 75vh;
     width: 100%;
     display: flex;
@@ -64,7 +64,7 @@
     gap: 2rem;
 }
 
-.FooterFirstPageNGO {
+.FirstPage footer {
     width: 100%;
     height: 10vh;
     background-color: var(--green-two);
@@ -77,61 +77,61 @@
 }
 
 @media screen and (max-width: 745px) {
-    .HeaderFirstPageNGO nav input {
+    .FirstPage header nav input {
         width: 30rem;
     }
 
-    .HeaderFirstPageNGO nav span.Search {
+    .FirstPage header nav span.Search {
         left: 80%;
     }
 
-    .HeaderFirstPageNGO nav span.Search {
+    .FirstPage header nav span.Search {
         left: 78%;
     }
 
-    .MainFirstPageNGO {
+    .FirstPage main {
         gap: 1rem;
     }
 
-    .MainFirstPageNGO .Buttons button {
+    .FirstPage main .Buttons button {
         font-size: 1rem;
     }
 
-    .MainFirstPageNGO .Cards {
+    .FirstPage main .Cards {
         height: 80vh;
         gap: 1rem;
         display: flex;
         flex-direction: column;
     }
 
-    .FooterFirstPageNGO {
+    .FirstPage footer {
         justify-content: space-around;
     }
 
 }
 
 @media screen and (max-width: 400px) {
-    .HeaderFirstPageNGO nav input {
+    .FirstPage header nav input {
         width: 18rem;
     }
 
-    .MainFirstPageNGO {
+    .FirstPage main {
         gap: 0.5rem;
     }
 
-    .MainFirstPageNGO .Cards {
+    .FirstPage main .Cards {
         gap: 0.5rem;
         display: flex;
         justify-content: center;
         flex-direction: column;
     }
 
-    .MainFirstPageNGO .Buttons {
+    .FirstPage main .Buttons {
         flex-wrap: wrap;
         gap: 1rem;
     }
 
-    .MainFirstPageNGO .Buttons button {
+    .FirstPage main .Buttons button {
         width: auto;
         padding: 1%;
         height: 2.5rem;

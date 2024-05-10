@@ -1,11 +1,11 @@
-.HeaderSecondPageNGO {
+.SecondPage header {
     width: 100%;
     height: 10vh;
     padding: 1%;
     background-color: var(--green-two);
 }
 
-.HeaderSecondPageNGO nav {
+.SecondPage header nav {
     width: 100%;
     height: 100%;
     display: flex;
@@ -13,7 +13,7 @@
     justify-content: space-around;
 }
 
-.HeaderSecondPageNGO nav div {
+.SecondPage header nav div {
     display: flex;
     flex-direction: row;
     gap: 1rem;
@@ -21,11 +21,11 @@
     justify-content: center;
 }
 
-.HeaderSecondPageNGO nav div h3 {
+.SecondPage header nav div h3 {
     color: var(--white);
 }
 
-.MainSecondPageNGO {
+.SecondPage main {
     height: 60vh;
     width: 100%;
     display: flex;

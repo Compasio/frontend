@@ -1,0 +1,284 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+nav{
+  display: flex;
+ justify-content: space-between;
+ margin-right: 30px;
+ margin-bottom: 20px;
+}
+
+nav .lista{
+  font-size: 15px;
+  display: flex;
+  gap: 30px;
+  list-style: none;
+align-items: center;
+justify-content: right;
+}
+
+nav img{
+  display: flex;
+  justify-content: left;
+}
+
+.Presentation{
+  background-image: url('https://www.fatosdesconhecidos.com.br/wp-content/uploads/2017/06/capa-22-1600x800.jpg');
+  width: 100%;
+ }
+
+.inicio{
+ 
+  padding: 50px;
+}
+
+.inicio h1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Raleway", sans-serif;
+  font-size: 120px;
+  color: rgb(255, 254, 254);
+  margin-top: 100px;
+  
+}
+
+.inicio h3{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Raleway", sans-serif;
+  font-size: 50px;
+  color: var(--green-two);
+
+}
+
+.inicio h2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Raleway", sans-serif;
+  font-size: 30px;
+  color: var(--green-two);
+  font-style: italic;
+}
+
+.botoes{
+  display: flex;
+  justify-content: center;
+  gap: 70px;
+
+}
+
+.botoes button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: var(--green-two);
+  font-size: 15px;
+  margin-bottom: 100px;
+  width: 150px;
+  height: 100px;
+}
+
+.cabecalho{
+  width: 80px;
+  height: 80px;
+  margin: 20px;
+}
+
+
+
+.sobre{
+  background-color: var(--green-two);
+  width: 450px;
+  height: 350px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+
+}
+.sobre p{
+  margin-left: 25px;
+  margin-right: 25px;
+}
+.sobre span{
+  margin-left: 25px;
+}
+.sobre h2{
+  margin-left: 25px;
+}
+
+
+.doacao{
+  background-color: var(--green-two);
+  width: 450px;
+  height: 350px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+
+}
+.doacao p{
+  margin-left: 25px;
+  margin-right: 25px;
+}
+.doacao span{
+  margin-left: 25px;
+}
+.doacao h3{
+  margin-left: 25px;
+}
+
+.Frame1{
+  display: flex;
+ justify-content: center;
+  padding: 20px;
+  color: white;
+  font-size: 15px;
+}
+
+
+.Frame2{
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  color: white;
+  font-size: 15px;
+}
+
+
+.Frame h2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Raleway", sans-serif;
+  font-size: 20px;
+
+}
+
+.Frame h3{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Raleway", sans-serif;
+  font-size: 20px;
+}
+
+.Frame1 img{
+  margin-left: 10px;
+  width: 400px;
+  height: 300px;
+  display: flex;
+}
+.Frame2 img{
+  margin-right: 10px;
+  width: 400px;
+  height: 300px;
+  display: flex;
+}
+@media screen and (max-width:600px ){
+  nav{
+    display: flex;
+    align-items: center;
+  }
+
+.navegar{
+  justify-content:center;
+  flex-direction: column;
+  display: flex;
+}
+header ul{
+
+  display: flex;
+  flex-direction: column;
+}
+.Presentation{
+
+
+}
+.inicio h1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  color: rgb(255, 254, 254);
+  margin-top: 100px;
+}
+.inicio h2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  color: var(--green-two);
+  margin-top: 10px;
+}
+.inicio h3{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  color:var(--green-two);
+  margin-top: 10px;
+}
+.Frame1 img{
+  margin-left: 10px;
+  width: 180px;
+  height: 120px;
+  display: flex;
+}
+.Frame1{
+  display: flex;
+ justify-content: center;
+  padding: 20px;
+  color: white;
+  font-size: 15px;
+}
+.sobre{
+  width: 500px;
+  height: 500px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+.sobre p{
+  margin-left: 40px;
+}
+.sobre span{
+  margin-left: 40px;
+}
+.sobre h2{
+  margin-left: 40px;
+}
+.Frame2 img{
+  margin-right: 10px;
+  width: 180px;
+  height: 120px;
+  display: flex;
+}
+.Frame2{
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  color: white;
+  font-size: 15px;
+}
+
+
+}
+  
+
+
+
+
+
+
+
+
+
+
+
+
+

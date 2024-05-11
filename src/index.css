@@ -15,9 +15,15 @@
   scroll-behavior: smooth;
 }
 
+.Body {
+  width: 100%;
+  height: auto;
+}
+
 a,
 button {
   cursor: pointer;
+  font-family: "Mulish", sans-serif;
 }
 
 h1,
@@ -43,4 +49,9 @@ p {
   font-family: "Mulish", sans-serif;
   font-style: normal;
   font-weight: 200;
+}
+
+span.material-symbols-outlined {
+  scale: 2;
+  cursor: pointer;
 }

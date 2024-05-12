@@ -1,6 +1,6 @@
 import React from "react";
 import SideBanner from "../../components/Banners/SideBanner/SideBanner";
-import Logo from "../../img/logo.png"
+import Logo from "../../img/logosemnome.svg"
 import "./Login.css"
 
 const Adm = () => {

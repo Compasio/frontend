@@ -1,6 +1,6 @@
 import React from "react";
 import "./PasswordRecovery.css";
-import Logo from "../../img/logowname.png"
+import Logo from "../../img/logocomnome.svg"
 
 const PasswordRecovery = () => {
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PasswordRecovery from "./PasswordRecovery";
 import SideBanner from "../../components/Banners/SideBanner/SideBanner";
-import Logo from "../../img/logo.png"
+import Logo from "../../img/logosemnome.svg"
 import "./Login.css"
 
 const NGO = () => {

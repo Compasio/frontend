@@ -61,3 +61,44 @@
     text-transform: uppercase;
     height: 5vh;
 }
+
+@media screen and (max-width: 745px) {
+    .FooterOne {
+        height: 50vh;
+        gap: 7rem;
+    }
+    
+    .FooterOne .Column img {
+        width: 4vw;;
+    }
+  }
+
+  
+@media screen and (max-width: 400px) {
+    .FooterOne {
+        height: auto;
+        color: var(--white);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .FooterOne .Column {
+        justify-content: center;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    .FooterOne .Column img {
+        width: 8vw;
+    }
+    
+    .FooterOne .Column input {
+        width: 60vw;
+    }
+    
+    .FooterOne .Column button {
+        width: 20vw;
+    }
+  }

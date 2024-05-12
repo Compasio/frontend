@@ -32,6 +32,7 @@
 
 .LandingPage .Presentation {
   background-image: url("../../img/landingpagebackground.jpg");
+  filter: brightness(95%);
   width: 100%;
   height: 80vh;
   background-repeat: no-repeat;
@@ -77,13 +78,12 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
-  padding: 11%;
+  justify-content: center;
 }
 
 .LandingPage .AboutUs .Frame div {
   height: 80vh;
-  width: 60%;
+  width: 50%;
   background-color: var(--green-two);
   display: flex;
   flex-direction: column;
@@ -113,13 +113,12 @@
   text-align: end;
 }
 
-
 .LandingPage .Img1 {
   width: 35vw;
   height: 70vh;
   position: relative;
   right: 7%;
-  top: 9.5%;
+  top: 5%;
 }
 
 .LandingPage .Img2 {
@@ -127,106 +126,115 @@
   height: 70vh;
   position: relative;
   left: 7%;
-  top: 9.5%;
+  top: 5%;
 }
 
-
-@media screen and (max-width:600px) {
-  nav {
-    display: flex;
-    align-items: center;
+@media screen and (max-width: 745px) {
+  .LandingPage nav img {
+    width: 13vw;
   }
 
-  .navegar {
-    justify-content: center;
+  .LandingPage .Presentation .Buttons button {
+    width: 18vw;
+  }
+
+  .LandingPage .AboutUs {
+    height: 150vh;
+  }
+
+  .LandingPage .AboutUs .Frame {
+    height: 75vh;
+    width: 100%; 
+  }
+
+  .LandingPage .AboutUs .Frame div {
+    height: 55vh;
+    width: 50%;
+    gap: 1.5rem;
+  }
+
+  .LandingPage .Img1 {
+    width: 35vw;
+    height: 40vh;
+    top: 10%;
+  }
+  
+  .LandingPage .Img2 {
+    width: 35vw;
+    height: 40vh;
+    top: 10%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .LandingPage header {
+    height: 35vh;
+  }
+  
+  .LandingPage nav {
     flex-direction: column;
-    display: flex;
-  }
-
-  header ul {
-
-    display: flex;
-    flex-direction: column;
-  }
-
-  .Presentation {}
-
-  .inicio h1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 50px;
-    color: rgb(255, 254, 254);
-    margin-top: 100px;
-  }
-
-  .inicio h2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-    color: var(--green-two);
-    margin-top: 10px;
-  }
-
-  .inicio h3 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-    color: var(--green-two);
-    margin-top: 10px;
-  }
-
-  .Frame1 img {
-    margin-left: 10px;
-    width: 180px;
-    height: 120px;
-    display: flex;
-  }
-
-  .Frame1 {
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    color: white;
-    font-size: 15px;
-  }
-
-  .sobre {
-    width: 500px;
-    height: 500px;
-    display: flex;
     justify-content: space-around;
+  }
+  
+  .LandingPage nav ul {
+    gap: 1rem;
+  }
+  
+  .LandingPage nav img {
+    width: 25vw;
+    height: 15vh;
+  }
+  
+  .LandingPage .Presentation {
+    background-size: contain;
+    background-attachment: fixed;
+    background-position: center;
+  }
+  
+  .LandingPage .Presentation h1 {
+    font-size: 2rem;
+  }
+  
+  .LandingPage .Presentation .Buttons button {
+    width: 35vw;
+    height: 10vh;
+  }
+  
+  .LandingPage .AboutUs {
+    height: auto;
+    margin-bottom: 1rem;
+  }
+
+  .LandingPage .AboutUs .Frame {
+    height: 75vh;
+    width: 100%; 
     flex-direction: column;
-  }
-
-  .sobre p {
-    margin-left: 40px;
-  }
-
-  .sobre span {
-    margin-left: 40px;
-  }
-
-  .sobre h2 {
-    margin-left: 40px;
-  }
-
-  .Frame2 img {
-    margin-right: 10px;
-    width: 180px;
-    height: 120px;
-    display: flex;
-  }
-
-  .Frame2 {
-    display: flex;
     justify-content: center;
-    padding: 10px;
-    color: white;
-    font-size: 15px;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .LandingPage .AboutUs .Frame div.Left,
+  .LandingPage .AboutUs .Frame div.Right
+  {
+    height: 70vh;
+    width: 100%; 
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
   }
 
-
+  .LandingPage .Img1 {
+    width: 35vw;
+    position: relative;
+    right: 20%;
+  }
+  
+  .LandingPage .Img2 {
+    width: 35vw;
+    position: relative;
+    top: -20%;
+    left: 20%;
+  }
 }

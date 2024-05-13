@@ -33,6 +33,7 @@ const FirstPage = () => {
                     </div>
                     <div className="Cards">
                         <Card
+                            link="/ONG"
                             imgsrc={medicossemfronteiras}
                             descricao="A sua doação não 
 tem fronteiras!

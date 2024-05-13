@@ -21,7 +21,7 @@ function WebRoutes() {
                         <Route path="/buscarONG" element={<FirstPageNGO />} />
                         <Route path="/ONG" element={<SecondPageNGO />} />
                         <Route path="/buscarVoluntario" element={<FirstPageVoluntary />} />
-                        <Route path="/Voluntario" element={<SecondPageVoluntary />} />
+                        <Route path="/voluntario" element={<SecondPageVoluntary />} />
                         <Route path="*" element={<NotFound />} />
                         <Route path="/loginONG" element={<NGO />} />
                         <Route path="/loginAdm" element={<Adm />} />

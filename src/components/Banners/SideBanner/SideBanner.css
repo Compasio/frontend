@@ -19,5 +19,9 @@
         height: 40vh;
         align-items: center;
         justify-content: center;
+    }
+    
+    .SideBanner img {
+        width: 25%;
     }   
   }

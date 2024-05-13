@@ -24,10 +24,8 @@ const NGOAdm = () => {
                 <div className="Login">
                     <SideBanner />
                     <section>
-                        <span>
-                            <img src={Logo} alt="" />
-                            <h2>Login ONG</h2>
-                        </span>
+                        <img src={Logo} alt="" />
+                        <h2>Login ONG</h2>
                         <form>
                             <input
                                 type="text"
@@ -41,7 +39,9 @@ const NGOAdm = () => {
                                 name="senha"
                                 required
                             />
-                            <button type="submit">Entrar</button>
+                            <a href="/buscarVoluntario">
+                                <button type="button">Entrar</button>
+                            </a>
                             <p onClick={handlePasswordRecovery}>Esqueceu a senha?</p>
                         </form>
                     </section>

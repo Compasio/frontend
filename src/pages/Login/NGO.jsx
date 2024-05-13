@@ -23,10 +23,8 @@ const NGO = () => {
                 <div className="Login">
                     <SideBanner />
                     <section>
-                        <span>
                             <img src={Logo} alt="" />
                             <h2>Login ONG</h2>
-                        </span>
                         <form>
                             <input
                                 type="text"

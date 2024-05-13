@@ -4,8 +4,10 @@ import "./Card.css"
 const Card = (props) => {
     return (
         <div className="Card">
-            <img src={props.imgsrc} alt="" />
-            <p>{props.descricao}</p>
+            <a href={props.link}>
+                <img src={props.imgsrc} alt="" />
+                <p>{props.descricao}</p>
+            </a>
         </div>
     )
 }

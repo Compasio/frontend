@@ -11,6 +11,11 @@
     cursor: pointer;
 }
 
+.Card a {
+    text-decoration: none;
+}
+
+
 .Card img {
     border-radius: 5px;
     width: 18vw;

@@ -28,6 +28,7 @@ const FirstPage = () => {
                             Tenho 37 anos e 
                             resido em Florianópolis."/>
                         <Card
+                            link="/Voluntario"
                             imgsrc={perfil2}
                             descricao="Olá! Me chamo Janaína
                             Tenho 25 anos e 

@@ -13,6 +13,11 @@
     justify-content: space-around;
 }
 
+.SecondPage header nav a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .SecondPage header nav div {
     display: flex;
     flex-direction: row;

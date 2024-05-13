@@ -19,15 +19,13 @@ const Voluntary = () => {
         <div>
 
             {showPasswordRecovery ? (
-                <PasswordRecovery handleBack={handleBackToLogin} />
+                <PasswordRecovery onClick={handleBackToLogin} />
             ) : (
                 <div className="Login">
                     <SideBanner />
                     <section>
-                        <span>
-                            <img src={Logo} alt="" />
-                            <h2>Login ONG</h2>
-                        </span>
+                        <img src={Logo} alt="" />
+                        <h2>Login Voluntário</h2>
                         <form>
                             <input
                                 type="text"
@@ -41,7 +39,9 @@ const Voluntary = () => {
                                 name="senha"
                                 required
                             />
-                            <button type="submit">Entrar</button>
+                            <a href="/buscarONG">
+                                <button type="button">Entrar</button>
+                            </a>
                             <p onClick={handlePasswordRecovery}>Esqueceu a senha?</p>
                         </form>
                     </section>

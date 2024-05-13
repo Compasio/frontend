@@ -15,16 +15,16 @@
 }
 
 .FirstPage header nav input {
-    width: 40rem;
+    width: 35rem;
     height: 2.5rem;
-    padding: 1%;
+    padding: 1%;    
     border: 1px solid var(--black);
     border-radius: 15px;
 }
 
 .FirstPage header nav span.Search {
     position: absolute;
-    left: 72.5%;
+    left: 70%;
     scale: 1.25;
 }
 

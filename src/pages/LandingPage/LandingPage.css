@@ -26,7 +26,7 @@
 }
 
 .LandingPage nav ul a:hover {
-  color: var(--green-one);
+  color: var(--beige);
 }
 
 .LandingPage nav img {
@@ -67,6 +67,7 @@
   height: 8vh;
   border: 0;
   border-radius: 5px;
+  transition: background .3s;
 }
 
 .LandingPage .Presentation .Buttons button:hover {
@@ -122,20 +123,20 @@
   text-align: end;
 }
 
-.LandingPage .Img1 {
-  width: 35vw;
-  height: 70vh;
-  position: relative;
-  right: 7%;
-  top: 5%;
-}
-
+.LandingPage .Img1,
 .LandingPage .Img2 {
   width: 35vw;
   height: 70vh;
   position: relative;
-  left: 7%;
   top: 5%;
+}
+
+.LandingPage .Img1 {
+  right: 7%;
+}
+
+.LandingPage .Img2 {
+  left: 7%;
 }
 
 @media screen and (max-width: 745px) {
@@ -153,7 +154,7 @@
 
   .LandingPage .AboutUs .Frame {
     height: 75vh;
-    width: 100%; 
+    width: 100%;
   }
 
   .LandingPage .AboutUs .Frame div {
@@ -167,7 +168,7 @@
     height: 40vh;
     top: 10%;
   }
-  
+
   .LandingPage .Img2 {
     width: 35vw;
     height: 40vh;
@@ -179,36 +180,36 @@
   .LandingPage header {
     height: 35vh;
   }
-  
+
   .LandingPage nav {
     flex-direction: column;
     justify-content: space-around;
   }
-  
+
   .LandingPage nav ul {
     gap: 1rem;
   }
-  
+
   .LandingPage nav img {
     width: 25vw;
     height: 15vh;
   }
-  
+
   .LandingPage .Presentation {
     background-size: contain;
     background-attachment: fixed;
     background-position: center;
   }
-  
+
   .LandingPage .Presentation h1 {
     font-size: 2rem;
   }
-  
+
   .LandingPage .Presentation .Buttons button {
     width: 35vw;
     height: 10vh;
   }
-  
+
   .LandingPage .AboutUs {
     height: auto;
     margin-bottom: 1rem;
@@ -216,18 +217,17 @@
 
   .LandingPage .AboutUs .Frame {
     height: 75vh;
-    width: 100%; 
+    width: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1rem;
   }
-  
+
   .LandingPage .AboutUs .Frame div.Left,
-  .LandingPage .AboutUs .Frame div.Right
-  {
+  .LandingPage .AboutUs .Frame div.Right {
     height: 70vh;
-    width: 100%; 
+    width: 100%;
     flex-direction: column;
     text-align: center;
     justify-content: center;
@@ -239,7 +239,7 @@
     position: relative;
     right: 20%;
   }
-  
+
   .LandingPage .Img2 {
     width: 35vw;
     position: relative;

@@ -60,8 +60,8 @@ const LandingPage = () => {
                     </div>
                 </section>
                 <div id="contact">
-                <FooterOne />
-                </div>   
+                    <FooterOne />
+                </div>
             </div >
         </div>
     )

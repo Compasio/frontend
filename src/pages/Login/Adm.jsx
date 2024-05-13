@@ -12,7 +12,7 @@ const Adm = () => {
                 <section>
                     <span>
                         <img src={Logo} alt="" />
-                        <h2>Login ONG</h2>
+                        <h2>Login ADM</h2>
                     </span>
                     <form>
                         <input

@@ -3,7 +3,7 @@ import "./LandingPage.css"
 import FooterOne from "../../components/Footers/FooterOne/FooterOne";
 import Logo from "../../img/logocomnome.svg"
 import Img1 from "../../img/landingpageimg1.jpeg"
-import Img2 from "../../img/landingpageimg2.jpeg"
+import Img2 from "../../img/landingpageimg2.jpg"
 
 const LandingPage = () => {
     return (

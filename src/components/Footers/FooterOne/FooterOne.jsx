@@ -12,7 +12,7 @@ const FooterOne = () => {
                 <h2>Contato</h2>
                 <p>Telefone: (48) xxxx-xxxx</p>
                 <p>Email: compasioemail@gmail.com</p>
-                <a href="#">Continue conectado com a gente</a>
+                <a href="/loginVoluntario">Continue conectado com a gente</a>
                 <div>
                     <a href="#">
                         <img src={instagram} alt="" />

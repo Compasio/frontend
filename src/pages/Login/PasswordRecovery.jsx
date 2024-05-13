@@ -9,9 +9,11 @@ const PasswordRecovery = () => {
         <header>
           <nav>
             <img src={Logo} alt="" />
+            <a href="/loginVoluntario">
             <span class="material-symbols-outlined">
               arrow_back
             </span>
+            </a>
           </nav>
         </header>
         <main>

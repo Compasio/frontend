@@ -13,11 +13,11 @@ const LandingPage = () => {
                     <nav>
                         <img src={Logo} alt="" />
                         <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Sobre</a></li>
-                            <li><a href="#">Login Voluntariado</a></li>
-                            <li><a href="#">Login ONG</a></li>
-                            <li><a href="#">Contato</a></li>
+                            <li><a href="/buscarONG">Home</a></li>
+                            <li><a href="#AboutUs">Sobre</a></li>
+                            <li><a href="/loginVoluntario">Login Voluntariado</a></li>
+                            <li><a href="/loginONG">Login ONG</a></li>
+                            <li><a href="#contact">Contato</a></li>
                         </ul>
                     </nav>
                 </header>
@@ -33,7 +33,7 @@ const LandingPage = () => {
                     </div>
                 </section>
 
-                <section className="AboutUs">
+                <section id="AboutUs" className="AboutUs">
                     <div className="Frame">
                         <div className="Left">
                             <h2>Sobre nós</h2>
@@ -59,7 +59,9 @@ const LandingPage = () => {
                         </div>
                     </div>
                 </section>
+                <div id="contact">
                 <FooterOne />
+                </div>   
             </div >
         </div>
     )

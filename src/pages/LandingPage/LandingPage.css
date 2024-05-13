@@ -25,6 +25,10 @@
   color: var(--black);
 }
 
+.LandingPage nav ul a:hover {
+  color: var(--green-one);
+}
+
 .LandingPage nav img {
   width: 7vw;
   height: 12vh;
@@ -43,7 +47,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: var(--white);
+  color: var(--black);
   gap: 0.5rem;
 }
 
@@ -63,6 +67,11 @@
   height: 8vh;
   border: 0;
   border-radius: 5px;
+}
+
+.LandingPage .Presentation .Buttons button:hover {
+  background-color: var(--white);
+  color: var(--green-one);
 }
 
 .LandingPage .AboutUs {

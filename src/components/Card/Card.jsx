@@ -1,7 +1,7 @@
 import React from "react";
-import "./NGOCard.css"
+import "./Card.css"
 
-const NGOCard = (props) => {
+const Card = (props) => {
     return (
         <div className="Card">
             <img src={props.imgsrc} alt="" />
@@ -10,4 +10,4 @@ const NGOCard = (props) => {
     )
 }
 
-export default NGOCard
+export default Card

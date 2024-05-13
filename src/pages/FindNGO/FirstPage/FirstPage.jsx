@@ -1,6 +1,6 @@
 import React from "react";
 import "./FirstPage.css"
-import NGOCard from "../../../components/Cards/NGOCard/NGOCard";
+import Card from "../../../components/Card/Card";
 import medicossemfronteiras from "../../../img/medicosemfronteiras.png";
 import maismedicos from "../../../img/maismedicos.png";
 import cidadaniaanima from "../../../img/cidadaniaanimal.png";
@@ -32,7 +32,7 @@ const FirstPage = () => {
                         <button type="button">Adolescentes</button>
                     </div>
                     <div className="Cards">
-                        <NGOCard
+                        <Card
                             imgsrc={medicossemfronteiras}
                             descricao="A sua doação não 
 tem fronteiras!
@@ -40,7 +40,7 @@ Doe para Médicos
 sem fronteiras e ajude 
 a levar cuidados para 
 quem precisa."/>
-                        <NGOCard
+                        <Card
                             imgsrc={maismedicos}
                             descricao="O Mais Médicos compõe 
 um conjunto de ações e
@@ -49,7 +49,7 @@ para o fortalecimento
 da Atenção Primária à 
 Saúde do país.  
 Ajude você também!"/>
-                        <NGOCard
+                        <Card
                             imgsrc={cidadaniaanima}
                             descricao="Somos um grupo 
 voluntários apaixonados

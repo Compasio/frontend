@@ -16,7 +16,7 @@ const LandingPage = () => {
                             <li><a href="/buscarONG">Home</a></li>
                             <li><a href="#AboutUs">Sobre</a></li>
                             <li><a href="/loginVoluntario">Login Voluntariado</a></li>
-                            <li><a href="/loginONG">Login ONG</a></li>
+                            <li><a href="/loginAdmONG">Login ONG</a></li>
                             <li><a href="#contact">Contato</a></li>
                         </ul>
                     </nav>

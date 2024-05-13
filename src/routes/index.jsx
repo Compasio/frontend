@@ -25,7 +25,7 @@ function WebRoutes() {
                         <Route path="*" element={<NotFound />} />
                         <Route path="/loginONG" element={<NGO />} />
                         <Route path="/loginAdm" element={<Adm />} />
-                        <Route path="/loginAdmOng" element={<NGOAdm />} />
+                        <Route path="/loginAdmONG" element={<NGOAdm />} />
                         <Route path="/loginVoluntario" element={<Voluntary />} />
                     </Routes>
                 </Router>

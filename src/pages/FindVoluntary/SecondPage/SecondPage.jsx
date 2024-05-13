@@ -13,9 +13,11 @@ const SecondPage = () => {
             <div className="SecondPage">
                 <header>
                     <nav>
+                        <a href="/buscarVoluntario">
                         <span class="material-symbols-outlined">
                             arrow_back
                         </span>
+                        </a>
                         <div>
                             <span class="material-symbols-outlined">
                                 supervised_user_circle

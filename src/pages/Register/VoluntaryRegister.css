@@ -1,26 +1,19 @@
-.Login {
+.VoluntaryRegister {
   height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: row;
 }
 
-.Login section {
-  height: 100vh;
+.VoluntaryRegister section {
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 5%;
 }
 
-.Login section img {
-  width: 8vw;
-  height: 16vh;
-}
-
-.Login form {
+.VoluntaryRegister form {
   width: 100%;
   height: 100%;
   display: flex;
@@ -31,14 +24,14 @@
   gap: 1rem;
 }
 
-.Login form input {
+.VoluntaryRegister form input {
   width: 35vw;
   height: 7vh;
   text-transform: uppercase;
   padding: 1%
 }
 
-.Login form button {
+.VoluntaryRegister form button {
   width: 10vw;
   height: 7vh;
   text-transform: uppercase;
@@ -47,25 +40,20 @@
   border: 1px solid var(--black);
 }
 
-.Login form button:hover {
+.VoluntaryRegister form button:hover {
   background-color: var(--white);
   color: var(--green-two);
 }
 
-.Login form p {
-  text-decoration: underline;
-  cursor: pointer;
-}
-
 @media screen and (max-width: 745px) {
-  .Login section img {
+  .VoluntaryRegister section img {
     width: 15vw;
     height: 16vh;
   }
 }
 
 @media screen and (max-width: 400px) {
-  .Login {
+  .VoluntaryRegister {
     height: 100vh;
     width: 100%;
     display: flex;
@@ -73,16 +61,15 @@
     gap: 1rem;
   }
 
-  .Login section img {
+  .VoluntaryRegister section img {
     display: none;
   }
 
-  .Login form input {
+  .VoluntaryRegister form input {
     width: 45vw;
   }
 
-
-  .Login form button {
+  .VoluntaryRegister form button {
     width: 18vw;
   }
 }

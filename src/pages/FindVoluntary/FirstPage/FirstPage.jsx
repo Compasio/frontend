@@ -14,7 +14,7 @@ const FirstPage = () => {
                         <span class="material-symbols-outlined">
                             account_circle
                         </span>
-                        <input type="text" placeholder="Procurar voluntários" />
+                        <input type="search" placeholder="Procurar voluntários" />
                         <span class="material-symbols-outlined Search">
                             search
                         </span>

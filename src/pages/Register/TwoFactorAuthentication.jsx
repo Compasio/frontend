@@ -1,15 +1,15 @@
 import React from "react";
-import "./PasswordRecovery.css";
+import "./TwoFactorAuthentication.css";
 import Logo from "../../img/logocomnome.svg"
 
-const PasswordRecovery = () => {
+const TwoFactorAuthentication = () => {
 
   return (
-      <div className="PasswordRecovery">
+      <div className="TwoFactorAuthentication">
         <header>
           <nav>
             <img src={Logo} alt="" />
-            <a href="/loginVoluntario">
+            <a href="/criarVoluntario">
             <span class="material-symbols-outlined">
               arrow_back
             </span>
@@ -35,4 +35,4 @@ const PasswordRecovery = () => {
   );
 };
 
-export default PasswordRecovery;
+export default TwoFactorAuthentication;

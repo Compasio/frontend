@@ -28,8 +28,12 @@ const LandingPage = () => {
                         <h2>Compaixão para o mundo</h2>
                     </div>
                     <div className="Buttons">
-                        <button>Comece como um voluntário</button>
-                        <button>Comece como uma organização</button>
+                        <a href="/criarVoluntario">
+                            <button>Comece como um voluntário</button>
+                        </a>
+                        <a href="/criarONG">
+                            <button>Comece como uma organização</button>
+                        </a>
                     </div>
                 </section>
 

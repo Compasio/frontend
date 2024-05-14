@@ -1,24 +1,24 @@
 import React, { useState } from "react";
-import PasswordRecovery from "./PasswordRecovery";
+import TwoFactorAuthentication from "./TwoFactorAuthentication";
 import SideBanner from "../../components/Banners/SideBanner/SideBanner";
 import Logo from "../../img/logosemnome.svg"
-import "./Login.css"
+import "./NGORegister.css"
 
-const NGO = () => {
-    const [showPasswordRecovery, setShowPasswordRecovery] = useState(false);
+const NGORegister = () => {
+    const [showTwoFactorAuthentication, setShowTwoFactorAuthentication] = useState(false);
 
-    const handlePasswordRecovery = () => {
-        setShowPasswordRecovery(true);
+    const handleTwoFactorAuthentication = () => {
+        setShowTwoFactorAuthentication(true);
     };
 
     const handleBackToLogin = () => {
-        setShowPasswordRecovery(false);
+        setShowTwoFactorAuthentication(false);
     };
 
     return (
         <div className="Body">
-            {showPasswordRecovery ? (
-                <PasswordRecovery handleBack={handleBackToLogin} />
+            {showTwoFactorAuthentication ? (
+                <TwoFactorAuthentication handleBack={handleBackToLogin} />
             ) : (
                 <div className="Login">
                     <SideBanner />
@@ -45,7 +45,7 @@ const NGO = () => {
                                 required
                             />
                             <button type="submit">Entrar</button>
-                            <p onClick={handlePasswordRecovery}>Esqueceu a senha?</p>
+                            <p onClick={handleTwoFactorAuthentication}>Esqueceu a senha?</p>
                         </form>
                     </section>
                 </div>
@@ -54,4 +54,4 @@ const NGO = () => {
     );
 };
 
-export default NGO;
+export default NGORegister;

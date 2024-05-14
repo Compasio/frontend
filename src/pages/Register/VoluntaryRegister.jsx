@@ -1,36 +1,44 @@
 import React, { useState } from "react";
-import PasswordRecovery from "./PasswordRecovery";
+import TwoFactorAuthentication from "./TwoFactorAuthentication";
 import SideBanner from "../../components/Banners/SideBanner/SideBanner";
-import Logo from "../../img/logosemnome.svg"
-import "./Login.css"
+import "./VoluntaryRegister.css"
 
 const VoluntaryRegister = () => {
-    const [showPasswordRecovery, setShowPasswordRecovery] = useState(false);
+    const [showTwoFactorAuthentication, setShowTwoFactorAuthentication] = useState(false);
 
-    const handlePasswordRecovery = () => {
-        setShowPasswordRecovery(true);
+    const handleTwoFactorAuthentication = () => {
+        setShowTwoFactorAuthentication(true);
     };
 
     const handleBackToLogin = () => {
-        setShowPasswordRecovery(false);
+        setShowTwoFactorAuthentication(false);
     };
 
     return (
-        <div>
-
-            {showPasswordRecovery ? (
-                <PasswordRecovery onClick={handleBackToLogin} />
+        <div className="Body">
+            {showTwoFactorAuthentication ? (
+                <TwoFactorAuthentication onClick={handleBackToLogin} />
             ) : (
-                <div className="Login">
-                    <SideBanner />
+                <div className="VoluntaryRegister">
                     <section>
-                        <img src={Logo} alt="" />
-                        <h2>Login Voluntário</h2>
                         <form>
+                            <h2>Registre sua ONG</h2>
+                            <input
+                                type="text"
+                                placeholder="Nome da ONG"
+                                name="nome"
+                                required
+                            />
                             <input
                                 type="text"
                                 placeholder="Email"
                                 name="email"
+                                required
+                            />
+                            <input
+                                type="text"
+                                placeholder="CNPJ"
+                                name="cpnj"
                                 required
                             />
                             <input
@@ -39,15 +47,35 @@ const VoluntaryRegister = () => {
                                 name="senha"
                                 required
                             />
+                            <input
+                                type="password"
+                                placeholder="Confirme sua senha"
+                                name="senha_confirmacao"
+                                required
+                            />
+                            <p>Certificados</p>
+                            <input type="file"
+                                name="certificado"
+                                required
+                            />
+                            <input type="file"
+                                name="certificado"
+                                required
+                            />
+                            <input type="file"
+                                name="certificado"
+                                required
+                            />
                             <a href="/buscarONG">
-                                <button type="button">Entrar</button>
+                                <button type="button">Continuar</button>
                             </a>
-                            <p onClick={handlePasswordRecovery}>Esqueceu a senha?</p>
                         </form>
                     </section>
+                    <SideBanner />
                 </div>
             )}
         </div>
+
     );
 };
 

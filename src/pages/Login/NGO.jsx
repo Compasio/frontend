@@ -16,15 +16,15 @@ const NGO = () => {
     };
 
     return (
-        <div className="Body">
+        <div>
             {showPasswordRecovery ? (
                 <PasswordRecovery handleBack={handleBackToLogin} />
             ) : (
                 <div className="Login">
                     <SideBanner />
                     <section>
-                            <img src={Logo} alt="" />
-                            <h2>Login ONG</h2>
+                        <img src={Logo} alt="" />
+                        <h2>Login ONG</h2>
                         <form>
                             <input
                                 type="text"
@@ -33,18 +33,14 @@ const NGO = () => {
                                 required
                             />
                             <input
-                                type="text"
-                                placeholder="Email"
-                                name="email"
-                                required
-                            />
-                            <input
                                 type="password"
                                 placeholder="Senha"
                                 name="senha"
                                 required
                             />
-                            <button type="submit">Entrar</button>
+                            <a href="/buscarVoluntario">
+                                <button type="button">Entrar</button>
+                            </a>
                             <p onClick={handlePasswordRecovery}>Esqueceu a senha?</p>
                         </form>
                     </section>

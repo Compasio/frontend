@@ -6,9 +6,8 @@ import FirstPageNGO from '../pages/FindNGO/FirstPage/FirstPage'
 import SecondPageNGO from '../pages/FindNGO/SecondPage/SecondPage'
 import FirstPageVoluntary from '../pages/FindVoluntary/FirstPage/FirstPage'
 import SecondPageVoluntary from '../pages/FindVoluntary/SecondPage/SecondPage'
-import NGO from '../pages/Login/NGO';
 import Adm from '../pages/Login/Adm';
-import NGOAdm from '../pages/Login/NGOAdm';
+import NGO from '../pages/Login/NGO';
 import Voluntary from '../pages/Login/Voluntary';
 
 function WebRoutes() {
@@ -22,11 +21,10 @@ function WebRoutes() {
                         <Route path="/ONG" element={<SecondPageNGO />} />
                         <Route path="/buscarVoluntario" element={<FirstPageVoluntary />} />
                         <Route path="/voluntario" element={<SecondPageVoluntary />} />
-                        <Route path="*" element={<NotFound />} />
-                        <Route path="/loginONG" element={<NGO />} />
                         <Route path="/loginAdm" element={<Adm />} />
-                        <Route path="/loginAdmONG" element={<NGOAdm />} />
+                        <Route path="/loginONG" element={<NGO />} />
                         <Route path="/loginVoluntario" element={<Voluntary />} />
+                        <Route path="*" element={<NotFound />} />
                     </Routes>
                 </Router>
             </div>

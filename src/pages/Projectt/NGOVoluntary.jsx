@@ -1,12 +1,12 @@
 import React from "react";
-import "./Voluntariar.css";
+import "./VoluntaryP.css";
 import user from '../../img/userimg.png';
 import quadra from '../../img/quadra.png';
 import navio from '../../img/navio.png';
 import vector1 from '../../img/Vector1.png';
 import vector from '../../img/Vector.png';
 
-export default function Voluntariar() {
+export default function NGOVoluntary() {
     return (
         <div>
             <nav style={{ backgroundColor: "#4A806D", padding: "10px 20px", display: "flex", alignItems: "center" }}>
@@ -15,7 +15,7 @@ export default function Voluntariar() {
                 </div>
                 <input type="text" className="search" />
                 <button style={{ backgroundColor: "transparent", border: "none", cursor: "pointer" }}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"  fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                 </button>
             </nav>
             <div className="voluntariar-container">

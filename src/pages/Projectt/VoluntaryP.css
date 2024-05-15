@@ -12,7 +12,8 @@
     border-radius: 23px;
     border: 2px solid;
     width: 900px;
-    margin: 20px auto; /* Alterado para centralizar horizontalmente */
+    margin: 20px auto;
+    
 }
 h2{
     font-size: 40px;
@@ -23,7 +24,7 @@ h2{
     flex-direction: column;
     justify-content: space-between;
     padding: 20px;
-    max-width: 1000px; /* Ajustado para 1000px */
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -33,33 +34,33 @@ h2{
     color: var(--white);
     padding: 20px;
     display: flex;
-    flex-direction: row; /* Alterado para alinhar horizontalmente */
+    flex-direction: row;
     gap: 20px;
     height: 357px;
-    width: 100%; /* Alterado para 100% */
-    align-items: center; /* Alinha verticalmente */
+    width: 100%; 
+    align-items: center; 
 }
 
 .block1 img{
-    max-width: 500px; /* Ajustado para o tamanho da imagem */
-    border-radius: 10px; /* Adicionado o arredondamento da borda */
+    max-width: 500px; 
+    border-radius: 10px; 
 }
 .block2 img {
-    max-width: 400px; /* Ajuste para o mesmo tamanho da imagem do bloco 1 */
-    border-radius: 10px; /* Adicionado o arredondamento da borda */
+    max-width: 400px;
+    border-radius: 10px;
 }
 
 .block1 div,
 .block2 div {
-    flex: 1px; /* Ocupa o espaço restante */
-    margin-right: -300px; /* Adicionado espaçamento à direita */
+    flex: 1px;
+    margin-right: -300px; 
 }
 
 
 .block1 button,
 .block2 button {
-    width: 30%; /* Ajustado para o tamanho do botão */
-    margin-left: auto; /* Alinha à direita */
+    width: 30%;
+    margin-left: auto;
     margin-top: 250px;
 }
 

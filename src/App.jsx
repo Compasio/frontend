@@ -1,11 +1,11 @@
 import React from "react";
 import WebRoutes from "./routes/index"
-import Voluntariar from "./pages/Projectt/OngVoluntariar";
+import NGOVoluntary from "./pages/Projectt/NGOVoluntary";
 
 function App() {
   return (
     <div className="App">
-      <Voluntariar></Voluntariar>
+      <NGOVoluntary></NGOVoluntary>
     </div>
   );
 }

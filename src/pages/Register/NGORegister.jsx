@@ -18,18 +18,16 @@ const NGORegister = () => {
     return (
         <div className="Body">
             {showTwoFactorAuthentication ? (
-                <TwoFactorAuthentication handleBack={handleBackToLogin} />
+                <TwoFactorAuthentication onClick={handleBackToLogin} />
             ) : (
-                <div className="Login">
-                    <SideBanner />
+                <div className="VoluntaryRegister">
                     <section>
-                            <img src={Logo} alt="" />
-                            <h2>Login ONG</h2>
                         <form>
+                            <h2>Registre sua ONG</h2>
                             <input
                                 type="text"
-                                placeholder="Organização"
-                                name="organizacao"
+                                placeholder="Nome da ONG"
+                                name="nome"
                                 required
                             />
                             <input
@@ -39,18 +37,46 @@ const NGORegister = () => {
                                 required
                             />
                             <input
+                                type="text"
+                                placeholder="CNPJ"
+                                name="cpnj"
+                                required
+                            />
+                            <input
                                 type="password"
                                 placeholder="Senha"
                                 name="senha"
                                 required
                             />
-                            <button type="submit">Entrar</button>
-                            <p onClick={handleTwoFactorAuthentication}>Esqueceu a senha?</p>
+                            <input
+                                type="password"
+                                placeholder="Confirme sua senha"
+                                name="senha_confirmacao"
+                                required
+                            />
+                            <p>Certificados</p>
+                            <input type="file"
+                                name="certificado"
+                                required
+                            />
+                            <input type="file"
+                                name="certificado"
+                                required
+                            />
+                            <input type="file"
+                                name="certificado"
+                                required
+                            />
+                            <a href="/buscarONG">
+                                <button type="button">Continuar</button>
+                            </a>
                         </form>
                     </section>
+                    <SideBanner />
                 </div>
             )}
         </div>
+
     );
 };
 

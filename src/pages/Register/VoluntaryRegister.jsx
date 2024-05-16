@@ -22,23 +22,23 @@ const VoluntaryRegister = () => {
                 <div className="VoluntaryRegister">
                     <section>
                         <form>
-                            <h2>Registre sua ONG</h2>
+                            <h2>Crie sua conta!</h2>
                             <input
                                 type="text"
-                                placeholder="Nome da ONG"
+                                placeholder="Nome completo"
                                 name="nome"
+                                required
+                            />
+                            <input
+                                type="text"
+                                placeholder="CPF"
+                                name="cpf"
                                 required
                             />
                             <input
                                 type="text"
                                 placeholder="Email"
                                 name="email"
-                                required
-                            />
-                            <input
-                                type="text"
-                                placeholder="CNPJ"
-                                name="cpnj"
                                 required
                             />
                             <input
@@ -51,19 +51,6 @@ const VoluntaryRegister = () => {
                                 type="password"
                                 placeholder="Confirme sua senha"
                                 name="senha_confirmacao"
-                                required
-                            />
-                            <p>Certificados</p>
-                            <input type="file"
-                                name="certificado"
-                                required
-                            />
-                            <input type="file"
-                                name="certificado"
-                                required
-                            />
-                            <input type="file"
-                                name="certificado"
                                 required
                             />
                             <a href="/buscarONG">

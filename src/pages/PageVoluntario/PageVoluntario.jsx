@@ -9,16 +9,13 @@ const PageVoluntario = () => {
     return (
         <div className="body">
             <div className="PageVoluntario">
-            
-                <header className="user">
-                    <div className="seta">
-                    <span className="icon1" class="material-symbols-outlined">
+                <header className="corpo">
+                   <div className="seta"> 
+                    <span class="material-symbols-outlined">
                 arrow_back
                 </span>
-                    </div>
-
+                </div>
                     <h1>Claudia_Ciclano</h1>
-
                     <div className="config">
                     <span className="icon2" class="material-symbols-outlined">
                 settings
@@ -26,30 +23,25 @@ const PageVoluntario = () => {
                     </div>
                 </header>
             
-
-                <section className="information">
+                    <div className="fundo">
                 <img className="Foto" src={Foto} alt="" />
-                <h2>
-                <span className="icon3" class="material-symbols-outlined">
-                location_on
-                </span>
-               Claudia de Fulano Ciclano</h2>
+                <section className="information">
+                <h2> Claudia de Fulano Ciclano</h2>
                 <p>Florianópolis-SC.</p>
                 <p>Amante da Natureza.</p>
                 <p>37 anos.</p>
-                </section>
 
-                <section className="button">
-                    <button className="botao">Med. Veterinária</button>
-
-                <div className="add1">
+                <div className="adicionar">
+                <button className="botao">Med. Veterinária</button>
+                 <div className="add1">
                 <span className="icon4" class="material-symbols-outlined">
                 add
                 </span>
                 </div>
-
+                </div>
                 </section>
-
+                </div>
+                
                 <div className="projetos">
                 <img className="Ong1" src={Ong1} alt="" />
                 <img className="Ong2" src={Ong2} alt="" />

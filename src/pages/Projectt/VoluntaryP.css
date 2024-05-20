@@ -1,0 +1,161 @@
+/* VoluntaryP.css */
+
+:root {
+    --green-one: #224237;
+    --green-two: #4A806D;
+    --beige: #C4B4A1;
+    --white: #F8F8F8;
+    --black: #131313;
+}
+
+.search-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.search {
+    padding: 8px;
+    text-align: center;
+    border-radius: 23px;
+    border: 2px solid;
+    width: 90%;
+    max-width: 800px;
+}
+
+.search-icon {
+    position: absolute;
+    right: 1px;
+    cursor: pointer;
+}
+
+h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.voluntariar-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.block1,
+.block2 {
+    background-color: var(--green-one);
+    color: var(--white);
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    height: 357px;
+    width: 100%;
+    align-items: center;
+}
+
+.block1 img {
+    max-width: 500px;
+    border-radius: 10px;
+}
+
+.block2 img {
+    max-width: 400px;
+    border-radius: 10px;
+}
+
+.block1 div,
+.block2 div {
+    flex: 1px;
+    margin-right: -300px;
+}
+
+.block1 button,
+.block2 button {
+    width: 30%;
+    margin-left: auto;
+    margin-top: 250px;
+}
+
+.cta-button {
+    background-color: var(--green-two);
+    color: var(--white);
+    border: none;
+    padding: 10px 20px;
+    font-size: 30px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #e0e0e0;
+}
+
+@media screen and (max-width: 745px) {
+    .block1,
+    .block2 {
+        flex-direction: column;
+        text-align: center;
+        height: 557px;
+    }
+
+    .block1 img,
+    .block2 img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .block1 div,
+    .block2 div {
+        margin-right: 0;
+    }
+
+    .block1 button,
+    .block2 button {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 20px;
+    }
+
+    .search-icon {
+        position: absolute;
+        right: 1px;
+        cursor: pointer;
+    }
+    
+}
+
+@media screen and (max-width: 400px) {
+    .block1,
+    .block2 {
+        flex-direction: column;
+        align-items: center;
+        height: 257px;
+    }
+
+    .block1 button,
+    .block2 button {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 20px;
+    }
+
+    .search {
+        width: calc(100% - 60px);
+    }
+
+    h2 {
+        font-size: 30px;
+    }
+
+    .cta-button {
+        font-size: 20px;
+    }
+}

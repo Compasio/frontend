@@ -12,7 +12,7 @@ import Voluntary from '../pages/Login/Voluntary';
 import VoluntaryProfile from '../pages/VoluntaryProfile/VoluntaryProfile';
 import Project from '../pages/Project/Project';
 
-function WebRoutes() {
+export default function WebRoutes() {
     return (
         <div>
             <div>
@@ -35,5 +35,3 @@ function WebRoutes() {
         </div>
     );
 }
-
-export default WebRoutes;

@@ -28,7 +28,7 @@
 }
 
 .Project main {
-    height: auto;
+    height: 80vh;
     width: 100%;
     gap: 2rem;
     display: flex;

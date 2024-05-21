@@ -1,0 +1,14 @@
+.VoluntaryBanner {
+    height: 85vh;
+    width: 95%;
+    background-color: var(--green-one);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1%;
+    gap: 3rem;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 400px) {
+}

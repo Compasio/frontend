@@ -10,6 +10,7 @@ import Adm from '../pages/Login/Adm';
 import NGO from '../pages/Login/NGO';
 import Voluntary from '../pages/Login/Voluntary';
 import PageVoluntario from '../pages/PageVoluntario/PageVoluntario';
+import Project from '../pages/Project/Project';
 
 function WebRoutes() {
     return (
@@ -26,6 +27,7 @@ function WebRoutes() {
                         <Route path="/loginONG" element={<NGO />} />
                         <Route path="/loginVoluntario" element={<Voluntary />} />
                         <Route path="/pageVoluntario" element={<PageVoluntario />} />
+                        <Route path="/projetos" element={<Project />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </Router>

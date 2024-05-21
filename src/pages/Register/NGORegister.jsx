@@ -16,15 +16,15 @@ const NGO = () => {
     };
 
     return (
-        <div className="Body">
+        <>
             {showPasswordRecovery ? (
                 <PasswordRecovery handleBack={handleBackToLogin} />
             ) : (
-                <div className="Login">
+                <div className="Register">
                     <SideBanner />
                     <section>
-                            <img src={Logo} alt="" />
-                            <h2>Login ONG</h2>
+                        <img src={Logo} alt="" />
+                        <h2>Login ONG</h2>
                         <form>
                             <input
                                 type="text"
@@ -50,7 +50,7 @@ const NGO = () => {
                     </section>
                 </div>
             )}
-        </div>
+        </>
     );
 };
 

@@ -16,7 +16,7 @@ const NGO = () => {
     };
 
     return (
-        <div>
+        <>
             {showPasswordRecovery ? (
                 <PasswordRecovery handleBack={handleBackToLogin} />
             ) : (
@@ -46,7 +46,7 @@ const NGO = () => {
                     </section>
                 </div>
             )}
-        </div>
+        </>
     );
 };
 

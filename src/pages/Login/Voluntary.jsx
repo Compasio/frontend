@@ -16,8 +16,7 @@ const Voluntary = () => {
     };
 
     return (
-        <div>
-
+        <>
             {showPasswordRecovery ? (
                 <PasswordRecovery onClick={handleBackToLogin} />
             ) : (
@@ -47,7 +46,7 @@ const Voluntary = () => {
                     </section>
                 </div>
             )}
-        </div>
+        </>
     );
 };
 

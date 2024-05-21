@@ -16,12 +16,11 @@ const VoluntaryRegister = () => {
     };
 
     return (
-        <div>
-
+        <>
             {showPasswordRecovery ? (
                 <PasswordRecovery onClick={handleBackToLogin} />
             ) : (
-                <div className="Login">
+                <div className="Register">
                     <SideBanner />
                     <section>
                         <img src={Logo} alt="" />
@@ -47,7 +46,7 @@ const VoluntaryRegister = () => {
                     </section>
                 </div>
             )}
-        </div>
+        </>
     );
 };
 

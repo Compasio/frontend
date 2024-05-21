@@ -1,0 +1,48 @@
+.ProjectBanner {
+    height: 30vh;
+    width: 70vw;
+    background-color: var(--green-one);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5rem;
+    border-radius: 5px;
+}
+
+.ProjectBanner>span {
+    position: absolute;
+    left: 82.5%;
+    top: 15%;
+}
+
+.ProjectBanner p {
+    text-align: justify;
+    transform: scale(1.15);
+    width: 50%;
+    color: var(--white);
+}
+
+@media screen and (max-width: 400px) {
+    .ProjectBanner {
+        height: 30vh;
+        width: 95vw;
+        padding: 2%;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .ProjectBanner img {
+        width: 35%;
+    }
+
+    .ProjectBanner p {
+        width: auto;
+        transform: scale(0.75);
+    }
+
+    .ProjectBanner>span {
+        left: 5%;
+        top: 18%;
+    }
+}

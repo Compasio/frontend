@@ -18,7 +18,7 @@ const Project = () => {
                     </span>
                 </nav>
             </header>
-
+            
             <main>
                 <ProjectBanner
                     imgsrc={projeto1}

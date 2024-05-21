@@ -32,6 +32,7 @@
 }
 
 .ProjectBanner p {
+    width: 95%;
     text-align: justify;
     color: var(--white);
 }
@@ -39,6 +40,7 @@
 .ProjectBanner button {
     background-color: var(--green-two);
     border: 0;
+    border-radius: 15px;
     height: 8vh;
     width: 15vw;
     font-size: 1.25rem;
@@ -47,24 +49,25 @@
 
 @media screen and (max-width: 400px) {
     .ProjectBanner {
-        height: 30vh;
-        width: 95vw;
+        height: 55vh;
+        width: 90vw;
         padding: 2%;
-        justify-content: center;
-        gap: 0.5rem;
     }
 
     .ProjectBanner img {
-        width: 35%;
+        height: 20vh;
+        width: 30vw;
+    }
+
+    .ProjectBanner h1 {
+        font-size: 1.5rem;
     }
 
     .ProjectBanner p {
-        width: auto;
-        transform: scale(0.75);
+        width: 90%;
     }
 
-    .ProjectBanner>span {
-        left: 5%;
-        top: 18%;
+    .ProjectBanner button {
+        width: 30vw;
     }
 }

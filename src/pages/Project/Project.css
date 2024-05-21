@@ -1,11 +1,3 @@
-:root {
-    --green-one: #224237;
-    --green-two: #4A806D;
-    --beige: #C4B4A1;
-    --white: #F8F8F8;
-    --black: #131313;
-}
-
 .Project header {
     width: 100%;
     height: 10vh;
@@ -36,14 +28,13 @@
 }
 
 .Project main {
-    height: 80vh;
+    height: auto;
     width: 100%;
     gap: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 1%;
 }
 
 .Project footer {
@@ -58,4 +49,29 @@
     padding: 1%;
 }
 
-@media screen and (max-width: 400px) {}
+@media screen and (max-width: 400px) {
+    .Project header {
+        height: 13vh;
+    }
+
+    .Project header nav input {
+        width: 15rem;
+    }
+
+    .Project header nav span.Search {
+        position: absolute;
+        left: 78%;
+        scale: 1.25;
+    }
+
+    .Project main {
+        height: 117vh;
+        gap: 1rem;
+    }
+
+    .Project footer {
+        position: relative;
+        bottom: 0;
+        padding: 2%;
+    }
+}

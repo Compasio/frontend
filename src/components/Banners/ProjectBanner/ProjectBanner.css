@@ -1,25 +1,47 @@
 .ProjectBanner {
-    height: 30vh;
+    height: 35vh;
     width: 70vw;
     background-color: var(--green-one);
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 5rem;
+    gap: 2rem;
+    padding: 1%;
     border-radius: 5px;
 }
 
-.ProjectBanner>span {
-    position: absolute;
-    left: 82.5%;
-    top: 15%;
+.ProjectBanner img {
+    height: 30vh;
+    width: 20vw;
+    border-radius: 5px;
+}
+
+.ProjectBanner div {
+    height: 100%;
+    width: 80%;
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: self-start;
+    justify-content: center;
+}
+
+.ProjectBanner h1 {
+    color: var(--white);
 }
 
 .ProjectBanner p {
     text-align: justify;
-    transform: scale(1.15);
-    width: 50%;
+    color: var(--white);
+}
+
+.ProjectBanner button {
+    background-color: var(--green-two);
+    border: 0;
+    height: 8vh;
+    width: 15vw;
+    font-size: 1.25rem;
     color: var(--white);
 }
 

@@ -8,7 +8,7 @@ const ProjectBanner = (props) => {
                 <img src={props.imgsrc} alt="" />
             </figure>
             <div>
-                <h3>{props.nome}</h3>
+                <h1>{props.nome}</h1>
                 <p>{props.descricao}</p>
                 <button type="button">Voluntariar</button>
             </div>

@@ -6,10 +6,10 @@ const VoluntaryProfileBanner = (props) => {
         <div className="VoluntaryProfileBanner">
             <section>
                 <img src={props.imgsrc} alt="" />
+                <h1>{props.nome}</h1>
                 <div>
-                    <p><b>Nome:</b> {props.nome}</p>
-                    <p><b>Localização:</b> {props.localizacao}</p>
-                    <p><b>Idade:</b> {props.idade}</p>
+                    <p>{props.localizacao}</p>
+                    <p>{props.idade}</p>
                 </div>
                 <div>
                     <p>{props.areadeatuacao}</p>
@@ -18,12 +18,14 @@ const VoluntaryProfileBanner = (props) => {
                     </span>
                 </div>
             </section>
-            <img src={props.projeto1} alt="" />
-            <img src={props.projeto2} alt="" />
-            <img src={props.projeto3} alt="" />
-            <span class="material-symbols-outlined">
-                add
-            </span>
+            <div>
+                <img src={props.projeto1} alt="" />
+                <img src={props.projeto2} alt="" />
+                <img src={props.projeto3} alt="" />
+                <span class="material-symbols-outlined">
+                    add
+                </span>
+            </div>
         </div>
     )
 }

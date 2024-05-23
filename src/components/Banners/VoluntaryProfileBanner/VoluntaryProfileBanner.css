@@ -1,23 +1,61 @@
-.VoluntaryBanner {
+.VoluntaryProfileBanner {
     height: 85vh;
-    width: 95%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 1rem;
     padding: 1%;
+}
+
+.VoluntaryProfileBanner section {
+    height: 55vh;
+    width: 100%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    background-color: var(--green-one);
+    padding: 2%;
+    color: var(--white);
+}
+
+.VoluntaryProfileBanner section>img {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    align-self: flex-start;
+}
+
+.VoluntaryProfileBanner section>h1 {
+    align-self: flex-start;
+}
+
+
+.VoluntaryProfileBanner>div {
+    height: 30vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     gap: 1rem;
 }
 
-.VoluntaryBanner section {
-    height: 55vh;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1%;
+.VoluntaryProfileBanner>div img {
+    width: 12%;
 }
 
-@media screen and (max-width: 400px) {
+.VoluntaryProfileBanner>div span {
+    background-color: var(--green-one);
+    width: 3rem;
+    display: flex;
+    font-size: 2rem;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+    color: var(--white);
+    border-radius: 50%;
 }
+
+@media screen and (max-width: 400px) {}

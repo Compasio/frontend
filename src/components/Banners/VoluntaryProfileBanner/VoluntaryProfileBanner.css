@@ -11,31 +11,64 @@
 
 .VoluntaryProfileBanner section {
     height: 55vh;
-    width: 100%;
+    width: 90%;
     border-radius: 5px;
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
     background-color: var(--green-one);
     padding: 2%;
     color: var(--white);
 }
 
-.VoluntaryProfileBanner section>img {
+.VoluntaryProfileBanner section .Presentation {
+    gap: 1rem;
+    flex-direction: row;
+    display: flex;
+}
+
+.VoluntaryProfileBanner section .Presentation figure img {
     width: 10rem;
     height: 10rem;
     border-radius: 50%;
-    align-self: flex-start;
 }
 
-.VoluntaryProfileBanner section>h1 {
-    align-self: flex-start;
+.VoluntaryProfileBanner section .Presentation div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.25rem;
+    align-items: flex-start;
+}
+
+.VoluntaryProfileBanner section .Presentation div p {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+}
+
+.VoluntaryProfileBanner section .Presentation div p,
+.VoluntaryProfileBanner section .Presentation div span {
+    font-size: 1.25rem;
+}
+
+.VoluntaryProfileBanner section .Presentation div h1 {
+    font-size: 2.25rem;
+    align-self: start;
+}
+
+.VoluntaryProfileBanner section .OccupationArea {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
 }
 
 
 .VoluntaryProfileBanner>div {
     height: 30vh;
-    width: 100%;
+    width: 90%;
     display: flex;
     align-items: center;
     justify-content: flex-start;

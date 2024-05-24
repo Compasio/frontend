@@ -5,13 +5,19 @@ const VoluntaryProfileBanner = (props) => {
     return (
         <div className="VoluntaryProfileBanner">
             <section>
-                <img src={props.imgsrc} alt="" />
-                <h1>{props.nome}</h1>
-                <div>
-                    <p>{props.localizacao}</p>
-                    <p>{props.idade}</p>
+                <div className="Presentation">
+                    <figure>
+                        <img src={props.imgsrc} alt="" />
+                    </figure>
+                    <div>
+                        <h1>{props.nome}</h1>
+                        <p><span class="material-symbols-outlined">
+                            location_on
+                        </span> {props.localizacao}</p>
+                        <p>{props.idade}</p>
+                    </div>
                 </div>
-                <div>
+                <div className="OccupationArea">
                     <p>{props.areadeatuacao}</p>
                     <span class="material-symbols-outlined">
                         add

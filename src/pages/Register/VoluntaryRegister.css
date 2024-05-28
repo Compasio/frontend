@@ -44,8 +44,8 @@
 }
 
 .VoluntaryRegister form textarea {
-  width: 30vw;
-  height: 30vh;
+  width: 35vw;
+  height: 40vh;
   resize: none;
   padding: 1%;
 }
@@ -55,12 +55,13 @@
   flex-direction: row;
   justify-content: center;
   gap: 0.5rem;
+  width: 35vw;
   flex-wrap: wrap;
 }
 
 .VoluntaryRegister form .Skills span {
   display: flex;
-  width: 8rem;
+  width: 7rem;
   flex-direction: row;
   justify-content: space-between;
   padding: 0 1% 0 2%;
@@ -72,6 +73,11 @@
 
 .VoluntaryRegister form .Skills span>input[type="checkbox"] {
   width: 20%;
+}
+
+.VoluntaryRegister form .Buttons {
+  display: flex;
+  gap: 1rem;
 }
 
 .VoluntaryRegister form button {

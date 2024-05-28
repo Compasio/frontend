@@ -17,10 +17,8 @@ const VoluntaryRegister = () => {
         const senha = form.senha.value;
         const senhaConfirmacao = form.senha_confirmacao.value;
 
-        if (nome && cpf && idade && email && senha && senhaConfirmacao) {
+        if (nome && cpf && idade && email && senha && senhaConfirmacao && senha === senhaConfirmacao) {
             setFirstInputsFilled(true);
-        } else {
-            console.error("Dados não preenchidos");
         }
     };
 
@@ -46,9 +44,9 @@ const VoluntaryRegister = () => {
             <section>
                 {firstInputsFilled ? (
                     <form onSubmit={handleFinalSubmit}>
+                        <h2>Crie sua conta!</h2>
                         <textarea name="descricao" placeholder="Fale um pouco sobre você" />
-                        <label htmlFor="habilidades">Quais são as suas habilidades?</label>
-                        <input type="text" name="habilidades" />
+                        <input placeholder="Quais são as suas habilidades?" type="text" />
                         <div className="Skills">
                             <span>
                                 <label htmlFor="cozinhar">Cozinhar</label>
@@ -70,7 +68,7 @@ const VoluntaryRegister = () => {
                                 <input type="checkbox" name="medicina" />
                             </span>
                         </div>
-                        <div>
+                        <div className="Buttons">
                             <button type="button" onClick={handleBack}>Voltar</button>
                             <button type="submit">Criar Conta</button>
                         </div>

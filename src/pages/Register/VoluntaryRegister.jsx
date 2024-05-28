@@ -46,7 +46,7 @@ const VoluntaryRegister = () => {
                     <form onSubmit={handleFinalSubmit}>
                         <h2>Crie sua conta!</h2>
                         <textarea name="descricao" placeholder="Fale um pouco sobre você" />
-                        <input placeholder="Quais são as suas habilidades?" type="text" />
+                        <input placeholder="Quais são as suas habilidades?" name="habilidades" type="text" />
                         <div className="Skills">
                             <span>
                                 <label htmlFor="cozinhar">Cozinhar</label>
@@ -85,7 +85,9 @@ const VoluntaryRegister = () => {
                         <div className="PictureContainer">
                             <h2>Foto</h2>
                         </div>
-                        <button type="submit">Continuar</button>
+                        <div className="Buttons">
+                            <button type="submit">Continuar</button>
+                        </div>
                     </form>
                 )}
             </section>

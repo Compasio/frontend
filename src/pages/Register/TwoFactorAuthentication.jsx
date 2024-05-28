@@ -38,9 +38,6 @@ const TwoFactorAuthentication = () => {
             name="codigo"
             required
           />
-          <span class="material-symbols-outlined">
-            send
-          </span>
         </form>
       </main>
     </div>

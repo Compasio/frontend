@@ -60,16 +60,10 @@
     border: none;
     border-radius: 5px;
     background-color: var(--black);
+    color: var(--white);
     padding: 2%;
     font-size: 1rem;
     text-transform: uppercase;
-}
-
-@media screen and (max-width: 745px) {
-    .TwoFactorAuthentication header nav img {
-        width: 11vw;
-        height: 11vh;
-    }
 }
 
 @media screen and (max-width: 400px) {

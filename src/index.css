@@ -26,6 +26,12 @@ button {
   font-family: "Mulish", sans-serif;
 }
 
+input,
+label {
+  font-family: "Mulish", sans-serif;
+  font-style: normal;
+}
+
 h1,
 h2,
 h3 {

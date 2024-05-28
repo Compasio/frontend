@@ -34,8 +34,6 @@ const VoluntaryRegister = () => {
 
         if ((cozinhar || musica || reformas || medicina)) {
             navigate("/autenticacaoDe2Fatores");
-        } else {
-            console.error("Pelo menos uma habilidade deve ser marcada");
         }
     };
 
@@ -52,17 +50,25 @@ const VoluntaryRegister = () => {
                         <label htmlFor="habilidades">Quais são as suas habilidades?</label>
                         <input type="text" name="habilidades" />
                         <div className="Skills">
-                            <label htmlFor="cozinhar">Cozinhar</label>
-                            <input type="checkbox" name="cozinhar" />
+                            <span>
+                                <label htmlFor="cozinhar">Cozinhar</label>
+                                <input type="checkbox" name="cozinhar" />
+                            </span>
 
-                            <label htmlFor="musica">Música</label>
-                            <input type="checkbox" name="musica" /> 
+                            <span>
+                                <label htmlFor="musica">Música</label>
+                                <input type="checkbox" name="musica" />
+                            </span>
 
-                            <label htmlFor="reformas">Reformas</label>
-                            <input type="checkbox" name="reformas" /> 
+                            <span>
+                                <label htmlFor="reformas">Reformas</label>
+                                <input type="checkbox" name="reformas" />
+                            </span>
 
-                            <label htmlFor="medicina">Medicina</label>
-                            <input type="checkbox" name="medicina" /> 
+                            <span>
+                                <label htmlFor="medicina">Medicina</label>
+                                <input type="checkbox" name="medicina" />
+                            </span>
                         </div>
                         <div>
                             <button type="button" onClick={handleBack}>Voltar</button>

@@ -31,10 +31,47 @@
   padding: 1%
 }
 
+.VoluntaryRegister form .PictureContainer {
+  border-radius: 50%;
+  color: var(--black);
+  width: 7rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  justify-content: center;
+  height: 7rem;
+  background-color: var(--beige);
+}
+
 .VoluntaryRegister form textarea {
   width: 30vw;
   height: 30vh;
   resize: none;
+  padding: 1%;
+}
+
+.VoluntaryRegister form .Skills {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.VoluntaryRegister form .Skills span {
+  display: flex;
+  width: 8rem;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 1% 0 2%;
+  background-color: var(--green-two);
+  color: var(--white);
+  align-items: center;
+  font-family: inherit;
+}
+
+.VoluntaryRegister form .Skills span>input[type="checkbox"] {
+  width: 20%;
 }
 
 .VoluntaryRegister form button {

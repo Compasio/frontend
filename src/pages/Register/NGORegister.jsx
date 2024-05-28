@@ -1,82 +1,109 @@
 import React, { useState } from "react";
-import TwoFactorAuthentication from "./TwoFactorAuthentication";
+import { useNavigate } from "react-router-dom";
 import SideBanner from "../../components/Banners/SideBanner/SideBanner";
-import Logo from "../../img/logosemnome.svg"
-import "./NGORegister.css"
+import "./NGORegister.css";
 
 const NGORegister = () => {
-    const [showTwoFactorAuthentication, setShowTwoFactorAuthentication] = useState(false);
+    const [firstInputsFilled, setFirstInputsFilled] = useState(false);
+    const navigate = useNavigate();
 
-    const handleTwoFactorAuthentication = () => {
-        setShowTwoFactorAuthentication(true);
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const nome = form.nome.value;
+        const idade = form.idade.value;
+        const cpf = form.cpf.value;
+        const email = form.email.value;
+        const senha = form.senha.value;
+        const senhaConfirmacao = form.senha_confirmacao.value;
+
+        if (nome && cpf && idade && email && senha && senhaConfirmacao && senha === senhaConfirmacao) {
+            setFirstInputsFilled(true);
+        }
     };
 
-    const handleBackToLogin = () => {
-        setShowTwoFactorAuthentication(false);
+    const handleFinalSubmit = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const cozinhar = form.cozinhar.checked;
+        const musica = form.musica.checked;
+        const reformas = form.reformas.checked;
+        const medicina = form.medicina.checked;
+
+        if ((cozinhar || musica || reformas || medicina)) {
+            navigate("/autenticacaoDe2Fatores");
+        }
+    };
+
+    const handleBack = () => {
+        setFirstInputsFilled(false);
     };
 
     return (
-        <div className="Body">
-            {showTwoFactorAuthentication ? (
-                <TwoFactorAuthentication onClick={handleBackToLogin} />
-            ) : (
-                <div className="VoluntaryRegister">
-                    <section>
-                        <form>
-                            <h2>Registre sua ONG</h2>
-                            <input
-                                type="text"
-                                placeholder="Nome da ONG"
-                                name="nome"
-                                required
-                            />
-                            <input
-                                type="text"
-                                placeholder="Email"
-                                name="email"
-                                required
-                            />
-                            <input
-                                type="text"
-                                placeholder="CNPJ"
-                                name="cpnj"
-                                required
-                            />
-                            <input
-                                type="password"
-                                placeholder="Senha"
-                                name="senha"
-                                required
-                            />
-                            <input
-                                type="password"
-                                placeholder="Confirme sua senha"
-                                name="senha_confirmacao"
-                                required
-                            />
-                            <p>Certificados</p>
-                            <input type="file"
-                                name="certificado"
-                                required
-                            />
-                            <input type="file"
-                                name="certificado"
-                                required
-                            />
-                            <input type="file"
-                                name="certificado"
-                                required
-                            />
-                            <a href="/buscarONG">
-                                <button type="button">Continuar</button>
-                            </a>
-                        </form>
-                    </section>
-                    <SideBanner />
-                </div>
-            )}
-        </div>
+        <div className="NGORegister">
+            <section>
+                {firstInputsFilled ? (
+                    <form onSubmit={handleFinalSubmit}>
+                        <h2>Crie sua Organização!</h2>
+                        <textarea name="descricao" placeholder="Escreva sobre sua ONG" />
+                        <input placeholder="Quais são as funções da sua ONG?" name="habilidades" type="text" />
+                        <div className="Skills">
+                            <span>
+                                <label htmlFor="cozinhar">Cozinhar</label>
+                                <input type="checkbox" name="cozinhar" />
+                            </span>
 
+                            <span>
+                                <label htmlFor="musica">Música</label>
+                                <input type="checkbox" name="musica" />
+                            </span>
+
+                            <span>
+                                <label htmlFor="reformas">Reformas</label>
+                                <input type="checkbox" name="reformas" />
+                            </span>
+
+                            <span>
+                                <label htmlFor="medicina">Medicina</label>
+                                <input type="checkbox" name="medicina" />
+                            </span>
+                        </div>
+                        <div className="Buttons">
+                            <button type="button" onClick={handleBack}>Voltar</button>
+                            <button type="submit">Criar Conta</button>
+                        </div>
+                    </form>
+                ) : (
+                    <form onSubmit={handleSubmit}>
+                        <h2>Crie sua Organização!</h2>
+                        <input type="text" placeholder="Nome da ong" name="nome" required />
+                        <input type="text" placeholder="Email" name="email" required />
+                        <input type="text" placeholder="cnpj" name="cnpj" required />
+                        <input type="password" placeholder="Senha" name="senha" required />
+                        <input type="password" placeholder="Confirme sua senha" name="senha_confirmacao" required />
+
+                        <div className="Certificates">
+                            <span>
+                                <input type="file" name="certificate1" />
+                            </span>
+
+                            <span>
+                                <input type="file" name="certificate2" />
+                            </span>
+
+                            <span>
+                                <input type="file" name="certificate3" />
+                            </span>
+                        </div>
+
+                        <div className="Buttons">
+                            <button type="submit">Continuar</button>
+                        </div>
+                    </form>
+                )}
+            </section>
+            <SideBanner />
+        </div>
     );
 };
 

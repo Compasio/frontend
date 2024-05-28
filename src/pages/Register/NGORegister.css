@@ -40,20 +40,26 @@
     gap: 0.5rem;
 }
 
-.NGORegister form .Certificates span {
+.NGORegister form .Certificates label {
+    padding: 1%;
     width: 15rem;
-    height: 5rem;
+    height: 3.5rem;
     background-color: var(--green-two);
     color: var(--white);
+    text-transform: uppercase;
     display: flex;
     align-items: center;
-    justify-content: center;
+    cursor: pointer;
 }
 
-.NGORegister form .Certificates span>input[type="filw"] {
-    width: min-content;
-    height: 1rem;
-    content: "";
+.NGORegister form .Certificates input[type="file"] {
+    display: none;
+}
+
+.NGORegister form .Certificates span {
+    position: relative;
+    right: 5%;
+    color: var(--white);
 }
 
 .NGORegister form textarea {

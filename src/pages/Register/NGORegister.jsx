@@ -11,13 +11,12 @@ const NGORegister = () => {
         event.preventDefault();
         const form = event.target;
         const nome = form.nome.value;
-        const idade = form.idade.value;
-        const cpf = form.cpf.value;
+        const cnpj = form.cnpj.value;
         const email = form.email.value;
         const senha = form.senha.value;
         const senhaConfirmacao = form.senha_confirmacao.value;
 
-        if (nome && cpf && idade && email && senha && senhaConfirmacao && senha === senhaConfirmacao) {
+        if (nome && cnpj && email && senha && senhaConfirmacao && senha === senhaConfirmacao) {
             setFirstInputsFilled(true);
         }
     };
@@ -83,16 +82,22 @@ const NGORegister = () => {
                         <input type="password" placeholder="Confirme sua senha" name="senha_confirmacao" required />
 
                         <div className="Certificates">
-                            <span>
-                                <input type="file" name="certificate1" />
+                            <label htmlFor="certificate1">Enviar arquivo</label>
+                            <input type="file" name="certificate1" />
+                            <span class="material-symbols-outlined">
+                                folder_open
                             </span>
 
-                            <span>
-                                <input type="file" name="certificate2" />
+                            <label htmlFor="certificate2">Enviar arquivo</label>
+                            <input type="file" name="certificate2" />
+                            <span class="material-symbols-outlined">
+                                folder_open
                             </span>
 
-                            <span>
-                                <input type="file" name="certificate3" />
+                            <label htmlFor="certificate3">Enviar arquivo</label>
+                            <input type="file" name="certificate3" />
+                            <span class="material-symbols-outlined">
+                                folder_open
                             </span>
                         </div>
 

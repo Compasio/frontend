@@ -11,6 +11,7 @@ import NGO from '../pages/Login/NGO';
 import Voluntary from '../pages/Login/Voluntary';
 import VoluntaryRegister from '../pages/Register/VoluntaryRegister';
 import NGORegister from '../pages/Register/NGORegister';
+import TwoFactorAuthentication from '../pages/Register/TwoFactorAuthentication';
 
 function WebRoutes() {
     return (
@@ -28,6 +29,7 @@ function WebRoutes() {
                         <Route path="/loginVoluntario" element={<Voluntary />} />
                         <Route path="/criarONG" element={<NGORegister />} />
                         <Route path="/criarVoluntario" element={<VoluntaryRegister />} />
+                        <Route path="/autenticacaoDe2Fatores" element={<TwoFactorAuthentication />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </Router>

@@ -1,0 +1,89 @@
+.Donation {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Donation main {
+    height: 95vh;
+    width: 80%;
+    border: 2px solid var(--black);
+    border-radius: 20px 0 0 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: var(--green-two);
+}
+
+.Donation main header {
+    height: 7vh;
+    width: 100%;
+    padding: 2%;
+}
+
+.Donation main header nav {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    color: var(--white);
+}
+
+.Donation .Container {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+.Donation .Container .Video {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 88vh;
+    background-color: var(--white);
+    width: 50%;
+    border-top: 2px solid var(--black);
+    border-right: 2px solid var(--black);
+}
+
+.Donation .Container .Video iframe {
+    width: 100%;
+    height: 45%;
+}
+
+.Donation .Container .Video div {
+    width: auto;
+    height: auto;
+    padding: 3%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.Donation .Container .Video div img {
+    width: 4rem;
+    height: 4rem;
+}
+
+.Donation .Container .Values {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 88vh;
+    width: 50%;
+}
+
+.Donation .Container .Values > div:first-child {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--white);
+}
+

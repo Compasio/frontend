@@ -17,7 +17,7 @@ export default function Donation() {
         </header>
         <div className="Container">
           <section className="Video">
-          <iframe src="https://www.youtube.com/embed/YAG7-LJc2DQ" frameborder="0" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/YAG7-LJc2DQ" frameborder="0" allowfullscreen></iframe>
             <div>
               <img src={Logo} alt="logo" />
               <h3>Olá [user]!</h3>
@@ -34,34 +34,39 @@ export default function Donation() {
 
             <div>
               <p>Doar uma vez</p>
-              <input type="checkbox" />
+              <span>
+                <input type="checkbox" />
+                <p>Por mês</p>
+              </span>
             </div>
 
-            <div>
-              <input name="valor" type="radio" />
-              <p>R$ 50,00</p>
+            <div className="Group">
+              <div>
+                <input name="valor" type="radio" />
+                <p>R$ 50,00</p>
+              </div>
+              <div>
+                <input name="valor" type="radio" />
+                <p>R$ 100,00</p>
+              </div>
+              <div>
+                <input name="valor" type="radio" />
+                <p>R$ 500,00</p>
+              </div>
+              <div>
+                <input name="valor" type="radio" />
+                <p>R$ 1000,00</p>
+              </div>
+              <div>
+                <input name="valor" type="radio" />
+                <p>R$ 5000,00</p>
+              </div>
+              <div>
+                <input name="valor" type="radio" />
+                <p>R$ 10000,00</p>
+              </div>
             </div>
-            <div>
-              <input name="valor" type="radio" />
-              <p>R$ 100,00</p>
-            </div>
-            <div>
-              <input name="valor" type="radio" />
-              <p>R$ 500,00</p>
-            </div>
-            <div>
-              <input name="valor" type="radio" />
-              <p>R$ 1000,00</p>
-            </div>
-            <div>
-              <input name="valor" type="radio" />
-              <p>R$ 5000,00</p>
-            </div>
-            <div>
-              <input name="valor" type="radio" />
-              <p>R$ 10000,00</p>
-            </div>
-            <input type="number" />
+            <input placeholder="R$" type="number" />
             <button type="button">Doar</button>
           </section>
         </div>

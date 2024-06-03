@@ -17,7 +17,7 @@ export default function Donation() {
         </header>
         <div className="Container">
           <section className="Video">
-            <iframe src="https://www.youtube.com/embed/YAG7-LJc2DQ" frameborder="0" allowfullscreen></iframe>
+            <iframe title="video" src="https://www.youtube.com/embed/YAG7-LJc2DQ" frameborder="0" allowfullscreen></iframe>
             <div>
               <img src={Logo} alt="logo" />
               <h3>Olá [user]!</h3>

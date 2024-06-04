@@ -1,6 +1,7 @@
 import React from "react";
 import "./LandingPage.css"
 import FooterOne from "../../components/Footers/FooterOne/FooterOne";
+import { Link } from "react-router-dom";
 import Logo from "../../img/logocomnome.svg"
 import Img1 from "../../img/landingpageimg1.jpeg"
 import Img2 from "../../img/landingpageimg2.jpg"
@@ -57,9 +58,11 @@ const LandingPage = () => {
                             <p>A Compasio conecta quem tem e quem precisa,
                                 executamos uma associação com programas e projetos variados com foco nas pessoas.
                                 Clique no coração abaixo para fazer sua contribuição!</p>
-                            <span class="material-symbols-outlined">
-                                heart_plus
-                            </span>
+                            <Link to='./doacao'>
+                                <span class="material-symbols-outlined">
+                                    heart_plus
+                                </span>
+                            </Link>
                         </div>
                     </div>
                 </section>

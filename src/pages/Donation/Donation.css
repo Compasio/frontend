@@ -162,18 +162,18 @@
 
 .Donation .Container .Values>button {
     width: 26rem;
-    padding: 1%;
     background-color: transparent;
     border: 1px solid var(--white);
     color: var(--white);
     height: 2.25rem;
 }
 
-@media screen and (min-width: 400px) {
+@media screen and (max-width: 400px) {
     .Donation main {
         width: 90%;
         border-radius: 0;
         overflow-y: scroll;
+        scrollbar-width: none;
     }
     
     .Donation main header {
@@ -188,122 +188,32 @@
     .Donation .Container .Video {
         height: auto;
         width: 100%;
+        border-right: none;
     }
     
     .Donation .Container .Video iframe {
         width: 100%;
     }
     
-    .Donation .Container .Video div {
-        width: auto;
-        height: auto;
-        padding: 3%;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .Donation .Container .Video div img {
-        width: 4rem;
-        height: 4rem;
-    }
-    
     .Donation .Container .Values {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        height: 88vh;
-        width: 50%;
-        gap: 2rem;
+        height: auto;
+        width: 100%;
+        padding: 3%;
     }
-    
-    .Donation .Container .Values>div:first-child {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        color: var(--white);
-    }
-    
-    .Donation .Container .Values>div:first-child input {
-        width: 1.75rem;
-        height: 1.75rem;
-    }
-    
-    .Donation .Container .Values>div:nth-child(2) {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        gap: 3rem;
-        color: var(--white);
-        border: 1px solid var(--white);
-        padding-left: 1%;
-        width: 18rem;
-        height: 3rem;
-        padding-right: 1%;
-    }
-    
-    .Donation .Container .Values>div:nth-child(2) span {
-        flex-direction: row;
-        align-items: center;
-        display: flex;
-        justify-content: center;
-        gap: 0.25rem;
-        height: 100%;
-        padding-left: 2%;
-        border-left: 0.5px solid var(--white);
-    }
-    
-    .Donation .Container .Values>div:nth-child(2) span input {
-        width: 1.75rem;
-        height: 1.75rem;
-    }
-    
+
     .Donation .Container .Values .Group {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-        place-items: center;
-        gap: 1rem;
-    }
-    
-    .Donation .Container .Values .Group div {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.25rem;
-        color: var(--white);
-        border: 1px solid var(--white);
-        height: 3rem;
-        width: 8rem;
-    }
-    
-    .Donation .Container .Values>.Group div input {
-        width: 1.25rem;
-        height: 1.25rem;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
     }
     
     .Donation .Container .Values>input {
-        width: 26rem;
-        padding: 1%;
-        background-color: transparent;
-        border: 1px solid var(--white);
-        color: var(--white);
-        height: 2.25rem;
-    }
-    
-    .Donation .Container .Values>input::placeholder {
-        color: var(--white);
+        width: 20rem;
+        padding: 2%;
+        height: 3rem;
     }
     
     .Donation .Container .Values>button {
-        width: 26rem;
-        padding: 1%;
-        background-color: transparent;
-        border: 1px solid var(--white);
-        color: var(--white);
-        height: 2.25rem;
+        width: 20rem;
+        height: 3rem;
     }
 }

@@ -7,7 +7,6 @@ import cidadaniaanima from "../../../img/cidadaniaanimal.png";
 
 const FirstPage = () => {
     return (
-<<<<<<< HEAD
         <div className="FirstPage">
             <header>
                 <nav>
@@ -36,37 +35,6 @@ const FirstPage = () => {
                         link="/ONG"
                         imgsrc={medicossemfronteiras}
                         descricao="A sua doação não 
-=======
-        <div className="Body">
-            <div className="FirstPage">
-                <header>
-                    <nav>
-                        <span class="material-symbols-outlined">
-                            account_circle
-                        </span>
-                        <input type="search" placeholder="Procurar ONG's" />
-                        <span class="material-symbols-outlined Search">
-                            search
-                        </span>
-                        <span class="material-symbols-outlined">
-                            location_on
-                        </span>
-                    </nav>
-                </header>
-                <main>
-                    <div className="Buttons">
-                        <button type="button">Animais</button>
-                        <button type="button">Crianças</button>
-                        <button type="button">Idosos</button>
-                        <button type="button">Deficientes</button>
-                        <button type="button">Adolescentes</button>
-                    </div>
-                    <div className="Cards">
-                        <Card
-                            link="/ONG"
-                            imgsrc={medicossemfronteiras}
-                            descricao="A sua doação não 
->>>>>>> Vini
 tem fronteiras!
 Doe para Médicos
 sem fronteiras e ajude 

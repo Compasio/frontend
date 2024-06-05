@@ -39,43 +39,6 @@ const NGORegister = () => {
     };
 
     return (
-<<<<<<< HEAD
-        <>
-            {showPasswordRecovery ? (
-                <PasswordRecovery handleBack={handleBackToLogin} />
-            ) : (
-                <div className="Register">
-                    <SideBanner />
-                    <section>
-                        <img src={Logo} alt="" />
-                        <h2>Login ONG</h2>
-                        <form>
-                            <input
-                                type="text"
-                                placeholder="Organização"
-                                name="organizacao"
-                                required
-                            />
-                            <input
-                                type="text"
-                                placeholder="Email"
-                                name="email"
-                                required
-                            />
-                            <input
-                                type="password"
-                                placeholder="Senha"
-                                name="senha"
-                                required
-                            />
-                            <button type="submit">Entrar</button>
-                            <p onClick={handlePasswordRecovery}>Esqueceu a senha?</p>
-                        </form>
-                    </section>
-                </div>
-            )}
-        </>
-=======
         <div className="NGORegister">
             <section>
                 {firstInputsFilled ? (
@@ -146,7 +109,6 @@ const NGORegister = () => {
             </section>
             <SideBanner />
         </div>
->>>>>>> Vini
     );
 };
 

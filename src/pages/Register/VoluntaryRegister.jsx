@@ -40,39 +40,6 @@ const VoluntaryRegister = () => {
     };
 
     return (
-<<<<<<< HEAD
-        <>
-            {showPasswordRecovery ? (
-                <PasswordRecovery onClick={handleBackToLogin} />
-            ) : (
-                <div className="Register">
-                    <SideBanner />
-                    <section>
-                        <img src={Logo} alt="" />
-                        <h2>Login Voluntário</h2>
-                        <form>
-                            <input
-                                type="text"
-                                placeholder="Email"
-                                name="email"
-                                required
-                            />
-                            <input
-                                type="password"
-                                placeholder="Senha"
-                                name="senha"
-                                required
-                            />
-                            <a href="/buscarONG">
-                                <button type="button">Entrar</button>
-                            </a>
-                            <p onClick={handlePasswordRecovery}>Esqueceu a senha?</p>
-                        </form>
-                    </section>
-                </div>
-            )}
-        </>
-=======
         <div className="VoluntaryRegister">
             <section>
                 {firstInputsFilled ? (
@@ -126,7 +93,6 @@ const VoluntaryRegister = () => {
             </section>
             <SideBanner />
         </div>
->>>>>>> Vini
     );
 };
 

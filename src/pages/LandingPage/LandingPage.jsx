@@ -8,7 +8,6 @@ import Img2 from "../../img/landingpageimg2.jpg"
 
 const LandingPage = () => {
     return (
-<<<<<<< HEAD
         <div className="LandingPage">
             <header>
                 <nav>
@@ -33,37 +32,6 @@ const LandingPage = () => {
                     <button>Comece como uma organização</button>
                 </div>
             </section>
-=======
-        <div className="Body">
-            <div className="LandingPage">
-                <header>
-                    <nav>
-                        <img src={Logo} alt="" />
-                        <ul>
-                            <li><a href="/#">Home</a></li>
-                            <li><a href="#AboutUs">Sobre</a></li>
-                            <li><a href="/loginVoluntario">Login Voluntariado</a></li>
-                            <li><a href="/loginONG">Login ONG</a></li>
-                            <li><a href="#contact">Contato</a></li>
-                        </ul>
-                    </nav>
-                </header>
-
-                <section className="Presentation">
-                    <div>
-                        <h1>Bem-vindo a Compasio</h1>
-                        <h2>Compaixão para o mundo</h2>
-                    </div>
-                    <div className="Buttons">
-                        <a href="/criarVoluntario">
-                            <button>Comece como um voluntário</button>
-                        </a>
-                        <a href="/criarONG">
-                            <button>Comece como uma organização</button>
-                        </a>
-                    </div>
-                </section>
->>>>>>> Vini
 
             <section id="AboutUs" className="AboutUs">
                 <div className="Frame">
@@ -78,7 +46,6 @@ const LandingPage = () => {
                 </div>
 
 
-<<<<<<< HEAD
                 <div className="Frame">
                     <img className="Img2" src={Img2} alt="" />
                     <div className="Right">
@@ -86,24 +53,11 @@ const LandingPage = () => {
                         <p>A Compasio conecta quem tem e quem precisa,
                             executamos uma associação com programas e projetos variados com foco nas pessoas.
                             Clique no coração abaixo para fazer sua contribuição!</p>
-                        <span class="material-symbols-outlined">
-                            heart_plus
-                        </span>
-=======
-                    <div className="Frame">
-                        <img className="Img2" src={Img2} alt="" />
-                        <div className="Right">
-                            <h2>Doação Simples e Poderosa</h2>
-                            <p>A Compasio conecta quem tem e quem precisa,
-                                executamos uma associação com programas e projetos variados com foco nas pessoas.
-                                Clique no coração abaixo para fazer sua contribuição!</p>
-                            <Link to='./doacao'>
-                                <span class="material-symbols-outlined">
-                                    heart_plus
-                                </span>
-                            </Link>
-                        </div>
->>>>>>> Vini
+                        <Link to='./doacao'>
+                            <span class="material-symbols-outlined">
+                                heart_plus
+                            </span>
+                        </Link>
                     </div>
                 </div>
             </section>

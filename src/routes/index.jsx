@@ -9,8 +9,15 @@ import SecondPageVoluntary from '../pages/FindVoluntary/SecondPage/SecondPage'
 import Adm from '../pages/Login/Adm';
 import NGO from '../pages/Login/NGO';
 import Voluntary from '../pages/Login/Voluntary';
+<<<<<<< HEAD
 import VoluntaryProfile from '../pages/VoluntaryProfile/VoluntaryProfile';
 import Project from '../pages/Project/Project';
+=======
+import VoluntaryRegister from '../pages/Register/VoluntaryRegister';
+import NGORegister from '../pages/Register/NGORegister';
+import TwoFactorAuthentication from '../pages/Register/TwoFactorAuthentication';
+import Donation from '../pages/Donation/Donation';
+>>>>>>> Vini
 
 export default function WebRoutes() {
     return (
@@ -26,8 +33,15 @@ export default function WebRoutes() {
                         <Route path="/loginAdm" element={<Adm />} />
                         <Route path="/loginONG" element={<NGO />} />
                         <Route path="/loginVoluntario" element={<Voluntary />} />
+<<<<<<< HEAD
                         <Route path="/perfilVoluntario" element={<VoluntaryProfile />} />
                         <Route path="/projetos" element={<Project />} />
+=======
+                        <Route path="/criarONG" element={<NGORegister />} />
+                        <Route path="/criarVoluntario" element={<VoluntaryRegister />} />
+                        <Route path="/autenticacaoDe2Fatores" element={<TwoFactorAuthentication />} />
+                        <Route path='doacao' element={<Donation />} />
+>>>>>>> Vini
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </Router>

@@ -7,6 +7,7 @@ import perfil3 from "../../../img/perfil3.jpg";
 
 const FirstPage = () => {
     return (
+<<<<<<< HEAD
         <div className="FirstPage">
             <header>
                 <nav>
@@ -24,6 +25,26 @@ const FirstPage = () => {
                     <Card
                         imgsrc={perfil1}
                         descricao="Olá! Me chamo Claudio
+=======
+        <div className="Body">
+            <div className="FirstPage">
+                <header>
+                    <nav>
+                        <span class="material-symbols-outlined">
+                            account_circle
+                        </span>
+                        <input type="search" placeholder="Procurar voluntários" />
+                        <span class="material-symbols-outlined Search">
+                            search
+                        </span>
+                    </nav>
+                </header>
+                <main>
+                    <div className="Cards">
+                        <Card
+                            imgsrc={perfil1}
+                            descricao="Olá! Me chamo Claudio
+>>>>>>> Vini
                             Tenho 37 anos e 
                             resido em Florianópolis."/>
                     <Card

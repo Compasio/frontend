@@ -21,6 +21,17 @@ button {
   font-family: "Mulish", sans-serif;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+input,
+label {
+  font-family: "Mulish", sans-serif;
+  font-style: normal;
+}
+
 h1,
 h2,
 h3 {

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import "./Caixagreen.css";
 import img1 from "../../img/ong img 1.jpg";
 import img2 from "../../img/ong ima 2.jpg";

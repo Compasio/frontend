@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 import "./Caixagreen2.css";
-import img4 from "../../../public/MedicosBR.jpeg";
-import img5 from "../../../public/ongpets.jpg";
+import img5 from '../../../public/MedicosBR.jpeg';
+import img4 from  '../../../public/ongpets.jpg';
 import Btnvol from "../btnvol/btnvol";
 
-const Caixagreen2 = (props) => {
+const Caixagreen = (props) => {
     return (
         <div className="Caixagreen2">
             <img className="Medicosemforntimg2" src={props.imgsrc} alt="" />
@@ -17,7 +17,7 @@ const Caixagreen2 = (props) => {
                     <img className="ImgOng4" src={img4} alt="" />
                     <img className="ImgOng5" src={img5} alt="" />
                 </div>
-                <div className="botaovoluntariodesativo">
+                <div className="botaovoluntariodesativo">   
                     <Btnvol text="Voluntáriotrue"/>
                 </div>
                 
@@ -28,5 +28,4 @@ const Caixagreen2 = (props) => {
         </div>
     );
 }
-
 export default Caixagreen;

@@ -28,7 +28,7 @@ function WebRoutes() {
                         <Route path="/loginVoluntario" element={<Voluntary />} />
                         <Route path="*" element={<NotFound />} />
                         <Route path='/ongPerfil' element={ <FirstPageOng/> } />
-                        <Roure path='/ongPerfil1' element={ <OngPerfilTrue />} />
+                        <Route path='/ongPerfil1' element={ <OngPerfilTrue />} />
                     </Routes>
                 </Router>
             </div>

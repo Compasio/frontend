@@ -1,7 +1,7 @@
 import React from "react"
 import "./OngPerfilTrue.css"
-import Header from "../../../components/Header/Header"
-import Caixagreen2 from "../../../components/Caixagreen2/Caixagreen2";
+import Header from "../../components/Header/Header"
+import Caixagreen2 from "../../components/Caixagreen2/Caixagreen2";
 
 const OngPerfilTrue = () => {
     return(
@@ -18,3 +18,4 @@ const OngPerfilTrue = () => {
         </main>
     )
 }
+export default OngPerfilTrue

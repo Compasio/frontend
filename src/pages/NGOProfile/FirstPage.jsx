@@ -7,9 +7,12 @@ const FirstPage = () => {
         <div className="FirstPage">
             <header>
                 <nav>
-                    <h1>Perfil ONG</h1>
                     <span class="material-symbols-outlined">
                         arrow_back
+                    </span>
+                    <h1>Perfil ONG</h1>
+                    <span class="material-symbols-outlined">
+                        settings
                     </span>
                 </nav>
             </header>

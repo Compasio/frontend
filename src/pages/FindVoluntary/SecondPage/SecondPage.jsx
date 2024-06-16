@@ -1,6 +1,6 @@
 import React from "react";
 import "./SecondPage.css";
-import Gallery from "../../../components/Gallery/Gallery";
+import SearchPagesGallery from "../../../components/Gallery/SearchPagesGallery/SearchPagesGallery";
 import perfil2 from "../../../img/perfil2.jpg"
 import perfil2G1 from "../../../img/perfil2G1.jpg"
 import perfil2G2 from "../../../img/perfil2G2.jpg"
@@ -37,7 +37,7 @@ const SecondPage = () => {
                     areadeatuacao="Limpeza marítima" />
             </main>
             <section>
-                <Gallery
+                <SearchPagesGallery
                     img1={perfil2G1}
                     img2={perfil2G2}
                     img3={perfil2G3}

@@ -9,39 +9,37 @@ import medicossemfronteirasG3 from "../../../img/medicossemfronteirasG3.png"
 
 const SecondPage = () => {
     return (
-        <div className="Body">
-            <div className="SecondPage">
-                <header>
-                    <nav>
-                        <a href="/buscarONG">
+        <div className="SecondPage">
+            <header>
+                <nav>
+                    <a href="/buscarONG">
                         <span class="material-symbols-outlined">
                             arrow_back
                         </span>
-                        </a>
-                        <div>
-                            <span class="material-symbols-outlined">
-                                supervised_user_circle
-                            </span>
-                            <h3>Médicos Sem Fronteiras</h3>
-                        </div>
+                    </a>
+                    <div>
                         <span class="material-symbols-outlined">
-                            arrow_forward
+                            supervised_user_circle
                         </span>
-                    </nav>
-                </header>
-                <main>
-                    <NGOBanner
-                        imgsrc={medicossemfronteiras}
-                        descricao="Médicos sem Fronteiras é uma organização internacional, não governamental e sem fins lucrativos que oferece ajuda médica e humanitária a populações em situações de emergência, em casos como conflitos armados, catástrofes, epidemias, fome e exclusão social. " />
-                </main>
-                <section>
-                    <Gallery
-                        img1={medicossemfronteirasG1}
-                        img2={medicossemfronteirasG2}
-                        img3={medicossemfronteirasG3}
-                    />
-                </section>
-            </div>
+                        <h3>Médicos Sem Fronteiras</h3>
+                    </div>
+                    <span class="material-symbols-outlined">
+                        arrow_forward
+                    </span>
+                </nav>
+            </header>
+            <main>
+                <NGOBanner
+                    imgsrc={medicossemfronteiras}
+                    descricao="Médicos sem Fronteiras é uma organização internacional, não governamental e sem fins lucrativos que oferece ajuda médica e humanitária a populações em situações de emergência, em casos como conflitos armados, catástrofes, epidemias, fome e exclusão social. " />
+            </main>
+            <section>
+                <Gallery
+                    img1={medicossemfronteirasG1}
+                    img2={medicossemfronteirasG2}
+                    img3={medicossemfronteirasG3}
+                />
+            </section>
         </div>
     )
 }

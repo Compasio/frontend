@@ -1,6 +1,6 @@
 import React from "react"
 import "./FirstPage.css"
-import FirstPageNGOProfileMain from "../../components/Main/FirstPageNGOProfileMain/FirstPageNGOProfileMain"
+import SearchPagesGallery from "../../components/Gallery/SearchPagesGallery/SearchPagesGallery"
 
 const FirstPage = () => {
     return (
@@ -18,9 +18,20 @@ const FirstPage = () => {
             </header>
 
             <main>
-                <FirstPageNGOProfileMain
+                <div className="FirstPageNGOProfileMain">
+                    <img src="" alt="" />
+                    <h1>Médicos sem Fronteiras</h1>
+                    <span class="material-symbols-outlined">
+                        chevron_right
+                    </span>
+                    <figure>
+                        <img src="" alt="" />
+                        <img src="" alt="" />
+                    </figure>
+                    <SearchPagesGallery
 
-                />
+                    />
+                </div>
             </main>
         </div>
     )

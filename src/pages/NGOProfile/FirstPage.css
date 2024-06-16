@@ -1,0 +1,35 @@
+:root {
+    --green-one: #224237;
+    --green-two: #4A806D;
+    --beige: #C4B4A1;
+    --white: #F8F8F8;
+    --black: #131313;
+}
+
+.FirstPage {
+    width: 100%;
+    height: auto;
+}
+
+.FirstPeage header {
+    padding: 1%;
+    background-color: var(--green-two);
+    color: var(--white);
+    width: 100%;
+    height: 5vh;
+}
+
+.FirstPage header nav {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: center;
+}
+
+.FirstPage main {
+    width: 90%;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: var(--white);
+}

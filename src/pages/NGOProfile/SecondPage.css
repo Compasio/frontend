@@ -10,6 +10,9 @@
   width: 100%;
   height: auto;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .SecondPage header {
@@ -28,9 +31,78 @@
 
 .SecondPage main {
   width: 100%;
-  height: 90vh;
+  height: 85vh;
+  gap: 1rem;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.SecondPage main .Top {
+  width: 70%;
+  height: 50%;
   display: flex;
   align-items: center;
   padding: 1%;
   justify-content: center;
+  background-color: var(--green-two);
+  color: var(--white);
+  gap: 3rem;
+}
+
+.SecondPage main .Top figure img {
+  border-radius: 100%;
+  height: 13rem;
+  width: 13rem;
+}
+
+.SecondPage main .Top section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.SecondPage main .Top section div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.SecondPage main .Top section p {
+  width: 80%;
+}
+
+.SecondPage main .Bottom {
+  width: 70%;
+  height: 50%;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  justify-content: flex-start;
+  flex-direction: column;
+  color: var(--white);
+  background-color: var(--green-one);
+  padding: 1%;
+}
+
+.SecondPage main .Bottom div {
+  display: flex;
+  gap: 1rem;
+  flex-direction: row;
+}
+
+.SecondPage main .Bottom div span {
+  width: 15rem;
+  height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  background-color: var(--black);
+  color: var(--white);
 }

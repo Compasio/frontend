@@ -25,11 +25,13 @@ const SecondPage = () => {
           <section>
             <div>
               <h1>Médicos sem Fronteiras</h1>
-              <span class="material-symbols-outlined">
-                chevron_left
-              </span>
+              <a href="/perfilONG">
+                <span class="material-symbols-outlined">
+                  chevron_left
+                </span>
+              </a>
             </div>
-            <p>"Médicos sem Fronteiras é uma organização internacional, não governamental e sem fins lucrativos que oferece ajuda médica e humanitária a populações em situações de emergência, em casos como conflitos armados, catástrofes, epidemias, fome e exclusão social."</p>
+            <p>Médicos sem Fronteiras é uma organização internacional, não governamental e sem fins lucrativos que oferece ajuda médica e humanitária a populações em situações de emergência, em casos como conflitos armados, catástrofes, epidemias, fome e exclusão social.</p>
           </section>
         </div>
 

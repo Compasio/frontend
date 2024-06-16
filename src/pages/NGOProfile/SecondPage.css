@@ -1,11 +1,3 @@
-:root {
-  --green-one: #224237;
-  --green-two: #4A806D;
-  --beige: #C4B4A1;
-  --white: #F8F8F8;
-  --black: #131313;
-}
-
 .SecondPage {
   width: 100%;
   height: auto;
@@ -69,7 +61,7 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
   gap: 1rem;
 }
 
@@ -105,4 +97,48 @@
   flex-direction: row;
   background-color: var(--black);
   color: var(--white);
+}
+
+@media screen and (max-width: 400px) {
+  .SecondPage {
+    overflow: auto;
+  }
+
+  .SecondPage main {
+    height: auto;
+  }
+
+  .SecondPage main .Top {
+    width: 90%;
+    flex-direction: column;
+    padding: 2%;
+    gap: 1rem;
+  }
+
+  .SecondPage main .Top figure img {
+    height: 11rem;
+    width: 11rem;
+  }
+
+  .SecondPage main .Top section {
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .SecondPage main .Top section p {
+    width: 100%;
+    text-align: center;
+  }
+
+  .SecondPage main .Bottom {
+    width: 90%;
+    height: auto;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .SecondPage main .Bottom div {
+    flex-direction: column;
+  }
 }

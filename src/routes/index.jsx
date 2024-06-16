@@ -9,6 +9,8 @@ import SecondPageVoluntary from '../pages/FindVoluntary/SecondPage/SecondPage'
 import Adm from '../pages/Login/Adm';
 import NGO from '../pages/Login/NGO';
 import Voluntary from '../pages/Login/Voluntary';
+import FirstPageOng from '../pages/OngPerfil/OngPages/FirtsPage';
+import OngPerfilTrue from '../pages/OngPerfilTrue/OngPerfilTrue';
 import VoluntaryProfile from '../pages/VoluntaryProfile/VoluntaryProfile';
 import Project from '../pages/Project/Project';
 import VoluntaryRegister from '../pages/Register/VoluntaryRegister';
@@ -37,6 +39,8 @@ export default function WebRoutes() {
                         <Route path="/autenticacaoDe2Fatores" element={<TwoFactorAuthentication />} />
                         <Route path='doacao' element={<Donation />} />
                         <Route path="*" element={<NotFound />} />
+                        <Route path='/ongPerfil' element={ <FirstPageOng/> } />
+                        <Route path='/ongPerfil1' element={ <OngPerfilTrue />} />
                     </Routes>
                 </Router>
             </div>

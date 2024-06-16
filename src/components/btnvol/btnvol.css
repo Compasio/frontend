@@ -1,0 +1,29 @@
+.btnvolunta{
+    background-color: var(--green-one);
+    height: 30vh;
+    width: 21%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: absolute;
+    bottom: 0;
+    margin-right: 180vh;
+    margin-bottom: -160px;
+    border-radius: 40px;
+}
+.btnvolunta p{
+    color: rgb(255, 255, 255);
+    margin-left: 180px;
+    margin-bottom: 62px;
+    font-size: 42px;
+}
+
+@media screen and (max-width: 745px) {
+    .btnvolunta{
+    display: flex;
+    }
+
+    .btnvolunta p{
+    display: flex;
+    }
+}

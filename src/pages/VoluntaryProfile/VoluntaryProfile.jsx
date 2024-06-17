@@ -11,9 +11,11 @@ const VoluntaryProfile = () => {
         <div className="VoluntaryProfile">
             <header>
                 <nav>
+                    <a href="/buscarONG">
                     <span class="material-symbols-outlined">
                         arrow_back
                     </span>
+                    </a>
                     <h1>Claudia_Ciclano</h1>
                     <span class="material-symbols-outlined">
                         settings

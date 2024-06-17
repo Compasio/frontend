@@ -22,12 +22,6 @@
     border-radius: 15px;
 }
 
-.FirstPage header nav span.Search {
-    position: absolute;
-    left: 70%;
-    scale: 1.25;
-}
-
 .FirstPage main {
     height: 80vh;
     width: 100%;

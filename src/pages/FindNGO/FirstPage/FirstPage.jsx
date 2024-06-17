@@ -10,13 +10,12 @@ const FirstPage = () => {
         <div className="FirstPage">
             <header>
                 <nav>
-                    <span class="material-symbols-outlined">
-                        account_circle
-                    </span>
+                    <a href="/perfilVoluntario">
+                        <span class="material-symbols-outlined">
+                            account_circle
+                        </span>
+                    </a>
                     <input type="text" placeholder="Procurar ONG's" />
-                    <span class="material-symbols-outlined Search">
-                        search
-                    </span>
                     <span class="material-symbols-outlined">
                         location_on
                     </span>

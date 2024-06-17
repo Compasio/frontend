@@ -7,9 +7,11 @@ const SecondPage = () => {
     <div className="SecondPage">
       <header>
         <nav>
-          <span class="material-symbols-outlined">
-            arrow_back
-          </span>
+          <a href="/buscarVoluntario">
+            <span class="material-symbols-outlined">
+              arrow_back
+            </span>
+          </a>
           <h1>Perfil ONG</h1>
           <span class="material-symbols-outlined">
             settings

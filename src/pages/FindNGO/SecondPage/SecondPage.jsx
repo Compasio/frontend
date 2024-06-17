@@ -18,9 +18,9 @@ const SecondPage = () => {
                         </span>
                     </a>
                     <div>
-                            <span class="material-symbols-outlined">
-                                supervised_user_circle
-                            </span>
+                        <span class="material-symbols-outlined">
+                            supervised_user_circle
+                        </span>
                         <h3>Médicos Sem Fronteiras</h3>
                     </div>
                     <span class="material-symbols-outlined">

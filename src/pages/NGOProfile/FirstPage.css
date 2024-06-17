@@ -117,8 +117,7 @@
 }
 
 .FirstPage main .Bottom .Results img {
-    width: 15rem;
-    height: 12rem;
+    width: 20%;
 }
 
 @media screen and (max-width: 400px) {
@@ -165,5 +164,9 @@
     .FirstPage main .Bottom .Results {
         flex-direction: column;
         align-items: center;
+    }
+
+    .FirstPage main .Bottom .Results img {
+        width: 70%;
     }
 }

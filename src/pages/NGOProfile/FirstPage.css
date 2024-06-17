@@ -1,19 +1,16 @@
-:root {
-    --green-one: #224237;
-    --green-two: #4A806D;
-    --beige: #C4B4A1;
-    --white: #F8F8F8;
-    --black: #131313;
-}
-
 .FirstPage {
     width: 100%;
     height: auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .FirstPage header {
+    padding: 1%;
     background-color: var(--green-two);
-    color: var(--white);
+    width: 100%;
     height: 10vh;
 }
 
@@ -27,7 +24,146 @@
 .FirstPage main {
     width: 100%;
     height: 85vh;
+    gap: 1rem;
+    flex-direction: column;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
+}
+
+.FirstPage main .Top {
+    width: 70%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    padding: 1%;
     justify-content: center;
+    background-color: var(--green-two);
+    color: var(--white);
+    gap: 3rem;
+}
+
+.FirstPage main .Top figure img {
+    border-radius: 100%;
+    height: 13rem;
+    width: 13rem;
+}
+
+.FirstPage main .Top section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.FirstPage main .Top section div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+}
+
+.FirstPage main .Top section img {
+    width: auto;
+}
+
+.FirstPage main .Bottom {
+    width: 70%;
+    height: 50%;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    justify-content: flex-start;
+    flex-direction: column;
+    color: var(--white);
+    background-color: var(--green-one);
+    padding: 1%;
+}
+
+.FirstPage main .Bottom .Options {
+    display: flex;
+    gap: 1rem;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    text-transform: uppercase;
+}
+
+.FirstPage main .Bottom .Options h2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 1%;
+}
+
+.FirstPage main .Bottom .Options h2:first-child {
+    background-color: var(--black);
+}
+
+.FirstPage main .Bottom .Options h2:last-child {
+    background-color: var(--green-two);
+}
+
+.FirstPage main .Bottom .Results {
+    display: flex;
+    gap: 1rem;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    text-transform: uppercase;
+}
+
+.FirstPage main .Bottom .Results img {
+    width: 15rem;
+    height: 12rem;
+}
+
+@media screen and (max-width: 400px) {
+    .FirstPage {
+        overflow: auto;
+    }
+
+    .FirstPage main {
+        height: auto;
+    }
+
+    .FirstPage main .Top {
+        width: 90%;
+        flex-direction: column;
+        padding: 2%;
+        gap: 1rem;
+    }
+
+    .FirstPage main .Top figure img {
+        height: 11rem;
+        width: 11rem;
+    }
+
+    .FirstPage main .Top section {
+        gap: 1rem;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .FirstPage main .Top section div:last-child {
+        flex-direction: column;
+    }
+
+    .FirstPage main .Bottom {
+        width: 90%;
+        padding: 1%;
+    }
+
+    .FirstPage main .Bottom .Options {
+        gap: 0.5rem;
+        justify-content: center;
+    }
+
+    .FirstPage main .Bottom .Results {
+        flex-direction: column;
+        align-items: center;
+    }
 }

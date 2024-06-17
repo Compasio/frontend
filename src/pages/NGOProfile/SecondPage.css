@@ -86,9 +86,12 @@
   display: flex;
   gap: 1rem;
   flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  text-transform: uppercase;
 }
 
-.SecondPage main .Bottom div span {
+.SecondPage main .Bottom div p {
   width: 15rem;
   height: 10rem;
   display: flex;

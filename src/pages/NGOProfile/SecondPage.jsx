@@ -38,9 +38,9 @@ const SecondPage = () => {
         <div className="Bottom">
           <h2>Projetos:</h2>
           <div>
-            <span>Projeto 1</span>
-            <span>Projeto 2</span>
-            <span>Projeto 3</span>
+            <p>Projeto 1</p>
+            <p>Projeto 2</p>
+            <p>Projeto 3</p>
           </div>
         </div>
       </main>

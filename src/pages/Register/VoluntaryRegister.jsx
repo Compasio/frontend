@@ -21,16 +21,16 @@ const VoluntaryRegister = () => {
         const form = event.target;
         const fullname = form.nome.value.trim();
         const birthDate = form.data_nascimento.value.trim();
-        const cpf = form.cpf.value.trim();
+        const cpf_voluntary = form.cpf.value.trim();
         const email = form.email.value.trim();
         const password = form.senha.value.trim();
         const confirmPassword = form.senha_confirmacao.value.trim();
 
-        if (fullname && cpf && birthDate && email && password && confirmPassword && password === confirmPassword) {
+        if (fullname && cpf_voluntary && birthDate && email && password && confirmPassword && password === confirmPassword) {
             setUserDetails({
                 fullname,
                 birthDate,
-                cpf,
+                cpf_voluntary,
                 email,
                 password
             });

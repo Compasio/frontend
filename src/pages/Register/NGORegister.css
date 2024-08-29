@@ -70,20 +70,23 @@
 }
 
 .NGORegister form .Skills {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
     gap: 0.5rem;
-    width: 35vw;
-    flex-wrap: wrap;
+    justify-content: center;
+    width: 50vw;
+    height: 10rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .NGORegister form .Skills span {
     display: flex;
-    width: 7rem;
+    width: min-content;
     flex-direction: row;
     justify-content: space-between;
-    padding: 0 1% 0 2%;
+    padding: 0 5% 0 2%;
+    width: 100%;
     background-color: var(--green-two);
     color: var(--white);
     align-items: center;
@@ -91,7 +94,7 @@
 }
 
 .NGORegister form .Skills span>input[type="checkbox"] {
-    width: 20%;
+    width: 7%;
 }
 
 .NGORegister form .Buttons {

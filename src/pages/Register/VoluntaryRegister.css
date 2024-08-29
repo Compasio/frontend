@@ -55,9 +55,10 @@
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   gap: 0.5rem;
   justify-content: center;
-  max-width: 35vw;
-  height: 30rem;
-  overflow: scroll;
+  width: 50vw;
+  height: 10rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .VoluntaryRegister form .Skills span {

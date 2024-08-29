@@ -1,36 +1,85 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import SideBanner from "../../components/Banners/SideBanner/SideBanner";
+import axios from "axios";
 import "./NGORegister.css";
 
 const NGORegister = () => {
     const [firstInputsFilled, setFirstInputsFilled] = useState(false);
+    const [ngoDetails, setNgoDetails] = useState({});
     const navigate = useNavigate();
+
+    // useEffect(() => {
+    //     axios.get('http://localhost:9000/sys/getOngThemes')
+    //         .then(response => {
+    //             console.log(response);
+    //         })
+    //         .catch(error => {
+    //             console.error("Houve um erro ao buscar habilidades: ", error);
+    //         });
+    // }, []);
+
+    // nome - nome - caixa - rota
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
-        const nome = form.nome.value;
-        const cnpj = form.cnpj.value;
+        const ong_name = form.nome.value;
+        const cnpj_ong = form.cnpj.value;
+        const cpf_founder = form.cpf.value;
         const email = form.email.value;
-        const senha = form.senha.value;
-        const senhaConfirmacao = form.senha_confirmacao.value;
+        const password = form.senha.value;
+        const passwordConfirmacao = form.senha_confirmacao.value;
 
-        if (nome && cnpj && email && senha && senhaConfirmacao && senha === senhaConfirmacao) {
+        if (ong_name && cnpj_ong && cpf_founder && email && password && passwordConfirmacao && password === passwordConfirmacao) {
+            const ong = {
+                ong_name,
+                cnpj_ong,
+                email,
+                cpf_founder,
+                password
+            };
+            setNgoDetails(ong);
             setFirstInputsFilled(true);
+        } else {
+            alert("Por favor, preencha todos os campos corretamente e verifique a confirmação da senha.");
         }
     };
 
     const handleFinalSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
-        const cozinhar = form.cozinhar.checked;
-        const musica = form.musica.checked;
-        const reformas = form.reformas.checked;
-        const medicina = form.medicina.checked;
+        const description = form.descricao.value;
+        const themes = [];
 
-        if ((cozinhar || musica || reformas || medicina)) {
-            navigate("/autenticacaoDe2Fatores");
+
+        if (form.educacao.checked) themes.push("EDUCACAO");
+        if (form.saude.checked) themes.push("SAUDE");
+        if (form.alimentacao.checked) themes.push("ALIMENTACAO");
+        if (form.reabilitacao.checked) themes.push("REABILITACAO");
+
+        const ong = {
+            ...ngoDetails,
+            description,
+            themes
+        };
+
+        if (themes.length > 0) {
+            console.log(ong);
+            axios.post('http://localhost:9000/ongs/createOng', JSON.stringify(ong), {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    console.log(response);
+                    navigate("/autenticacaoDe2Fatores");
+                })
+                .catch(error => {
+                    console.error("Houve um erro ao enviar os dados: ", error);
+                });
+        } else {
+            alert("Por favor, selecione pelo menos uma habilidade.");
         }
     };
 
@@ -48,23 +97,23 @@ const NGORegister = () => {
                         <input placeholder="Quais são as funções da sua ONG?" name="habilidades" type="text" />
                         <div className="Skills">
                             <span>
-                                <label htmlFor="cozinhar">Cozinhar</label>
-                                <input type="checkbox" name="cozinhar" />
+                                <label htmlFor="educacao">Educação</label>
+                                <input type="checkbox" name="educacao" />
                             </span>
 
                             <span>
-                                <label htmlFor="musica">Música</label>
-                                <input type="checkbox" name="musica" />
+                                <label htmlFor="saude">Saúde</label>
+                                <input type="checkbox" name="saude" />
                             </span>
 
                             <span>
-                                <label htmlFor="reformas">Reformas</label>
-                                <input type="checkbox" name="reformas" />
+                                <label htmlFor="alimentacao">Alimentação</label>
+                                <input type="checkbox" name="alimentacao" />
                             </span>
 
                             <span>
-                                <label htmlFor="medicina">Medicina</label>
-                                <input type="checkbox" name="medicina" />
+                                <label htmlFor="reabilitacao">Reabilitação</label>
+                                <input type="checkbox" name="reabilitacao" />
                             </span>
                         </div>
                         <div className="Buttons">
@@ -78,28 +127,29 @@ const NGORegister = () => {
                         <input type="text" placeholder="Nome da ong" name="nome" required />
                         <input type="text" placeholder="Email" name="email" required />
                         <input type="text" placeholder="cnpj" name="cnpj" required />
+                        <input type="text" placeholder="cpf do fundador" name="cpf" required />
                         <input type="password" placeholder="Senha" name="senha" required />
                         <input type="password" placeholder="Confirme sua senha" name="senha_confirmacao" required />
 
-                        <div className="Certificates">
+                        {/* <div className="Certificates">
                             <label htmlFor="certificate1">Enviar arquivo</label>
                             <input type="file" name="certificate1" />
-                            <span class="material-symbols-outlined">
+                            <span className="material-symbols-outlined">
                                 folder_open
                             </span>
 
                             <label htmlFor="certificate2">Enviar arquivo</label>
                             <input type="file" name="certificate2" />
-                            <span class="material-symbols-outlined">
+                            <span className="material-symbols-outlined">
                                 folder_open
                             </span>
 
                             <label htmlFor="certificate3">Enviar arquivo</label>
                             <input type="file" name="certificate3" />
-                            <span class="material-symbols-outlined">
+                            <span className="material-symbols-outlined">
                                 folder_open
                             </span>
-                        </div>
+                        </div> */}
 
                         <div className="Buttons">
                             <button type="submit">Continuar</button>

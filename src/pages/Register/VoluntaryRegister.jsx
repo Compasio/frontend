@@ -52,12 +52,11 @@ const VoluntaryRegister = () => {
                 description,
                 habilities
             };
-            console.log(userData)
 
             axios.post('http://localhost:9000/voluntarys/createVoluntary', JSON.stringify(userData), {
                 headers: { 'Content-Type': 'application/json' }
             })
-                .then(() => navigate("/autenticacaoDe2Fatores"))
+                .then(() => navigate("/autenticacaoDe2Fatores?tipo=voluntario"))
                 .catch(error => console.error("Erro ao enviar os dados: ", error));
         } else {
             alert("Por favor, preencha todos os campos corretamente e selecione pelo menos uma habilidade.");

@@ -13,7 +13,7 @@ const NGORegister = () => {
     useEffect(() => {
         axios.get('http://localhost:9000/sys/getOngThemes')
             .then(response => setNgoList(response.data))
-            .catch(error => console.error("Erro ao buscar habilidades: ", error));
+            .catch(error => console.error("Erro ao buscar temas: ", error));
     }, []);
 
     const handleSubmit = (event) => {
@@ -56,10 +56,10 @@ const NGORegister = () => {
             axios.post('http://localhost:9000/ongs/createOng', JSON.stringify(ngoData), {
                 headers: { 'Content-Type': 'application/json' }
             })
-                .then(() => navigate("/autenticacaoDe2Fatores"))
+                .then(() => navigate("/autenticacaoDe2Fatores?tipo=ong")) // Passando o tipo na URL
                 .catch(error => console.error("Erro ao enviar os dados: ", error));
         } else {
-            alert("Por favor, preencha todos os campos corretamente e selecione pelo menos uma habilidade.");
+            alert("Por favor, preencha todos os campos corretamente e selecione pelo menos uma área.");
         }
     };
 
@@ -87,7 +87,7 @@ const NGORegister = () => {
                 ) : (
                     <form onSubmit={handleSubmit}>
                         <h2>Crie sua Organização!</h2>
-                        <input type="text" placeholder="Nome da ong" name="nome" required />
+                        <input type="text" placeholder="Nome da ONG" name="nome" required />
                         <input type="email" placeholder="Email" name="email" required />
                         <input type="text" placeholder="CNPJ" name="cnpj" required />
                         <input type="text" placeholder="CPF do fundador" name="cpf" required />

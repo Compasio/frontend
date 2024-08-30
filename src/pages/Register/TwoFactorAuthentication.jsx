@@ -1,30 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./TwoFactorAuthentication.css";
-import { useNavigate } from "react-router-dom";
-import Logo from "../../img/logocomnome.svg"
+import Logo from "../../img/logocomnome.svg";
 
 const TwoFactorAuthentication = () => {
+  const [code, setCode] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleCodeSubmit = (event) => {
+  const queryParams = new URLSearchParams(location.search);
+  const tipo = queryParams.get("tipo");
+
+  const handleCodeSubmit = async (event) => {
     event.preventDefault();
-    const form = event.target;
+    setError("");
+    try {
+      const response = await axios.post("http://localhost:9000/auth/verifyUserCreation", { code });
 
-    if (form) {
-      navigate("/buscarOng");
+      console.log("Response from server:", response.data);
+
+        if (tipo === "voluntario") {
+          navigate("/loginVoluntario");
+        } else if (tipo === "ong") {
+          navigate("/loginONG");
+        }
+
+    } catch (error) {
+      console.error("Erro ao verificar o código:", error);
+      setError("Erro ao verificar o código. Tente novamente mais tarde.");
     }
   };
-
 
   return (
     <div className="TwoFactorAuthentication">
       <header>
         <nav>
-          <img src={Logo} alt="" />
+          <img src={Logo} alt="Logo" />
           <a href="/criarVoluntario">
-            <span class="material-symbols-outlined">
-              arrow_back
-            </span>
+            <span className="material-symbols-outlined">arrow_back</span>
           </a>
         </nav>
       </header>
@@ -35,10 +50,14 @@ const TwoFactorAuthentication = () => {
           <input
             type="text"
             placeholder="Código"
-            name="codigo"
+            name="code"
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
             required
           />
+          <button type="submit">Verificar Código</button>
         </form>
+        {error && <p className="error">{error}</p>}
       </main>
     </div>
   );

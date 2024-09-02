@@ -22,9 +22,10 @@ const NGO = () => {
     };
 
     const handleSubmit = async (e) => {
+        e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:9000/auth/loginUser', {
+            const response = await axios.post('https://backend-production-ff4c.up.railway.app/auth/loginUser', {
                 email,
                 password,
             });

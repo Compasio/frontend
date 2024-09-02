@@ -11,7 +11,7 @@ const VoluntaryRegister = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('http://localhost:9000/sys/getVoluntaryHabilities')
+        axios.get('https://backend-production-ff4c.up.railway.app/sys/getVoluntaryHabilities')
             .then(response => setHabilitiesList(response.data))
             .catch(error => console.error("Houve um erro ao buscar habilidades: ", error));
     }, []);
@@ -53,7 +53,7 @@ const VoluntaryRegister = () => {
                 habilities
             };
 
-            axios.post('http://localhost:9000/voluntarys/createVoluntary', JSON.stringify(userData), {
+            axios.post('https://backend-production-ff4c.up.railway.app/voluntarys/createVoluntary', JSON.stringify(userData), {
                 headers: { 'Content-Type': 'application/json' }
             })
                 .then(() => navigate("/autenticacaoDe2Fatores?tipo=voluntario"))

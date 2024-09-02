@@ -17,15 +17,15 @@ const TwoFactorAuthentication = () => {
     event.preventDefault();
     setError("");
     try {
-      const response = await axios.post("http://localhost:9000/auth/verifyUserCreation", { code });
+      const response = await axios.post("https://backend-production-ff4c.up.railway.app/auth/verifyUserCreation", { code });
 
       console.log("Response from server:", response.data);
 
-        if (tipo === "voluntario") {
-          navigate("/loginVoluntario");
-        } else if (tipo === "ong") {
-          navigate("/loginONG");
-        }
+      if (tipo === "voluntario") {
+        navigate("/loginVoluntario");
+      } else if (tipo === "ong") {
+        navigate("/loginONG");
+      }
 
     } catch (error) {
       console.error("Erro ao verificar o código:", error);

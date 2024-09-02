@@ -11,7 +11,7 @@ const NGORegister = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('http://localhost:9000/sys/getOngThemes')
+        axios.get('https://backend-production-ff4c.up.railway.app/sys/getOngThemes')
             .then(response => setNgoList(response.data))
             .catch(error => console.error("Erro ao buscar temas: ", error));
     }, []);
@@ -53,10 +53,10 @@ const NGORegister = () => {
                 themes
             };
 
-            axios.post('http://localhost:9000/ongs/createOng', JSON.stringify(ngoData), {
+            axios.post('https://backend-production-ff4c.up.railway.app/ongs/createOng', JSON.stringify(ngoData), {
                 headers: { 'Content-Type': 'application/json' }
             })
-                .then(() => navigate("/autenticacaoDe2Fatores?tipo=ong")) // Passando o tipo na URL
+                .then(() => navigate("/autenticacaoDe2Fatores?tipo=ong"))
                 .catch(error => console.error("Erro ao enviar os dados: ", error));
         } else {
             alert("Por favor, preencha todos os campos corretamente e selecione pelo menos uma área.");

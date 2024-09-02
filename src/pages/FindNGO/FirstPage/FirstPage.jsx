@@ -4,8 +4,15 @@ import Card from "../../../components/Card/Card";
 import medicossemfronteiras from "../../../img/medicosemfronteiras.png";
 import maismedicos from "../../../img/maismedicos.png";
 import cidadaniaanima from "../../../img/cidadaniaanimal.png";
+import { useNavigate } from "react-router-dom";
 
 const FirstPage = () => {
+    const navigate = useNavigate()
+
+    const maps = () => {
+        navigate('/maps')
+    }
+
     return (
         <div className="FirstPage">
             <header>
@@ -16,7 +23,7 @@ const FirstPage = () => {
                         </span>
                     </a>
                     <input type="text" placeholder="Procurar ONG's" />
-                    <span class="material-symbols-outlined">
+                    <span onClick={maps} class="material-symbols-outlined">
                         location_on
                     </span>
                 </nav>

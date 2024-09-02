@@ -16,6 +16,7 @@ import Project from '../pages/Project/Project';
 import VoluntaryRegister from '../pages/Register/VoluntaryRegister';
 import NGORegister from '../pages/Register/NGORegister';
 import TwoFactorAuthentication from '../pages/Register/TwoFactorAuthentication';
+import Maps from '../pages/Maps/Maps';
 import Donation from '../pages/Donation/Donation';
 
 export default function WebRoutes() {
@@ -35,6 +36,7 @@ export default function WebRoutes() {
                         <Route path="/perfilVoluntario" element={<VoluntaryProfile />} />
                         <Route path="/projetos" element={<Project />} />
                         <Route path="/criarONG" element={<NGORegister />} />
+                        <Route path="/maps" element={<Maps />} />
                         <Route path="/criarVoluntario" element={<VoluntaryRegister />} />
                         <Route path="/autenticacaoDe2Fatores" element={<TwoFactorAuthentication />} />
                         <Route path='doacao' element={<Donation />} />

@@ -7,72 +7,87 @@ import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 const NGO = () => {
-    const [showPasswordRecovery, setShowPasswordRecovery] = useState(false);
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
-    const navigate = useNavigate();
+  const [showPasswordRecovery, setShowPasswordRecovery] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-    const handlePasswordRecovery = () => {
-        setShowPasswordRecovery(true);
-    };
+  const handlePasswordRecovery = () => {
+    setShowPasswordRecovery(true);
+  };
 
-    const handleBackToLogin = () => {
-        setShowPasswordRecovery(false);
-    };
+  const handleBackToLogin = () => {
+    setShowPasswordRecovery(false);
+  };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-        try {
-            const response = await axios.post('https://backend-production-ff4c.up.railway.app/api/auth/loginUser', {
-                email,
-                password,
-            });
-            localStorage.setItem('token', response.data.token);
-            localStorage.setItem('userType', 'ONG');
-            navigate("/buscarVoluntario");
-        } catch (err) {
-            setError('Erro de login. Verifique suas credenciais.');
+    try {
+      const response = await axios.post(
+        "https://backend-production-ff4c.up.railway.app/auth/loginUser",
+        {
+          email,
+          password,
         }
-    };
+      );
 
-    return (
-        <>
-            {showPasswordRecovery ? (
-                <PasswordRecovery userType="NGO" handleBack={handleBackToLogin} />
-            ) : (
-                <div className="Login">
-                    <SideBanner />
-                    <section>
-                        <img src={Logo} alt="" />
-                        <h2>Login ONG</h2>
-                        <form onSubmit={handleSubmit}>
-                            <input
-                                type="text"
-                                placeholder="Email"
-                                name="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                            />
-                            <input
-                                type="password"
-                                placeholder="Senha"
-                                name="senha"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                required
-                            />
-                            <button type="submit">Entrar</button>
-                            {error && <p style={{ color: 'red' }}>{error}</p>}
-                            <p onClick={handlePasswordRecovery}>Esqueceu a senha?</p>
-                        </form>
-                    </section>
-                </div>
-            )}
-        </>
-    );
+      console.log("Resposta do servidor:", response);
+
+      if (response.data.token) {
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("userType", "ONG");
+        navigate("/buscarVoluntario");
+      } else {
+        setError("Erro de login. Verifique suas credenciais.");
+      }
+    } catch (err) {
+      console.error("Erro de login:", err);
+      if (err.response && err.response.data && err.response.data.message) {
+        setError(err.response.data.message);
+      } else {
+        setError("Erro de login. Verifique suas credenciais.");
+      }
+    }
+  };
+
+  return (
+    <>
+      {showPasswordRecovery ? (
+        <PasswordRecovery userType="NGO" handleBack={handleBackToLogin} />
+      ) : (
+        <div className="Login">
+          <SideBanner />
+          <section>
+            <img src={Logo} alt="" />
+            <h2>Login ONG</h2>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                placeholder="Email"
+                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <input
+                type="password"
+                placeholder="Senha"
+                name="senha"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <button type="submit">Entrar</button>
+              {error && <p style={{ color: "red" }}>{error}</p>}
+              <p onClick={handlePasswordRecovery}>Esqueceu a senha?</p>
+            </form>
+          </section>
+        </div>
+      )}
+    </>
+  );
 };
 
 export default NGO;

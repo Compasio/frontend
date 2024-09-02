@@ -2,20 +2,16 @@ import React, { useState } from "react";
 import "./PasswordRecovery.css";
 import Logo from "../../img/logocomnome.svg";
 import axios from "axios";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const PasswordRecovery = () => {
-  const [step, setStep] = useState("request"); // Usar "request" para solicitar o código
+const PasswordRecovery = ({ userType, handleBack }) => {
+  const [step, setStep] = useState("request");
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const location = useLocation();
-
-  const queryParams = new URLSearchParams(location.search);
-  const userType = queryParams.get("type");
 
   const handleEmailSubmit = async (event) => {
     event.preventDefault();
@@ -23,7 +19,7 @@ const PasswordRecovery = () => {
     try {
       const response = await axios.post("https://backend-production-ff4c.up.railway.app/auth/passwordRecovery", { email });
       console.log("Response from server:", response.data);
-      setStep("verify"); 
+      setStep("verify");
     } catch (error) {
       console.error("Erro ao solicitar o código:", error);
       setError("Erro ao solicitar o código. Verifique o e-mail e tente novamente.");
@@ -42,10 +38,9 @@ const PasswordRecovery = () => {
     try {
       const response = await axios.post("https://backend-production-ff4c.up.railway.app/auth/resetPassword", { email, password, code });
       console.log("Response from server:", response.data);
-
-      if (userType === "voluntario") {
+      if (userType === "Voluntary") {
         navigate("/loginVoluntario");
-      } else if (userType === "ong") {
+      } else if (userType === "NGO") {
         navigate("/loginONG");
       } else {
         setError("Tipo de usuário inválido. Não foi possível redirecionar.");
@@ -61,9 +56,7 @@ const PasswordRecovery = () => {
       <header>
         <nav>
           <img src={Logo} alt="Logo" />
-          <a href="/loginVoluntario">
-            <span className="material-symbols-outlined">arrow_back</span>
-          </a>
+          <span onClick={handleBack} className="material-symbols-outlined">arrow_back</span>
         </nav>
       </header>
       <main>

@@ -3,8 +3,8 @@ import axios from "axios";
 import PasswordRecovery from "./PasswordRecovery";
 import SideBanner from "../../components/Banners/SideBanner/SideBanner";
 import Logo from "../../img/logosemnome.svg";
-import "./Login.css";
 import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
 const Voluntary = () => {
     const [showPasswordRecovery, setShowPasswordRecovery] = useState(false);
@@ -25,22 +25,31 @@ const Voluntary = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('https://backend-production-ff4c.up.railway.app/api/auth/loginUser', {
-                email,
-                password,
-            });
-            localStorage.setItem('token', response.data.token);
-            localStorage.setItem('userType', 'Voluntary');
-            navigate("/buscarONG");
+            const response = await axios.post(
+                "https://backend-production-ff4c.up.railway.app/auth/loginUser",
+                {
+                    email,
+                    password,
+                }
+            );
+
+            if (response.data.token) {
+                localStorage.setItem("token", response.data.token);
+                localStorage.setItem("userType", "Voluntary");
+                navigate("/buscarONG");
+            } else {
+                setError("Erro de login. Verifique suas credenciais.");
+            }
         } catch (err) {
-            setError('Erro de login. Verifique suas credenciais.');
+            console.error("Erro de login:", err);
+            setError("Erro de login. Verifique suas credenciais.");
         }
     };
 
     return (
         <>
             {showPasswordRecovery ? (
-                <PasswordRecovery userType="Voluntary" onClick={handleBackToLogin} />
+                <PasswordRecovery userType="Voluntary" handleBack={handleBackToLogin} />
             ) : (
                 <div className="Login">
                     <SideBanner />
@@ -65,7 +74,7 @@ const Voluntary = () => {
                                 required
                             />
                             <button type="submit">Entrar</button>
-                            {error && <p style={{ color: 'red' }}>{error}</p>}
+                            {error && <p style={{ color: "red" }}>{error}</p>}
                             <p onClick={handlePasswordRecovery}>Esqueceu a senha?</p>
                         </form>
                     </section>

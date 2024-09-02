@@ -11,7 +11,7 @@ const NGO = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const handlePasswordRecovery = () => {
         setShowPasswordRecovery(true);
@@ -25,13 +25,13 @@ const NGO = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('https://backend-production-ff4c.up.railway.app/auth/loginUser', {
+            const response = await axios.post('https://backend-production-ff4c.up.railway.app/api/auth/loginUser', {
                 email,
                 password,
             });
             localStorage.setItem('token', response.data.token);
-            navigate("/buscarVoluntario")
-
+            localStorage.setItem('userType', 'ONG');
+            navigate("/buscarVoluntario");
         } catch (err) {
             setError('Erro de login. Verifique suas credenciais.');
         }
@@ -40,7 +40,7 @@ const NGO = () => {
     return (
         <>
             {showPasswordRecovery ? (
-                <PasswordRecovery handleBack={handleBackToLogin} />
+                <PasswordRecovery userType="NGO" handleBack={handleBackToLogin} />
             ) : (
                 <div className="Login">
                     <SideBanner />

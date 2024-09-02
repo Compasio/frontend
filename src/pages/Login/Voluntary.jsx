@@ -11,7 +11,7 @@ const Voluntary = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const handlePasswordRecovery = () => {
         setShowPasswordRecovery(true);
@@ -30,8 +30,8 @@ const Voluntary = () => {
                 password,
             });
             localStorage.setItem('token', response.data.token);
-            navigate("/buscarONG")
-
+            localStorage.setItem('userType', 'Voluntary');
+            navigate("/buscarONG");
         } catch (err) {
             setError('Erro de login. Verifique suas credenciais.');
         }
@@ -40,7 +40,7 @@ const Voluntary = () => {
     return (
         <>
             {showPasswordRecovery ? (
-                <PasswordRecovery onClick={handleBackToLogin} />
+                <PasswordRecovery userType="Voluntary" onClick={handleBackToLogin} />
             ) : (
                 <div className="Login">
                     <SideBanner />

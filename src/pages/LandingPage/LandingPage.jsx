@@ -58,7 +58,7 @@ const LandingPage = () => {
                             executamos uma associação com programas e projetos variados com foco nas pessoas.
                             Clique no coração abaixo para fazer sua contribuição!</p>
                         <Link to='./doacao'>
-                            <span class="material-symbols-outlined">
+                            <span className="material-symbols-outlined">
                                 heart_plus
                             </span>
                         </Link>

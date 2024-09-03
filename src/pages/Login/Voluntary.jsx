@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import PasswordRecovery from "./PasswordRecovery";
+import Cookies from "js-cookie";
 import SideBanner from "../../components/Banners/SideBanner/SideBanner";
 import Logo from "../../img/logosemnome.svg";
 import { useNavigate } from "react-router-dom";
@@ -17,10 +17,6 @@ const Voluntary = () => {
         setShowPasswordRecovery(true);
     };
 
-    const handleBackToLogin = () => {
-        setShowPasswordRecovery(false);
-    };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -33,9 +29,9 @@ const Voluntary = () => {
                 }
             );
 
-            if (response.data.token) {
-                localStorage.setItem("token", response.data.token);
-                localStorage.setItem("userType", "Voluntary");
+            if (response.data) {
+                Cookies.set("token", response.data, { expires: 7 });
+                Cookies.set("userType", "Voluntary", { expires: 7 });
                 navigate("/buscarONG");
             } else {
                 setError("Erro de login. Verifique suas credenciais.");
@@ -49,7 +45,7 @@ const Voluntary = () => {
     return (
         <>
             {showPasswordRecovery ? (
-                <PasswordRecovery userType="Voluntary" handleBack={handleBackToLogin} />
+                navigate('/recuperarSenha')
             ) : (
                 <div className="Login">
                     <SideBanner />

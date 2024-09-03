@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import PasswordRecovery from "./PasswordRecovery";
+import Cookies from "js-cookie";
 import SideBanner from "../../components/Banners/SideBanner/SideBanner";
 import Logo from "../../img/logosemnome.svg";
 import { useNavigate } from "react-router-dom";
@@ -17,10 +17,6 @@ const NGO = () => {
     setShowPasswordRecovery(true);
   };
 
-  const handleBackToLogin = () => {
-    setShowPasswordRecovery(false);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -33,11 +29,9 @@ const NGO = () => {
         }
       );
 
-      console.log("Resposta do servidor:", response);
-
-      if (response.data.token) {
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("userType", "ONG");
+      if (response.data) {
+        Cookies.set("token", response.data, { expires: 7 });
+        Cookies.set("userType", "ONG", { expires: 7 });
         navigate("/buscarVoluntario");
       } else {
         setError("Erro de login. Verifique suas credenciais.");
@@ -55,7 +49,7 @@ const NGO = () => {
   return (
     <>
       {showPasswordRecovery ? (
-        <PasswordRecovery userType="NGO" handleBack={handleBackToLogin} />
+        navigate('/recuperarSenha')
       ) : (
         <div className="Login">
           <SideBanner />

@@ -7,6 +7,7 @@ const Card = (props) => {
             <a href={props.link}>
                 <img src={props.imgsrc} alt="" />
                 <p>{props.descricao}</p>
+                <p>{props.temas}</p>
             </a>
         </div>
     )

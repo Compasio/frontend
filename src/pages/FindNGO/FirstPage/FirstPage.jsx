@@ -1,29 +1,66 @@
-import React from "react";
-import "./FirstPage.css"
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./FirstPage.css";
 import Card from "../../../components/Card/Card";
-import medicossemfronteiras from "../../../img/medicosemfronteiras.png";
-import maismedicos from "../../../img/maismedicos.png";
-import cidadaniaanima from "../../../img/cidadaniaanimal.png";
 import { useNavigate } from "react-router-dom";
 
 const FirstPage = () => {
-    const navigate = useNavigate()
+    const [cardsData, setCardsData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
+    const [currentPage, setCurrentPage] = useState(1);
+    const navigate = useNavigate();
 
     const maps = () => {
-        navigate('/maps')
-    }
+        navigate('/maps');
+    };
+
+    useEffect(() => {
+        const fetchCardsData = async () => {
+            setLoading(true);
+            try {
+                const response = await axios.get(`https://backend-production-ff4c.up.railway.app/ongs/getAllOngs/${currentPage}`);
+
+                const formattedData = response.data.map(ong => ({
+                    name: ong.ong.ong_name,
+                    description: ong.ong.description,
+                    profilePicture: ong.ong.profile_picture || "default-image.png",
+                    themes: ong.ong.themes.join(", ")
+                }));
+
+                setCardsData(formattedData);
+                setLoading(false);
+            } catch (err) {
+                console.error("Erro ao buscar dados dos cartões:", err);
+                setError("Erro ao buscar dados. Por favor, tente novamente mais tarde.");
+                setLoading(false);
+            }
+        };
+
+        fetchCardsData();
+    }, [currentPage]);
+
+    const handleNextPage = () => {
+        setCurrentPage(prevPage => prevPage + 1);
+    };
+
+    const handlePreviousPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(prevPage => prevPage - 1);
+        }
+    };
 
     return (
         <div className="FirstPage">
             <header>
                 <nav>
                     <a href="/perfilVoluntario">
-                        <span class="material-symbols-outlined">
+                        <span className="material-symbols-outlined">
                             account_circle
                         </span>
                     </a>
                     <input type="text" placeholder="Procurar ONG's" />
-                    <span onClick={maps} class="material-symbols-outlined">
+                    <span onClick={maps} className="material-symbols-outlined">
                         location_on
                     </span>
                 </nav>
@@ -37,45 +74,33 @@ const FirstPage = () => {
                     <button type="button">Adolescentes</button>
                 </div>
                 <div className="Cards">
-                    <Card
-                        link="/ONG"
-                        imgsrc={medicossemfronteiras}
-                        descricao="A sua doação não 
-tem fronteiras!
-Doe para Médicos
-sem fronteiras e ajude 
-a levar cuidados para 
-quem precisa."/>
-                    <Card
-                        imgsrc={maismedicos}
-                        descricao="O Mais Médicos compõe 
-um conjunto de ações e
-iniciativas do governo 
-para o fortalecimento 
-da Atenção Primária à 
-Saúde do país.  
-Ajude você também!"/>
-                    <Card
-                        imgsrc={cidadaniaanima}
-                        descricao="Somos um grupo 
-voluntários apaixonados
-por animais e juntos 
-realizamos um lindo 
-trabalho de defesa e
-proteção animal em
-nossa ONG."/>
+                    {loading ? (
+                        <p>Carregando...</p>
+                    ) : error ? (
+                        <p style={{ color: "red" }}>{error}</p>
+                    ) : (
+                        cardsData.map((card, index) => (
+                            <Card
+                                key={index}
+                                link={`/ONG/${index}`}
+                                imgsrc={card.profilePicture}
+                                descricao={`${card.description}`}
+                                temas={`${card.themes}`}
+                            />
+                        ))
+                    )}
                 </div>
             </main>
             <footer>
-                <span class="material-symbols-outlined">
+                <span className="material-symbols-outlined" onClick={handlePreviousPage}>
                     arrow_back
                 </span>
-                <span class="material-symbols-outlined">
+                <span className="material-symbols-outlined" onClick={handleNextPage}>
                     arrow_forward
                 </span>
             </footer>
         </div>
-    )
-}
+    );
+};
 
-export default FirstPage
+export default FirstPage;

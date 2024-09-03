@@ -15,6 +15,7 @@ import SecondPageNGOProfile from '../pages/NGOProfile/SecondPage';
 import VoluntaryProfile from '../pages/VoluntaryProfile/VoluntaryProfile';
 import Project from '../pages/Project/Project';
 import VoluntaryRegister from '../pages/Register/VoluntaryRegister';
+import PasswordRecovery from '../pages/Login/PasswordRecovery';
 import NGORegister from '../pages/Register/NGORegister';
 import TwoFactorAuthentication from '../pages/Register/TwoFactorAuthentication';
 import Maps from '../pages/Maps/Maps';
@@ -27,6 +28,8 @@ export default function WebRoutes() {
                 <Router>
                     <Routes>
                         <Route path="/" element={<LandingPage />} />
+
+                        <Route path="/recuperarSenha" element={<PasswordRecovery />} />
 
                         <Route path="/buscarONG" element={<FirstPageNGO />} />
 

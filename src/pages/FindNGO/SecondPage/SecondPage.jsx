@@ -1,47 +1,62 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./SecondPage.css";
 import NGOBanner from "../../../components/Banners/NGOBanner/NGOBanner";
-import SearchPagesGallery from "../../../components/Gallery/SearchPagesGallery/SearchPagesGallery";
-import medicossemfronteiras from "../../../img/medicosemfronteiras.png"
-import medicossemfronteirasG1 from "../../../img/medicossemfronteirasG1.png"
-import medicossemfronteirasG2 from "../../../img/medicossemfronteirasG2.png"
-import medicossemfronteirasG3 from "../../../img/medicossemfronteirasG3.png"
+// import SearchPagesGallery from "../../../components/Gallery/SearchPagesGallery/SearchPagesGallery";
+import { useParams } from "react-router-dom";
 
 const SecondPage = () => {
+    const [ngoData, setNgoData] = useState(null);
+    const { id } = useParams();
+
+    useEffect(() => {
+        const fetchNGOData = async () => {
+            try {
+                const response = await axios.get(`https://backend-production-ff4c.up.railway.app/ongs/getOngById/${id}`);
+                setNgoData(response.data);
+            } catch (error) {
+                console.error("Erro ao buscar dados da ONG:", error);
+            }
+        };
+
+        fetchNGOData();
+    }, [id]);
+
+    if (!ngoData) return <p>Loading...</p>;
+
+    const { ong_name, description, themes, profile_picture = {} } = ngoData;
+
     return (
         <div className="SecondPage">
             <header>
                 <nav>
                     <a href="/buscarONG">
-                        <span class="material-symbols-outlined">
-                            arrow_back
-                        </span>
+                        <span className="material-symbols-outlined">arrow_back</span>
                     </a>
                     <div>
-                        <span class="material-symbols-outlined">
-                            supervised_user_circle
-                        </span>
-                        <h3>Médicos Sem Fronteiras</h3>
+                        <span className="material-symbols-outlined">supervised_user_circle</span>
+                        <h3>{ong_name}</h3>
                     </div>
-                    <span class="material-symbols-outlined">
-                        arrow_forward
-                    </span>
+                    <span className="material-symbols-outlined">arrow_forward</span>
                 </nav>
             </header>
             <main>
                 <NGOBanner
-                    imgsrc={medicossemfronteiras}
-                    descricao="Médicos sem Fronteiras é uma organização internacional, não governamental e sem fins lucrativos que oferece ajuda médica e humanitária a populações em situações de emergência, em casos como conflitos armados, catástrofes, epidemias, fome e exclusão social. " />
-            </main>
-            <section>
-                <SearchPagesGallery
-                    img1={medicossemfronteirasG1}
-                    img2={medicossemfronteirasG2}
-                    img3={medicossemfronteirasG3}
+                    imgsrc={profile_picture || "default-image-url"}
+                    descricao={description}
+                    nome={ong_name}
+                    temas={themes}
                 />
-            </section>
+            </main>
+            {/* <section>
+                <SearchPagesGallery
+                    img1={gallery_images[0] || "default-image-url"}
+                    img2={gallery_images[1] || "default-image-url"}
+                    img3={gallery_images[2] || "default-image-url"}
+                />
+            </section> */}
         </div>
-    )
-}
+    );
+};
 
-export default SecondPage
+export default SecondPage   

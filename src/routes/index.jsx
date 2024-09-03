@@ -33,7 +33,7 @@ export default function WebRoutes() {
 
                         <Route path="/buscarONG" element={<FirstPageNGO />} />
 
-                        <Route path="/ONG" element={<SecondPageNGO />} />
+                        <Route path="/ONG/:id" element={<SecondPageNGO />} />
 
                         <Route path="/buscarVoluntario" element={<FirstPageVoluntary />} />
 

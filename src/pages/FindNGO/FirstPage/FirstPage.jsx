@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./FirstPage.css";
 import Card from "../../../components/Card/Card";
+import defaultImg from '../../../img/defaultImg.png'
 import { useNavigate } from "react-router-dom";
 
 const FirstPage = () => {
@@ -20,11 +21,11 @@ const FirstPage = () => {
             setLoading(true);
             try {
                 const response = await axios.get(`https://backend-production-ff4c.up.railway.app/ongs/getAllOngs/${currentPage}`);
-
                 const formattedData = response.data.map(ong => ({
+                    id: ong.id,
                     name: ong.ong.ong_name,
                     description: ong.ong.description,
-                    profilePicture: ong.ong.profile_picture || "default-image.png",
+                    profilePicture: ong.ong.profile_picture || defaultImg,
                     themes: ong.ong.themes.join(", ")
                 }));
 
@@ -79,13 +80,13 @@ const FirstPage = () => {
                     ) : error ? (
                         <p style={{ color: "red" }}>{error}</p>
                     ) : (
-                        cardsData.map((card, index) => (
+                        cardsData.map(card => (
                             <Card
-                                key={index}
-                                link={`/ONG/${index}`}
+                                key={card.id}
+                                link={`/ONG/${card.id}`}
                                 imgsrc={card.profilePicture}
-                                descricao={`${card.description}`}
-                                temas={`${card.themes}`}
+                                descricao={card.description}
+                                temas={card.themes}
                             />
                         ))
                     )}

@@ -1,27 +1,31 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./FirstPage.css";
-import Card from "../../../components/Card/Card";
-import defaultImg from '../../../img/defaultImg.png'
+import Card from "../../components/Card/Card";
+import defaultImg from '../../img/defaultImg.png';
 import { useNavigate } from "react-router-dom";
 
 const FirstPage = () => {
-    const [cardsData, setCardsData] = useState([]);
+    const [cards, setCards] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
-    const [currentPage, setCurrentPage] = useState(1);
+    const [themes, setThemes] = useState([]);
+    const [theme, setTheme] = useState("");
+    const [page, setPage] = useState(1);
     const navigate = useNavigate();
 
-    const maps = () => {
-        navigate('/maps');
-    };
-
     useEffect(() => {
-        const fetchCardsData = async () => {
-            setLoading(true);
+        const fetchData = async () => {
             try {
-                const response = await axios.get(`https://backend-production-ff4c.up.railway.app/ongs/getAllOngs/${currentPage}`);
-                const formattedData = response.data.map(ong => ({
+                const themesResponse = await axios.get("https://backend-production-ff4c.up.railway.app/sys/getOngThemes");
+                setThemes(themesResponse.data);
+
+                let url = theme
+                    ? `https://backend-production-ff4c.up.railway.app/ongs/getOngByTheme/${theme}`
+                    : `https://backend-production-ff4c.up.railway.app/ongs/getAllOngs/${page}`;
+                const cardsResponse = await axios.get(url);
+
+                const formattedData = cardsResponse.data.map(ong => ({
                     id: ong.id,
                     name: ong.ong.ong_name,
                     description: ong.ong.description,
@@ -29,50 +33,36 @@ const FirstPage = () => {
                     themes: ong.ong.themes.join(", ")
                 }));
 
-                setCardsData(formattedData);
-                setLoading(false);
+                setCards(formattedData);
             } catch (err) {
-                console.error("Erro ao buscar dados dos cartões:", err);
                 setError("Erro ao buscar dados. Por favor, tente novamente mais tarde.");
+            } finally {
                 setLoading(false);
             }
         };
 
-        fetchCardsData();
-    }, [currentPage]);
-
-    const handleNextPage = () => {
-        setCurrentPage(prevPage => prevPage + 1);
-    };
-
-    const handlePreviousPage = () => {
-        if (currentPage > 1) {
-            setCurrentPage(prevPage => prevPage - 1);
-        }
-    };
+        fetchData();
+    }, [page, theme]);
 
     return (
         <div className="FirstPage">
             <header>
                 <nav>
                     <a href="/perfilVoluntario">
-                        <span className="material-symbols-outlined">
-                            account_circle
-                        </span>
+                        <span className="material-symbols-outlined">account_circle</span>
                     </a>
                     <input type="text" placeholder="Procurar ONG's" />
-                    <span onClick={maps} className="material-symbols-outlined">
-                        location_on
-                    </span>
+                    <span onClick={() => navigate('/maps')} className="material-symbols-outlined">location_on</span>
                 </nav>
             </header>
             <main>
-                <div className="Buttons">
-                    <button type="button">Animais</button>
-                    <button type="button">Crianças</button>
-                    <button type="button">Idosos</button>
-                    <button type="button">Deficientes</button>
-                    <button type="button">Adolescentes</button>
+                <div className="Filter">
+                    <select value={theme} onChange={(e) => setTheme(e.target.value)}>
+                        <option value="">Todos os temas</option>
+                        {themes.map((theme, index) => (
+                            <option key={index} value={theme}>{theme}</option>
+                        ))}
+                    </select>
                 </div>
                 <div className="Cards">
                     {loading ? (
@@ -80,7 +70,7 @@ const FirstPage = () => {
                     ) : error ? (
                         <p style={{ color: "red" }}>{error}</p>
                     ) : (
-                        cardsData.map(card => (
+                        cards.map(card => (
                             <Card
                                 key={card.id}
                                 link={`/ONG/${card.id}`}
@@ -93,10 +83,10 @@ const FirstPage = () => {
                 </div>
             </main>
             <footer>
-                <span className="material-symbols-outlined" onClick={handlePreviousPage}>
+                <span className="material-symbols-outlined" onClick={() => setPage(prevPage => Math.max(prevPage - 1, 1))}>
                     arrow_back
                 </span>
-                <span className="material-symbols-outlined" onClick={handleNextPage}>
+                <span className="material-symbols-outlined" onClick={() => setPage(prevPage => prevPage + 1)}>
                     arrow_forward
                 </span>
             </footer>

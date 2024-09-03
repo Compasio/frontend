@@ -27,20 +27,7 @@
 .VoluntaryRegister form input {
   width: 35vw;
   height: 7vh;
-  text-transform: uppercase;
   padding: 1%
-}
-
-.VoluntaryRegister form .PictureContainer {
-  border-radius: 50%;
-  color: var(--black);
-  width: 7rem;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  justify-content: center;
-  height: 7rem;
-  background-color: var(--beige);
 }
 
 .VoluntaryRegister form textarea {
@@ -55,7 +42,7 @@
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   gap: 0.5rem;
   justify-content: center;
-  width: 50vw;
+  width: 60vw;
   height: 10rem;
   overflow-y: scroll;
   overflow-x: hidden;

@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ProtectedRoute from '../auth';
 import LandingPage from '../pages/LandingPage/LandingPage'
 import NotFound from '../pages/NotFound/NotFound'
-import FirstPageNGO from '../pages/FindNGO/FirstPage/FirstPage'
-import SecondPageNGO from '../pages/FindNGO/SecondPage/SecondPage'
-import FirstPageVoluntary from '../pages/FindVoluntary/FirstPage/FirstPage'
-import SecondPageVoluntary from '../pages/FindVoluntary/SecondPage/SecondPage'
+import FirstPageNGO from '../pages/FindNGO/FirstPage'
+import SecondPageNGO from '../pages/FindNGO/SecondPage'
+import FirstPageVoluntary from '../pages/FindVoluntary/FirstPage'
+import SecondPageVoluntary from '../pages/FindVoluntary/SecondPage'
 import Adm from '../pages/Login/Adm';
 import NGO from '../pages/Login/NGO';
 import Voluntary from '../pages/Login/Voluntary';

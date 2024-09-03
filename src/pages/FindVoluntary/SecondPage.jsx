@@ -1,11 +1,11 @@
 import React from "react";
 import "./SecondPage.css";
-import SearchPagesGallery from "../../../components/Gallery/SearchPagesGallery/SearchPagesGallery";
-import perfil2 from "../../../img/perfil2.jpg"
-import perfil2G1 from "../../../img/perfil2G1.jpg"
-import perfil2G2 from "../../../img/perfil2G2.jpg"
-import perfil2G3 from "../../../img/perfil2G3.jpg"
-import VoluntaryBanner from "../../../components/Banners/VoluntaryBanner/VoluntaryBanner";
+import SearchPagesGallery from "../../components/Gallery/SearchPagesGallery/SearchPagesGallery";
+import perfil2 from "../../img/perfil2.jpg"
+import perfil2G1 from "../../img/perfil2G1.jpg"
+import perfil2G2 from "../../img/perfil2G2.jpg"
+import perfil2G3 from "../../img/perfil2G3.jpg"
+import VoluntaryBanner from "../../components/Banners/VoluntaryBanner/VoluntaryBanner";
 
 const SecondPage = () => {
     return (

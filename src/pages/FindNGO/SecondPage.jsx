@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./SecondPage.css";
-import NGOBanner from "../../../components/Banners/NGOBanner/NGOBanner";
+import NGOBanner from "../../components/Banners/NGOBanner/NGOBanner";
 // import SearchPagesGallery from "../../../components/Gallery/SearchPagesGallery/SearchPagesGallery";
 import { useParams } from "react-router-dom";
 

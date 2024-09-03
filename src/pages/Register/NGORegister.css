@@ -27,39 +27,7 @@
 .NGORegister form input {
     width: 35vw;
     height: 7vh;
-    text-transform: uppercase;
     padding: 1%
-}
-
-.NGORegister form .Certificates {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.NGORegister form .Certificates label {
-    padding: 1%;
-    width: 15rem;
-    height: 3.5rem;
-    background-color: var(--green-two);
-    color: var(--white);
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-
-.NGORegister form .Certificates input[type="file"] {
-    display: none;
-}
-
-.NGORegister form .Certificates span {
-    position: relative;
-    right: 5%;
-    color: var(--white);
 }
 
 .NGORegister form textarea {

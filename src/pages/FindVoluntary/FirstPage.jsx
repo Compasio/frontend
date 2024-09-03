@@ -1,9 +1,9 @@
 import React from "react";
 import "./FirstPage.css"
-import Card from "../../../components/Card/Card";
-import perfil1 from "../../../img/perfil1.jpg";
-import perfil2 from "../../../img/perfil2.jpg";
-import perfil3 from "../../../img/perfil3.jpg";
+import Card from "../../components/Card/Card";
+import perfil1 from "../../img/perfil1.jpg";
+import perfil2 from "../../img/perfil2.jpg";
+import perfil3 from "../../img/perfil3.jpg";
 
 const FirstPage = () => {
     return (

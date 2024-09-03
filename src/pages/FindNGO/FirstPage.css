@@ -29,11 +29,10 @@
 
 .FirstPage header nav input {
     width: 50%;
-    max-width: 400px;
     height: 2.5rem;
     padding: 0.5rem 1rem;
     border: 1px solid var(--black);
-    border-radius: 20px;
+    border-radius: 2%;
     font-size: 1rem;
 }
 
@@ -46,34 +45,39 @@
     gap: 2rem;
 }
 
-.FirstPage main .Buttons {
+.FirstPage main .Filter {
     width: 100%;
-    max-width: 1200px;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    gap: 1rem;
+    margin-bottom: 1rem;
 }
 
-.FirstPage main .Buttons button {
-    width: 10rem;
-    height: 3rem;
-    background-color: var(--green-two);
-    border: none;
-    color: var(--white);
+.FirstPage main .Filter select {
+    width: 30%;
+    height: 2.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--black);
     font-size: 1rem;
-    border-radius: 30px;
+    background-color: var(--white);
+    color: var(--black);
+    box-shadow: 2px 2px 8px var(--black);
+    transition: background-color 0.2s ease;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
-.FirstPage main .Buttons button:hover {
-    background-color: var(--green-one);
+.FirstPage main .Filter select:hover {
+    background-color: var(--green-two);
+    color: var(--white);
+}
+
+.FirstPage main .Filter select option {
+    background-color: var(--white);
+    color: var(--black);
 }
 
 .FirstPage main .Cards {
     width: 100%;
-    max-width: 1200px;
+    height: auto;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 2rem;
@@ -93,13 +97,13 @@
 
 .FirstPage footer .material-symbols-outlined {
     cursor: pointer;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: var(--white);
     transition: color 0.3s ease;
 }
 
 .FirstPage footer .material-symbols-outlined:hover {
-    color: var(--green-dark);
+    color: var(--green-two);
 }
 
 @media screen and (max-width: 745px) {

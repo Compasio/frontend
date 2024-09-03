@@ -2,7 +2,7 @@ import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import Cookies from "js-cookie";
 
-const ProtectedRoute = ({ allowedUserType }) => {
+const ProtectedFunction = ({ allowedUserType }) => {
     const token = Cookies.get('token');
     const userType = Cookies.get('userType');
     const canNavigate = Cookies.get('canNavigate') === 'true';
@@ -27,4 +27,4 @@ const ProtectedRoute = ({ allowedUserType }) => {
     return <Outlet />;
 };
 
-export default ProtectedRoute;
+export default ProtectedFunction;

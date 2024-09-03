@@ -15,15 +15,29 @@ const FirstPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchThemes = async () => {
             try {
                 const themesResponse = await axios.get("https://backend-production-ff4c.up.railway.app/sys/getOngThemes");
                 setThemes(themesResponse.data);
+            } catch (err) {
+                setError("Erro ao buscar temas. Por favor, tente novamente mais tarde.");
+            }
+        };
 
-                let url = theme
-                    ? `https://backend-production-ff4c.up.railway.app/ongs/getOngByTheme/${theme}`
-                    : `https://backend-production-ff4c.up.railway.app/ongs/getAllOngs/${page}`;
-                const cardsResponse = await axios.get(url);
+        fetchThemes();
+    }, []);
+
+    useEffect(() => {
+        const fetchOngs = async () => {
+            setLoading(true);
+            try {
+                let cardsResponse;
+
+                if (theme) {
+                    cardsResponse = await axios.post(`https://backend-production-ff4c.up.railway.app/ongs/getOngByTheme/${theme}`)
+                } else {
+                    cardsResponse = await axios.get(`https://backend-production-ff4c.up.railway.app/ongs/getAllOngs/${page}`);
+                }
 
                 const formattedData = cardsResponse.data.map(ong => ({
                     id: ong.id,
@@ -34,14 +48,20 @@ const FirstPage = () => {
                 }));
 
                 setCards(formattedData);
+                setError("");
             } catch (err) {
-                setError("Erro ao buscar dados. Por favor, tente novamente mais tarde.");
+                if (err.response && err.response.status === 404) {
+                    setError("Nenhum resultado encontrado para o tema selecionado.");
+                } else {
+                    setError("Erro ao buscar ONGs. Por favor, tente novamente mais tarde.");
+                }
+                console.error("Erro ao buscar ONGs:", err);
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchData();
+        fetchOngs();
     }, [page, theme]);
 
     return (
@@ -59,8 +79,8 @@ const FirstPage = () => {
                 <div className="Filter">
                     <select value={theme} onChange={(e) => setTheme(e.target.value)}>
                         <option value="">Todos os temas</option>
-                        {themes.map((theme, index) => (
-                            <option key={index} value={theme}>{theme}</option>
+                        {themes.map((themeOption, index) => (
+                            <option key={index} value={themeOption}>{themeOption}</option>
                         ))}
                     </select>
                 </div>
@@ -75,6 +95,7 @@ const FirstPage = () => {
                                 key={card.id}
                                 link={`/ONG/${card.id}`}
                                 imgsrc={card.profilePicture}
+                                nome={card.name}
                                 descricao={card.description}
                                 temas={card.themes}
                             />

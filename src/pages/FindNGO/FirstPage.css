@@ -49,7 +49,9 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-bottom: 1rem;
+    position: relative;
 }
 
 .FirstPage main .Filter select {
@@ -63,6 +65,9 @@
     box-shadow: 2px 2px 8px var(--black);
     transition: background-color 0.2s ease;
     cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
 
 .FirstPage main .Filter select:hover {
@@ -70,9 +75,43 @@
     color: var(--white);
 }
 
-.FirstPage main .Filter select option {
+.FirstPage main .Filter .Dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
     background-color: var(--white);
-    color: var(--black);
+    border: 1px solid var(--black);
+    box-shadow: 2px 2px 8px var(--black);
+    z-index: 10;
+    display: none;
+    flex-direction: column;
+}
+
+.FirstPage main .Filter select:focus + .Dropdown,
+.FirstPage main .Filter select:active + .Dropdown,
+.FirstPage main .Filter .Dropdown:hover {
+    display: flex;
+}
+
+.FirstPage main .Filter .Dropdown label {
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.FirstPage main .Filter .Dropdown label:hover {
+    background-color: var(--green-two);
+    color: var(--white);
+}
+
+.FirstPage main .Filter .Dropdown input[type="checkbox"] {
+    cursor: pointer;
 }
 
 .FirstPage main .Cards {
@@ -115,10 +154,6 @@
         padding: 1rem;
     }
 
-    .FirstPage main .Buttons button {
-        font-size: 0.9rem;
-    }
-
     .FirstPage footer {
         padding: 0 1rem;
     }
@@ -127,12 +162,6 @@
 @media screen and (max-width: 400px) {
     .FirstPage header nav input {
         width: 100%;
-    }
-
-    .FirstPage main .Buttons button {
-        width: auto;
-        padding: 0.5rem 1rem;
-        font-size: 0.8rem;
     }
 
     .FirstPage main .Cards {

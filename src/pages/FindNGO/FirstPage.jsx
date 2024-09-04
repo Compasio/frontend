@@ -10,7 +10,7 @@ const FirstPage = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [themes, setThemes] = useState([]);
-    const [theme, setTheme] = useState("");
+    const [selectedThemes, setSelectedThemes] = useState([]);
     const [page, setPage] = useState(1);
     const navigate = useNavigate();
 
@@ -33,8 +33,10 @@ const FirstPage = () => {
             try {
                 let cardsResponse;
 
-                if (theme) {
-                    cardsResponse = await axios.post(`https://backend-production-ff4c.up.railway.app/ongs/getOngByTheme/${theme}`)
+                if (selectedThemes.length > 0) {
+                    const theme = selectedThemes.join(",");
+                    cardsResponse = await axios.post(`https://backend-production-ff4c.up.railway.app/ongs/getOngByTheme/${theme}`);
+                    console.log(cardsResponse)
                 } else {
                     cardsResponse = await axios.get(`https://backend-production-ff4c.up.railway.app/ongs/getAllOngs/${page}`);
                 }
@@ -51,7 +53,7 @@ const FirstPage = () => {
                 setError("");
             } catch (err) {
                 if (err.response && err.response.status === 404) {
-                    setError("Nenhum resultado encontrado para o tema selecionado.");
+                    setError("Nenhum resultado encontrado para os temas selecionados.");
                 } else {
                     setError("Erro ao buscar ONGs. Por favor, tente novamente mais tarde.");
                 }
@@ -62,7 +64,16 @@ const FirstPage = () => {
         };
 
         fetchOngs();
-    }, [page, theme]);
+    }, [page, selectedThemes]);
+
+    const handleThemeChange = (e) => {
+        const { value, checked } = e.target;
+        if (checked) {
+            setSelectedThemes([...selectedThemes, value]);
+        } else {
+            setSelectedThemes(selectedThemes.filter(theme => theme !== value));
+        }
+    };
 
     return (
         <div className="FirstPage">
@@ -77,13 +88,23 @@ const FirstPage = () => {
             </header>
             <main>
                 <div className="Filter">
-                    <select value={theme} onChange={(e) => setTheme(e.target.value)}>
-                        <option value="">Todos os temas</option>
-                        {themes.map((themeOption, index) => (
-                            <option key={index} value={themeOption}>{themeOption}</option>
-                        ))}
+                    <select>
+                        <option>Selecionar temas</option>
                     </select>
+                    <div className="Dropdown">
+                        {themes.map((themeOption, index) => (
+                            <label key={index}>
+                                <input
+                                    type="checkbox"
+                                    value={themeOption}
+                                    onChange={handleThemeChange}
+                                />
+                                {themeOption}
+                            </label>
+                        ))}
+                    </div>
                 </div>
+
                 <div className="Cards">
                     {loading ? (
                         <p>Carregando...</p>

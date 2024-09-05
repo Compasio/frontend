@@ -1,10 +1,10 @@
-.FirstPage {
+.FirstPageNGO {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-.FirstPage header {
+.FirstPageNGO header {
     width: 100%;
     height: 10vh;
     padding: 1%;
@@ -15,7 +15,7 @@
     justify-content: center;
 }
 
-.FirstPage header nav {
+.FirstPageNGO header nav {
     width: 100%;
     height: 100%;
     display: flex;
@@ -23,11 +23,11 @@
     justify-content: space-between;
 }
 
-.FirstPage header nav a {
+.FirstPageNGO header nav a {
     text-decoration: none;
 }
 
-.FirstPage header nav input {
+.FirstPageNGO header nav input {
     width: 50%;
     height: 2.5rem;
     padding: 0.5rem 1rem;
@@ -36,16 +36,14 @@
     font-size: 1rem;
 }
 
-.FirstPage main {
-    width: 100%;
+.FirstPageNGO main {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 2rem 1rem;
-    gap: 2rem;
+    padding: 1rem;
+    gap: 1rem;
 }
 
-.FirstPage main .Filter {
+.FirstPageNGO main .Filter {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -54,7 +52,7 @@
     position: relative;
 }
 
-.FirstPage main .Filter select {
+.FirstPageNGO main .Filter select {
     width: 30%;
     height: 2.5rem;
     padding: 0.5rem 1rem;
@@ -70,12 +68,12 @@
     -moz-appearance: none;
 }
 
-.FirstPage main .Filter select:hover {
+.FirstPageNGO main .Filter select:hover {
     background-color: var(--green-two);
     color: var(--white);
 }
 
-.FirstPage main .Filter .Dropdown {
+.FirstPageNGO main .Filter .Dropdown {
     position: absolute;
     top: 100%;
     left: 0;
@@ -90,13 +88,13 @@
     flex-direction: column;
 }
 
-.FirstPage main .Filter select:focus + .Dropdown,
-.FirstPage main .Filter select:active + .Dropdown,
-.FirstPage main .Filter .Dropdown:hover {
+.FirstPageNGO main .Filter select:focus+.Dropdown,
+.FirstPageNGO main .Filter select:active+.Dropdown,
+.FirstPageNGO main .Filter .Dropdown:hover {
     display: flex;
 }
 
-.FirstPage main .Filter .Dropdown label {
+.FirstPageNGO main .Filter .Dropdown label {
     padding: 0.5rem;
     display: flex;
     align-items: center;
@@ -105,66 +103,70 @@
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.FirstPage main .Filter .Dropdown label:hover {
+.FirstPageNGO main .Filter .Dropdown label:hover {
     background-color: var(--green-two);
     color: var(--white);
 }
 
-.FirstPage main .Filter .Dropdown input[type="checkbox"] {
+.FirstPageNGO main .Filter .Dropdown input[type="checkbox"] {
     cursor: pointer;
 }
 
-.FirstPage main .Cards {
+.FirstPageNGO main .Cards {
     width: 100%;
     height: auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 2rem;
-    justify-content: center;
+    grid-template-columns: repeat(4, 1fr); 
+    grid-auto-rows: auto; 
+    max-height: calc(2 * auto); 
 }
 
-.FirstPage footer {
+
+.FirstPageNGO footer {
     width: 100%;
-    height: 8vh;
+    height: 4rem;
     background-color: var(--green-two);
     box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
     display: flex;
+    bottom: 0;
+    position: fixed;
     justify-content: space-between;
     align-items: center;
     padding: 0 2rem;
 }
 
-.FirstPage footer .material-symbols-outlined {
+.FirstPageNGO footer .material-symbols-outlined {
     cursor: pointer;
     font-size: 1.5rem;
     color: var(--white);
     transition: color 0.3s ease;
 }
 
-.FirstPage footer .material-symbols-outlined:hover {
-    color: var(--green-two);
+.FirstPageNGO footer .material-symbols-outlined:hover {
+    color: var(--green-one);
 }
 
 @media screen and (max-width: 745px) {
-    .FirstPage header nav input {
+    .FirstPageNGO header nav input {
         width: 80%;
     }
 
-    .FirstPage main {
+    .FirstPageNGO main {
         padding: 1rem;
     }
 
-    .FirstPage footer {
+    .FirstPageNGO footer {
         padding: 0 1rem;
     }
 }
 
 @media screen and (max-width: 400px) {
-    .FirstPage header nav input {
+    .FirstPageNGO header nav input {
         width: 100%;
     }
 
-    .FirstPage main .Cards {
+    .FirstPageNGO main .Cards {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
 }

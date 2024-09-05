@@ -10,7 +10,7 @@ const Card = (props) => {
                 <hr />
                 <div>
                 <p>{props.descricao}</p>
-                <p>{props.temas}</p>
+                <p>{props.topicos}</p>
                 </div>
             </a>
         </div>

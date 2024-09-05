@@ -1,23 +1,45 @@
-import React from "react";
-import "./VoluntaryProfile.css"
-import Img from "../../img/perfil3.jpg"
-import fotoprojeto1 from "../../img/fotoprojeto1.png"
-import fotoprojeto2 from "../../img/fotoprojeto2.jpg"
-import fotoprojeto3 from "../../img/fotoprojeto3.png"
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useParams, useNavigate } from "react-router-dom";
+import "./VoluntaryProfile.css";
+import defaultImg from "../../img/defaultImg.png";
 import VoluntaryProfileBanner from "../../components/Banners/VoluntaryProfileBanner/VoluntaryProfileBanner";
 
 const VoluntaryProfile = () => {
+    const { id } = useParams();
+    const [voluntary, setVoluntary] = useState(null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchVoluntary = async () => {
+            try {
+                const response = await axios.get(`https://backend-production-ff4c.up.railway.app/voluntarys/getVoluntaryById/${id}`);
+                setVoluntary(response.data);
+                console.log(response.data);
+            } catch (error) {
+                console.error("Erro ao buscar o voluntário:", error);
+            }
+        };
+
+        fetchVoluntary();
+    }, [id]);
+
+    if (!voluntary) {
+        return <div>Carregando...</div>;
+    }
+
+    const imgsrc = (voluntary.ImageResource && 
+                    voluntary.ImageResource.length > 0 &&
+                    voluntary.ImageResource[0].url) || defaultImg;
+
     return (
         <div className="VoluntaryProfile">
             <header>
                 <nav>
-                    <a href="/buscarONG">
-                    <span class="material-symbols-outlined">
+                    <span onClick={() => navigate(-1)} className="material-symbols-outlined">
                         arrow_back
                     </span>
-                    </a>
-                    <h1>Claudia_Ciclano</h1>
-                    <span class="material-symbols-outlined">
+                    <span className="material-symbols-outlined">
                         settings
                     </span>
                 </nav>
@@ -25,18 +47,15 @@ const VoluntaryProfile = () => {
 
             <section>
                 <VoluntaryProfileBanner
-                    imgsrc={Img}
-                    nome="Claudia de Fulano Ciclano"
-                    localizacao="Florianópolis-SC"
-                    idade="37 anos"
-                    areadeatuacao="Med. Veterinária"
-                    projeto1={fotoprojeto1}
-                    projeto2={fotoprojeto2}
-                    projeto3={fotoprojeto3}
+                    imgsrc={imgsrc}
+                    nome={voluntary.voluntary.fullname}
+                    datanasc={voluntary.voluntary.birthDate}
+                    desc={voluntary.voluntary.description}
+                    areadeatuacao={voluntary.voluntary.habilities}
                 />
             </section>
         </div>
-    )
+    );
 }
 
-export default VoluntaryProfile
+export default VoluntaryProfile;

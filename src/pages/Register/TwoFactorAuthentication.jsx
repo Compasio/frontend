@@ -17,9 +17,7 @@ const TwoFactorAuthentication = () => {
     event.preventDefault();
     setError("");
     try {
-      const response = await axios.post("https://backend-production-ff4c.up.railway.app/auth/verifyUserCreation", { code });
-
-      console.log("Response from server:", response.data);
+      await axios.post("https://backend-production-ff4c.up.railway.app/auth/verifyUserCreation", { code });
 
       if (tipo === "voluntario") {
         navigate("/loginVoluntario");

@@ -45,7 +45,7 @@ export default function WebRoutes() {
 
                         <Route path="/loginVoluntario" element={<Voluntary />} />
 
-                        <Route path="/perfilVoluntario" element={<VoluntaryProfile />} />
+                        <Route path="/perfilVoluntario/:id" element={<VoluntaryProfile />} />
 
                         <Route path="/projetos" element={<Project />} />
 

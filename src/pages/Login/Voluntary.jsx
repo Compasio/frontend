@@ -7,14 +7,13 @@ import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 const Voluntary = () => {
-    const [showPasswordRecovery, setShowPasswordRecovery] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
     const handlePasswordRecovery = () => {
-        setShowPasswordRecovery(true);
+        navigate('/recuperarSenha');
     };
 
     const handleSubmit = async (e) => {
@@ -30,7 +29,8 @@ const Voluntary = () => {
             );
 
             if (response.data) {
-                Cookies.set("token", response.data, { expires: 7 });
+                const token  = response.data;
+                Cookies.set("token", token, { expires: 7 });
                 Cookies.set("userType", "Voluntary", { expires: 7 });
                 navigate("/buscarONG");
             } else {
@@ -43,40 +43,36 @@ const Voluntary = () => {
     };
 
     return (
-        <>
-            {showPasswordRecovery ? (
-                navigate('/recuperarSenha')
-            ) : (
-                <div className="Login">
-                    <SideBanner />
-                    <section>
-                        <img src={Logo} alt="" />
-                        <h2>Login Voluntário</h2>
-                        <form onSubmit={handleSubmit}>
-                            <input
-                                type="text"
-                                placeholder="Email"
-                                name="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                            />
-                            <input
-                                type="password"
-                                placeholder="Senha"
-                                name="senha"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                required
-                            />
-                            <button type="submit">Entrar</button>
-                            {error && <p style={{ color: "red" }}>{error}</p>}
-                            <p onClick={handlePasswordRecovery}>Esqueceu a senha?</p>
-                        </form>
-                    </section>
-                </div>
-            )}
-        </>
+        <div className="Login">
+            <SideBanner />
+            <section>
+                <img src={Logo} alt="" />
+                <h2>Login Voluntário</h2>
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        placeholder="Email"
+                        name="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                    <input
+                        type="password"
+                        placeholder="Senha"
+                        name="senha"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                    <button type="submit">Entrar</button>
+                    {error && <p style={{ color: "red" }}>{error}</p>}
+                    <p onClick={handlePasswordRecovery} style={{ cursor: "pointer" }}>
+                        Esqueceu a senha?
+                    </p>
+                </form>
+            </section>
+        </div>
     );
 };
 

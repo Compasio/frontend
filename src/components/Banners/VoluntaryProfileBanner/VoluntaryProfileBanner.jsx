@@ -11,27 +11,28 @@ const VoluntaryProfileBanner = (props) => {
                     </figure>
                     <div>
                         <h1>{props.nome}</h1>
-                        <p><span class="material-symbols-outlined">
+                        {/* <p><span class="material-symbols-outlined">
                             location_on
-                        </span> {props.localizacao}</p>
-                        <p>{props.idade}</p>
+                        </span> {props.localizacao}</p> */}
+                        <p>{props.datanasc}</p>
+                        <p>{props.desc}</p>
                     </div>
                 </div>
                 <div className="OccupationArea">
                     <p>{props.areadeatuacao}</p>
-                    <span class="material-symbols-outlined">
+                    {/* <span class="material-symbols-outlined">
                         add
-                    </span>
+                    </span> */}
                 </div>
             </section>
-            <div>
+            {/* <div>
                 <img src={props.projeto1} alt="" />
                 <img src={props.projeto2} alt="" />
                 <img src={props.projeto3} alt="" />
                 <span class="material-symbols-outlined">
                     add
                 </span>
-            </div>
+            </div> */}
         </div>
     )
 }

@@ -8,6 +8,7 @@ const NGORegister = () => {
     const [firstInputsFilled, setFirstInputsFilled] = useState(false);
     const [ngoDetails, setNgoDetails] = useState({});
     const [ngoList, setNgoList] = useState([]);
+    const [fileError, setFileError] = useState("");
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -15,6 +16,19 @@ const NGORegister = () => {
             .then(response => setNgoList(response.data))
             .catch(error => console.error("Erro ao buscar temas: ", error));
     }, []);
+
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const fileType = file.type;
+            if (!['image/jpeg', 'image/png'].includes(fileType)) {
+                setFileError('Apenas arquivos .jpg, .jpeg e .png são permitidos.');
+                event.target.value = null;
+            } else {
+                setFileError('');
+            }
+        }
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -25,18 +39,21 @@ const NGORegister = () => {
         const email = form.email.value.trim();
         const password = form.senha.value.trim();
         const confirmPassword = form.senha_confirmacao.value.trim();
+        const file = form.foto.files[0];
 
-        if (name && cnpj && cpf && email && password && confirmPassword && password === confirmPassword) {
-            setNgoDetails({
-                ong_name: name,
-                cnpj_ong: cnpj,
-                email: email,
-                cpf_founder: cpf,
-                password: password
-            });
+        if (name && cnpj && cpf && email && password && confirmPassword && password === confirmPassword && file) {
+            const ngoData = new FormData();
+            ngoData.append('ong_name', name);
+            ngoData.append('cnpj_ong', cnpj);
+            ngoData.append('email', email);
+            ngoData.append('cpf_founder', cpf);
+            ngoData.append('password', password);
+            ngoData.append('file', file);
+            
+            setNgoDetails(ngoData);
             setFirstInputsFilled(true);
         } else {
-            alert("Por favor, preencha todos os campos corretamente e verifique a confirmação da senha.");
+            alert("Por favor, preencha todos os campos corretamente, verifique a confirmação da senha e selecione uma foto de perfil.");
         }
     };
 
@@ -47,14 +64,18 @@ const NGORegister = () => {
         const themes = ngoList.filter(theme => form[theme.toLowerCase()]?.checked);
 
         if (description && themes.length > 0) {
-            const ngoData = {
-                ...ngoDetails,
-                description,
-                themes
-            };
+            const ngoData = new FormData();
+            ngoData.append('ong_name', ngoDetails.get('ong_name'));
+            ngoData.append('cnpj_ong', ngoDetails.get('cnpj_ong'));
+            ngoData.append('email', ngoDetails.get('email'));
+            ngoData.append('cpf_founder', ngoDetails.get('cpf_founder'));
+            ngoData.append('password', ngoDetails.get('password'));
+            ngoData.append('file', ngoDetails.get('file'));
+            ngoData.append('description', description);
+            themes.forEach(theme => ngoData.append('themes[]', theme));
 
-            axios.post('https://backend-production-ff4c.up.railway.app/ongs/createOng', JSON.stringify(ngoData), {
-                headers: { 'Content-Type': 'application/json' }
+            axios.post('https://backend-production-ff4c.up.railway.app/ongs/createOng', ngoData, {
+                headers: { 'Content-Type': 'multipart/form-data' }
             })
                 .then(() => navigate("/autenticacaoDe2Fatores?tipo=ong"))
                 .catch(error => console.error("Erro ao enviar os dados: ", error));
@@ -93,6 +114,8 @@ const NGORegister = () => {
                         <input type="text" placeholder="CPF do fundador" name="cpf" required />
                         <input type="password" placeholder="Senha" name="senha" required />
                         <input type="password" placeholder="Confirme sua senha" name="senha_confirmacao" required />
+                        <input name="foto" type="file" onChange={handleFileChange} />
+                        {fileError && <p className="error">{fileError}</p>}
                         <div className="Buttons">
                             <button type="submit">Continuar</button>
                         </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
 import "./FirstPage.css";
 import Card from "../../components/Card/Card";
 import defaultImg from '../../img/defaultImg.png';
@@ -12,9 +13,26 @@ const FirstPage = () => {
     const [themes, setThemes] = useState([]);
     const [selectedThemes, setSelectedThemes] = useState([]);
     const [page, setPage] = useState(1);
+    const [id, setId] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
+        const fetchUserProfile = async () => {
+            try {
+                const response = await axios.get("https://backend-production-ff4c.up.railway.app/auth/profile", {
+                    headers: {
+                        'Authorization': `Bearer ${Cookies.get('token')}`
+                    }
+                });
+                setId(response.data.id);
+            } catch (error) {
+                console.error("Erro ao buscar perfil do usuário:", error);
+                setError("Erro ao buscar perfil do usuário.");
+            }
+        };
+
+        fetchUserProfile();
+
         const fetchThemes = async () => {
             try {
                 const themesResponse = await axios.get("https://backend-production-ff4c.up.railway.app/sys/getOngThemes");
@@ -36,7 +54,6 @@ const FirstPage = () => {
                 if (selectedThemes.length > 0) {
                     const theme = selectedThemes.join(",");
                     cardsResponse = await axios.post(`https://backend-production-ff4c.up.railway.app/ongs/getOngByTheme/${theme}`);
-                    console.log(cardsResponse)
                 } else {
                     cardsResponse = await axios.get(`https://backend-production-ff4c.up.railway.app/ongs/getAllOngs/${page}`);
                 }
@@ -45,7 +62,7 @@ const FirstPage = () => {
                     id: ong.id,
                     name: ong.ong.ong_name,
                     description: ong.ong.description,
-                    profilePicture: ong.ong.profile_picture || defaultImg,
+                    profilePicture: defaultImg,
                     themes: ong.ong.themes.join(", ")
                 }));
 
@@ -75,13 +92,19 @@ const FirstPage = () => {
         }
     };
 
+    const handleProfileRedirect = () => {
+        if (id) {
+            navigate(`/perfilVoluntario/${id}`);
+        } else {
+            console.error("User ID is undefined");
+        }
+    };
+
     return (
-        <div className="FirstPage">
+        <div className="FirstPageNGO">
             <header>
                 <nav>
-                    <a href="/perfilVoluntario">
-                        <span className="material-symbols-outlined">account_circle</span>
-                    </a>
+                    <span onClick={handleProfileRedirect} className="material-symbols-outlined">account_circle</span>
                     <input type="text" placeholder="Procurar ONG's" />
                     <span onClick={() => navigate('/maps')} className="material-symbols-outlined">location_on</span>
                 </nav>
@@ -92,14 +115,14 @@ const FirstPage = () => {
                         <option>Selecionar temas</option>
                     </select>
                     <div className="Dropdown">
-                        {themes.map((themeOption, index) => (
+                        {themes.map((topico, index) => (
                             <label key={index}>
                                 <input
                                     type="checkbox"
-                                    value={themeOption}
+                                    value={topico}
                                     onChange={handleThemeChange}
                                 />
-                                {themeOption}
+                                {topico}
                             </label>
                         ))}
                     </div>
@@ -118,7 +141,7 @@ const FirstPage = () => {
                                 imgsrc={card.profilePicture}
                                 nome={card.name}
                                 descricao={card.description}
-                                temas={card.themes}
+                                topicos={card.themes}
                             />
                         ))
                     )}

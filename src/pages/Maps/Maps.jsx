@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import MapsNGO from "../../components/MapsNGO/MapsNGO";
+import defaultImg from '../../img/defaultImg.png'
 import axios from "axios";
 
 const Maps = () => {
     const navigate = useNavigate();
     const [location, setLocation] = useState({ latitude: null, longitude: null });
+    const [ongs, setOngs] = useState([]);
 
     useEffect(() => {
         if (navigator.geolocation) {
@@ -28,9 +30,10 @@ const Maps = () => {
     useEffect(() => {
         if (location.latitude && location.longitude) {
             axios
-                .get(`https://backend-production-ff4c.up.railway.app/maps/getNearestOngs/${location.latitude}/${location.longitude}/10`)
+                .get(`https://backend-production-ff4c.up.railway.app/maps/getNearestOngs/${location.latitude}/${location.longitude}/${10}`)
                 .then((response) => {
                     console.log("ONGs mais próximas:", response.data);
+                    setOngs(response.data); 
                 })
                 .catch((error) => {
                     console.log("Erro ao obter ONGs:", error.message);
@@ -41,7 +44,7 @@ const Maps = () => {
     return (
         <div className="Maps">
             <header>
-                <span onClick={() => navigate('/buscarONG')} class="material-symbols-outlined">
+                <span onClick={() => navigate('/buscarONG')} className="material-symbols-outlined">
                     arrow_back
                 </span>
                 <h1>Encontrar ONGs em sua região</h1>
@@ -50,16 +53,21 @@ const Maps = () => {
             <main>
                 <section></section>
                 <ul>
-                    <li>
-                        <MapsNGO />
-                        <p>Latitude: {location.latitude}</p>
-                        <p>Longitude: {location.longitude}</p>
-                    </li>
+                    {ongs.map((ong, index) => (
+                        <li key={index}>
+                            <MapsNGO
+                                img={defaultImg} 
+                                nome={ong.name}
+                                descricao={ong.description}
+                            />  
+                            <p>Latitude: {location.latitude}</p>
+                            <p>Longitude: {location.longitude}</p>
+                        </li>
+                    ))}
                 </ul>
             </main>
         </div>
     );
 };
 
-export default Maps
-
+export default Maps;

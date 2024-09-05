@@ -52,10 +52,10 @@ const FirstPageVoluntary = () => {
                 let cardsResponse;
 
                 if (selectedSkills.length > 0) {
-                    const skillsQuery = selectedSkills.join(",");
+                    const skillsQuery = selectedSkills;
                     cardsResponse = await axios.post(`https://backend-production-ff4c.up.railway.app/voluntarys/getVoluntarysByHabilities`, {
-                        skills: skillsQuery,
-                        page
+                        hability: skillsQuery,
+                        page: 0
                     });
                 } else {
                     cardsResponse = await axios.get(`https://backend-production-ff4c.up.railway.app/voluntarys/getAllVoluntarys/${page}`);
@@ -69,7 +69,7 @@ const FirstPageVoluntary = () => {
                     habilities: volunteer.voluntary.habilities.join(", ")
                 }));
 
-                setCards(formattedData);    
+                setCards(formattedData);
                 setError("");
             } catch (err) {
                 if (err.response && err.response.status === 404) {

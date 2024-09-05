@@ -52,8 +52,11 @@ const FirstPage = () => {
                 let cardsResponse;
 
                 if (selectedThemes.length > 0) {
-                    const theme = selectedThemes.join(",");
-                    cardsResponse = await axios.post(`https://backend-production-ff4c.up.railway.app/ongs/getOngByTheme/${theme}`);
+                    const theme = selectedThemes;
+                    cardsResponse = await axios.post(`https://backend-production-ff4c.up.railway.app/ongs/getOngByTheme`, {
+                        themes: theme,
+                        page: page
+                    });
                 } else {
                     cardsResponse = await axios.get(`https://backend-production-ff4c.up.railway.app/ongs/getAllOngs/${page}`);
                 }
@@ -62,7 +65,7 @@ const FirstPage = () => {
                     id: ong.id,
                     name: ong.ong.ong_name,
                     description: ong.ong.description,
-                    profilePicture: defaultImg,
+                    profilePicture: ong.ImageResource.length > 0 ? ong.ImageResource[0].url : defaultImg,
                     themes: ong.ong.themes.join(", ")
                 }));
 
@@ -79,7 +82,6 @@ const FirstPage = () => {
                 setLoading(false);
             }
         };
-
         fetchOngs();
     }, [page, selectedThemes]);
 

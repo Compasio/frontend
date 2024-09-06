@@ -61,7 +61,7 @@ export default function WebRoutes() {
 
                         <Route path="*" element={<NotFound />} />
 
-                        <Route path='/perfilONG' element={<FirstPageNGOProfile />} />
+                        <Route path='/perfilONG/:id' element={<FirstPageNGOProfile />} />
 
                         <Route path='/perfilONG2' element={<SecondPageNGOProfile />} />
                     </Routes>

@@ -49,7 +49,7 @@ const VoluntaryRegister = () => {
             userData.append('email', email);
             userData.append('password', password);
             userData.append('file', file);
-            
+
             setUserDetails(userData);
             setFirstInputsFilled(true);
         } else {
@@ -75,7 +75,9 @@ const VoluntaryRegister = () => {
             habilities.forEach(hability => userData.append('habilities[]', hability));
 
             axios.post('https://backend-production-ff4c.up.railway.app/voluntarys/createVoluntary', userData, {
-                headers: { 'Content-Type': 'multipart/form-data' }
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                }
             })
                 .then(() => navigate("/autenticacaoDe2Fatores?tipo=voluntario"))
                 .catch(error => console.error("Erro ao enviar os dados: ", error));

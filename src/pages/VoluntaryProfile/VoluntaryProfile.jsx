@@ -15,7 +15,6 @@ const VoluntaryProfile = () => {
             try {
                 const response = await axios.get(`https://backend-production-ff4c.up.railway.app/voluntarys/getVoluntaryById/${id}`);
                 setVoluntary(response.data);
-                console.log(response.data);
             } catch (error) {
                 console.error("Erro ao buscar o voluntário:", error);
             }
@@ -28,9 +27,9 @@ const VoluntaryProfile = () => {
         return <div>Carregando...</div>;
     }
 
-    const imgsrc = (voluntary.ImageResource && 
-                    voluntary.ImageResource.length > 0 &&
-                    voluntary.ImageResource[0].url) || defaultImg;
+    const imgsrc = (voluntary.ImageResource &&
+        voluntary.ImageResource.length > 0 &&
+        voluntary.ImageResource[0].url) || defaultImg;
 
     return (
         <div className="VoluntaryProfile">

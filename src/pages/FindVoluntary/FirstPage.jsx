@@ -97,7 +97,7 @@ const FirstPageVoluntary = () => {
 
     const handleProfileRedirect = () => {
         if (id) {
-            navigate(`/perfilVoluntario/${id}`);
+            navigate(`/perfilOng/${id}`);
         } else {
             console.error("User ID is undefined");
         }

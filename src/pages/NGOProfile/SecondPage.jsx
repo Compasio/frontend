@@ -33,7 +33,6 @@ const SecondPage = () => {
                 </span>
               </a>
             </div>
-            <p>Médicos sem Fronteiras é uma organização internacional, não governamental e sem fins lucrativos que oferece ajuda médica e humanitária a populações em situações de emergência, em casos como conflitos armados, catástrofes, epidemias, fome e exclusão social.</p>
           </section>
         </div>
 

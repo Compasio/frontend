@@ -37,14 +37,7 @@ const Login = () => {
 
         Cookies.set("token", token, { expires: 7 });
         Cookies.set("userType", decodedUserType, { expires: 7 });
-
-        if (decodedUserType === "ong") {
-          navigate("/buscarVoluntario");
-        } else if (decodedUserType === "voluntary") {
-          navigate("/buscarONG");
-        } else {
-          setError("Tipo de usuário desconhecido.");
-        }
+        navigate('/busca')
       } else {
         setError("Erro de login. Verifique suas credenciais.");
       }

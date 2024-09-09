@@ -22,7 +22,6 @@ const PasswordRecovery = () => {
     setError("");
     try {
       const response = await axios.post("https://backend-production-ff4c.up.railway.app/auth/passwordRecovery", { email });
-      console.log("Response from server:", response.data);
       setStep("verify");
     } catch (error) {
       console.error("Erro ao solicitar o código:", error);
@@ -40,8 +39,7 @@ const PasswordRecovery = () => {
     }
 
     try {
-      const response = await axios.post("https://backend-production-ff4c.up.railway.app/auth/resetPassword", { email, password, code });
-      console.log("Response from server:", response.data);    
+      await axios.post("https://backend-production-ff4c.up.railway.app/auth/resetPassword", { email, password, code });
       handleBack()
     } catch (error) {
       console.error("Erro ao redefinir a senha:", error);

@@ -3,11 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // import ProtectedFunction from '../auth';
 import LandingPage from '../pages/LandingPage/LandingPage'
 import NotFound from '../pages/NotFound/NotFound'
-import FirstPageNGO from '../pages/FindNGO/FirstPage'
-import SecondPageNGO from '../pages/FindNGO/SecondPage'
-import FirstPageVoluntary from '../pages/FindVoluntary/FirstPage'
-import SecondPageVoluntary from '../pages/FindVoluntary/SecondPage'
 // import Adm from '../pages/Login/Adm';
+import Search from '../pages/Search/Search';
 import Login from '../pages/Login/Login';
 import FirstPageNGOProfile from '../pages/NGOProfile/FirstPage';
 import SecondPageNGOProfile from '../pages/NGOProfile/SecondPage';
@@ -30,13 +27,7 @@ export default function WebRoutes() {
 
                         <Route path="/recuperarSenha" element={<PasswordRecovery />} />
 
-                        <Route path="/buscarONG" element={<FirstPageNGO />} />
-
-                        <Route path="/ONG/:id" element={<SecondPageNGO />} />
-
-                        <Route path="/buscarVoluntario" element={<FirstPageVoluntary />} />
-
-                        <Route path="/voluntario" element={<SecondPageVoluntary />} />
+                        <Route path="/busca" element={<Search />} />
 
                         {/* <Route path="/loginAdm" element={<Adm />} /> */}
 

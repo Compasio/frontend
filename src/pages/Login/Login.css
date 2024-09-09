@@ -37,6 +37,29 @@
   padding: 1%
 }
 
+.Login form select {
+  width: auto;
+  padding: 1%;
+  border: 1px solid var(--green-one);
+  border-radius: 4px;
+  font-size: 1rem;
+  color: var(--black);
+  transition: border-color 0.3s;
+}
+
+.Login form select:focus {
+  border-color: var(--green-two); 
+  outline: none;
+}
+
+.Login form option {
+  padding: 1%;
+  background-color: #fff;
+  color: var(--black);
+  font-size: 1rem;
+}
+
+
 .Login form button {
   width: 10vw;
   height: 7vh;

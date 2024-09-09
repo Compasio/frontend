@@ -7,9 +7,8 @@ import FirstPageNGO from '../pages/FindNGO/FirstPage'
 import SecondPageNGO from '../pages/FindNGO/SecondPage'
 import FirstPageVoluntary from '../pages/FindVoluntary/FirstPage'
 import SecondPageVoluntary from '../pages/FindVoluntary/SecondPage'
-import Adm from '../pages/Login/Adm';
-import NGO from '../pages/Login/NGO';
-import Voluntary from '../pages/Login/Voluntary';
+// import Adm from '../pages/Login/Adm';
+import Login from '../pages/Login/Login';
 import FirstPageNGOProfile from '../pages/NGOProfile/FirstPage';
 import SecondPageNGOProfile from '../pages/NGOProfile/SecondPage';
 import VoluntaryProfile from '../pages/VoluntaryProfile/VoluntaryProfile';
@@ -39,11 +38,9 @@ export default function WebRoutes() {
 
                         <Route path="/voluntario" element={<SecondPageVoluntary />} />
 
-                        <Route path="/loginAdm" element={<Adm />} />
+                        {/* <Route path="/loginAdm" element={<Adm />} /> */}
 
-                        <Route path="/loginONG" element={<NGO />} />
-
-                        <Route path="/loginVoluntario" element={<Voluntary />} />
+                        <Route path="/login" element={<Login />} />
 
                         <Route path="/perfilVoluntario/:id" element={<VoluntaryProfile />} />
 

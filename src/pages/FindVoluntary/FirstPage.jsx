@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
-import defaultImg from '../../img/defaultImg.png'
+import defaultImg from '../../img/defaultImg.png';
 import "./FirstPage.css";
 import Card from "../../components/Card/Card";
 import { useNavigate } from "react-router-dom";
 
-const FirstPageVoluntary = () => {
+const FirstPage = () => {
     const [cards, setCards] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [skills, setSkills] = useState([]);
     const [selectedSkills, setSelectedSkills] = useState([]);
+    const [name, setName] = useState("");
     const [page, setPage] = useState(1);
     const [id, setId] = useState(null);
     const navigate = useNavigate();
@@ -51,29 +52,46 @@ const FirstPageVoluntary = () => {
             try {
                 let cardsResponse;
 
-                if (selectedSkills.length > 0) {
+                if (name) {
+                    cardsResponse = await axios.get(`https://backend-production-ff4c.up.railway.app/voluntarys/getVoluntarysByName/${name}`);
+                    const formattedData = cardsResponse.data.map(volunteer => ({
+                        id: volunteer.id,
+                        name: volunteer.voluntary.fullname,
+                        description: volunteer.voluntary.description,
+                        profilePicture: volunteer.ImageResource.length > 0 ? volunteer.ImageResource[0].url : defaultImg,
+                        habilities: volunteer.voluntary.habilities.join(", ")
+                    }));
+                    setCards(formattedData);
+                } else if (selectedSkills.length > 0) {
                     const skillsQuery = selectedSkills;
                     cardsResponse = await axios.post(`https://backend-production-ff4c.up.railway.app/voluntarys/getVoluntarysByHabilities`, {
                         hability: skillsQuery,
-                        page: 0
+                        page: page
                     });
+                    const formattedData = cardsResponse.data.response.map(volunteer => ({
+                        id: volunteer.id,
+                        name: volunteer.voluntary.fullname,
+                        description: volunteer.voluntary.description,
+                        profilePicture: volunteer.ImageResource.length > 0 ? volunteer.ImageResource[0].url : defaultImg,
+                        habilities: volunteer.voluntary.habilities.join(", ")
+                    }));
+                    setCards(formattedData);
                 } else {
                     cardsResponse = await axios.get(`https://backend-production-ff4c.up.railway.app/voluntarys/getAllVoluntarys/${page}`);
+                    const formattedData = cardsResponse.data.response.map(volunteer => ({
+                        id: volunteer.id,
+                        name: volunteer.voluntary.fullname,
+                        description: volunteer.voluntary.description,
+                        profilePicture: volunteer.ImageResource.length > 0 ? volunteer.ImageResource[0].url : defaultImg,
+                        habilities: volunteer.voluntary.habilities.join(", ")
+                    }));
+                    setCards(formattedData);
                 }
 
-                const formattedData = cardsResponse.data.response.map(volunteer => ({
-                    id: volunteer.id,
-                    name: volunteer.voluntary.fullname,
-                    description: volunteer.voluntary.description,
-                    profilePicture: volunteer.ImageResource.length > 0 ? volunteer.ImageResource[0].url : defaultImg,
-                    habilities: volunteer.voluntary.habilities.join(", ")
-                }));
-
-                setCards(formattedData);
                 setError("");
             } catch (err) {
                 if (err.response && err.response.status === 404) {
-                    setError("Nenhum resultado encontrado para as habilidades selecionadas.");
+                    setError("Nenhum resultado encontrado para a busca realizada.");
                 } else {
                     setError("Erro ao buscar voluntários. Por favor, tente novamente mais tarde.");
                 }
@@ -84,7 +102,7 @@ const FirstPageVoluntary = () => {
         };
 
         fetchVolunteers();
-    }, [page, selectedSkills]);
+    }, [page, selectedSkills, name]);
 
     const handleSkillChange = (e) => {
         const { value, checked } = e.target;
@@ -103,12 +121,21 @@ const FirstPageVoluntary = () => {
         }
     };
 
+    const handleSearchChange = (e) => {
+        setName(e.target.value);
+    };
+
     return (
         <div className="FirstPageVoluntary">
             <header>
                 <nav>
                     <span onClick={handleProfileRedirect} className="material-symbols-outlined">account_circle</span>
-                    <input type="text" placeholder="Procurar voluntários" />
+                    <input
+                        type="text"
+                        placeholder="Procurar voluntários"
+                        value={name}
+                        onChange={handleSearchChange}
+                    />
                 </nav>
             </header>
             <main>
@@ -117,14 +144,14 @@ const FirstPageVoluntary = () => {
                         <option>Selecionar habilidades</option>
                     </select>
                     <div className="Dropdown">
-                        {skills.map((topico, index) => (
+                        {skills.map((skill, index) => (
                             <label key={index}>
                                 <input
                                     type="checkbox"
-                                    value={topico}
+                                    value={skill}
                                     onChange={handleSkillChange}
                                 />
-                                {topico}
+                                {skill}
                             </label>
                         ))}
                     </div>
@@ -161,4 +188,4 @@ const FirstPageVoluntary = () => {
     );
 };
 
-export default FirstPageVoluntary;
+export default FirstPage;

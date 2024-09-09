@@ -113,10 +113,9 @@
 .FirstPageVoluntary main .Cards {
     width: 100%;
     height: auto;
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: auto;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
 }
 
 .FirstPageVoluntary footer {

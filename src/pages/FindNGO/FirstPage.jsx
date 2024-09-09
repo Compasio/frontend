@@ -12,6 +12,7 @@ const FirstPage = () => {
     const [error, setError] = useState("");
     const [themes, setThemes] = useState([]);
     const [selectedThemes, setSelectedThemes] = useState([]);
+    const [name, setName] = useState("");
     const [page, setPage] = useState(1);
     const [id, setId] = useState(null);
     const navigate = useNavigate();
@@ -51,29 +52,56 @@ const FirstPage = () => {
             try {
                 let cardsResponse;
 
-                if (selectedThemes.length > 0) {
-                    const theme = selectedThemes;
+                if (name) {
+                    cardsResponse = await axios.get(`https://backend-production-ff4c.up.railway.app/ongs/getOngByName/${name}`);
+                    if (Array.isArray(cardsResponse.data)) {
+                        const formattedData = cardsResponse.data.map(ong => ({
+                            id: ong.id,
+                            name: ong.ong.ong_name,
+                            description: ong.ong.description,
+                            profilePicture: ong.ImageResource.length > 0 ? ong.ImageResource[0].url : defaultImg,
+                            themes: ong.ong.themes.join(", ")
+                        }));
+                        setCards(formattedData);
+                    } else {
+                        setCards([]);
+                    }
+                } else if (selectedThemes.length > 0) {
                     cardsResponse = await axios.post(`https://backend-production-ff4c.up.railway.app/ongs/getOngByTheme`, {
-                        themes: theme,
+                        themes: selectedThemes,
                         page: page
                     });
+                    if (cardsResponse.data && Array.isArray(cardsResponse.data.response)) {
+                        const formattedData = cardsResponse.data.response.map(ong => ({
+                            id: ong.id,
+                            name: ong.ong.ong_name,
+                            description: ong.ong.description,
+                            profilePicture: ong.ImageResource.length > 0 ? ong.ImageResource[0].url : defaultImg,
+                            themes: ong.ong.themes.join(", ")
+                        }));
+                        setCards(formattedData);
+                    } else {
+                        setCards([]);
+                    }
                 } else {
                     cardsResponse = await axios.get(`https://backend-production-ff4c.up.railway.app/ongs/getAllOngs/${page}`);
+                    if (cardsResponse.data && Array.isArray(cardsResponse.data.response)) {
+                        const formattedData = cardsResponse.data.response.map(ong => ({
+                            id: ong.id,
+                            name: ong.ong.ong_name,
+                            description: ong.ong.description,
+                            profilePicture: ong.ImageResource.length > 0 ? ong.ImageResource[0].url : defaultImg,
+                            themes: ong.ong.themes.join(", ")
+                        }));
+                        setCards(formattedData);
+                    } else {
+                        setCards([]);
+                    }
                 }
-
-                const formattedData = cardsResponse.data.map(ong => ({
-                    id: ong.id,
-                    name: ong.ong.ong_name,
-                    description: ong.ong.description,
-                    profilePicture: ong.ImageResource.length > 0 ? ong.ImageResource[0].url : defaultImg,
-                    themes: ong.ong.themes.join(", ")
-                }));
-
-                setCards(formattedData);
                 setError("");
             } catch (err) {
                 if (err.response && err.response.status === 404) {
-                    setError("Nenhum resultado encontrado para os temas selecionados.");
+                    setError("Nenhum resultado encontrado para os temas ou nome selecionados.");
                 } else {
                     setError("Erro ao buscar ONGs. Por favor, tente novamente mais tarde.");
                 }
@@ -83,7 +111,7 @@ const FirstPage = () => {
             }
         };
         fetchOngs();
-    }, [page, selectedThemes]);
+    }, [page, selectedThemes, name]);
 
     const handleThemeChange = (e) => {
         const { value, checked } = e.target;
@@ -102,12 +130,16 @@ const FirstPage = () => {
         }
     };
 
+    const handleSearchChange = (e) => {
+        setName(e.target.value);
+    };
+
     return (
         <div className="FirstPageNGO">
             <header>
                 <nav>
                     <span onClick={handleProfileRedirect} className="material-symbols-outlined">account_circle</span>
-                    <input type="text" placeholder="Procurar ONG's" />
+                    <input type="text" placeholder="Procurar ONG's" value={name} onChange={handleSearchChange} />
                     <span onClick={() => navigate('/maps')} className="material-symbols-outlined">location_on</span>
                 </nav>
             </header>
@@ -117,14 +149,14 @@ const FirstPage = () => {
                         <option>Selecionar temas</option>
                     </select>
                     <div className="Dropdown">
-                        {themes.map((topico, index) => (
+                        {themes.map((theme, index) => (
                             <label key={index}>
                                 <input
                                     type="checkbox"
-                                    value={topico}
+                                    value={theme}
                                     onChange={handleThemeChange}
                                 />
-                                {topico}
+                                {theme}
                             </label>
                         ))}
                     </div>

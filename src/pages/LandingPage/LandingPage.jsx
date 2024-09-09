@@ -1,12 +1,14 @@
 import React from "react";
 import "./LandingPage.css"
 import FooterOne from "../../components/Footers/FooterOne/FooterOne";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Logo from "../../img/logocomnome.svg"
 import Img1 from "../../img/landingpageimg1.jpeg"
 import Img2 from "../../img/landingpageimg2.jpg"
 
 const LandingPage = () => {
+    const navigate = useNavigate()
+
     return (
         <div className="LandingPage">
             <header>
@@ -15,8 +17,7 @@ const LandingPage = () => {
                     <ul>
                         <li><a href="#">Home</a></li>
                         <li><a href="#AboutUs">Sobre</a></li>
-                        <li><a href="/loginVoluntario">Login Voluntario</a></li>
-                        <li><a href="/loginONG">Login ONG</a></li>
+                        <li><a href="/login">Login</a></li>
                         <li><a href="#contact">Contato</a></li>
                     </ul>
                 </nav>
@@ -57,11 +58,9 @@ const LandingPage = () => {
                         <p>A Compasio conecta quem tem e quem precisa,
                             executamos uma associação com programas e projetos variados com foco nas pessoas.
                             Clique no coração abaixo para fazer sua contribuição!</p>
-                        <Link to='./doacao'>
-                            <span className="material-symbols-outlined">
+                            <span onClick={() => navigate('/doacao')} className="material-symbols-outlined">
                                 heart_plus
                             </span>
-                        </Link>
                     </div>
                 </div>
             </section>

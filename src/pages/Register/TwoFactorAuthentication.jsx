@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./TwoFactorAuthentication.css";
 import Logo from "../../img/logocomnome.svg";
 
@@ -8,23 +8,13 @@ const TwoFactorAuthentication = () => {
   const [code, setCode] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const location = useLocation();
-
-  const queryParams = new URLSearchParams(location.search);
-  const tipo = queryParams.get("tipo");
 
   const handleCodeSubmit = async (event) => {
     event.preventDefault();
     setError("");
     try {
       await axios.post("https://backend-production-ff4c.up.railway.app/auth/verifyUserCreation", { code });
-
-      if (tipo === "voluntario") {
-        navigate("/loginVoluntario");
-      } else if (tipo === "ong") {
-        navigate("/loginONG");
-      }
-
+        navigate("/login");
     } catch (error) {
       console.error("Erro ao verificar o código:", error);
       setError("Erro ao verificar o código. Tente novamente mais tarde.");

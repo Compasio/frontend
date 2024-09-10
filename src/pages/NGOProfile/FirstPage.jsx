@@ -14,7 +14,6 @@ const FirstPage = () => {
             try {
                 const response = await axios.get(`https://backend-production-ff4c.up.railway.app/ongs/getOngById/${id}`);
                 setOng(response.data);
-                console.log(response.data)
             } catch (error) {
                 console.error("Erro ao buscar a ong:", error);
             }
@@ -34,11 +33,9 @@ const FirstPage = () => {
         <div className="FirstPage">
             <header>
                 <nav>
-                    <a href="/buscarVoluntario">
-                        <span className="material-symbols-outlined">
-                            arrow_back
-                        </span>
-                    </a>
+                    <span onClick={() => navigate(-1)} className="material-symbols-outlined">
+                        arrow_back
+                    </span>
                     <h1>Perfil ONG</h1>
                     <span className="material-symbols-outlined">
                         settings

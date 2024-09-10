@@ -6,9 +6,7 @@ import NotFound from '../pages/NotFound/NotFound'
 // import Adm from '../pages/Login/Adm';
 import Search from '../pages/Search/Search';
 import Login from '../pages/Login/Login';
-import FirstPageNGOProfile from '../pages/NGOProfile/FirstPage';
-import SecondPageNGOProfile from '../pages/NGOProfile/SecondPage';
-import VoluntaryProfile from '../pages/VoluntaryProfile/VoluntaryProfile';
+import Profile from '../pages/Profile/Profile';
 import Project from '../pages/Project/Project';
 import VoluntaryRegister from '../pages/Register/VoluntaryRegister';
 import PasswordRecovery from '../pages/Login/PasswordRecovery';
@@ -34,7 +32,9 @@ export default function WebRoutes() {
 
                         <Route path="/login" element={<Login />} />
 
-                        <Route path="/perfilVoluntario/:id" element={<VoluntaryProfile />} />
+                        {/* <Route path="/perfilVoluntario/:id" element={<VoluntaryProfile />} /> */}
+
+                        <Route path="/perfil/:id" element={<Profile />} />
 
                         <Route path="/projetos" element={<Project />} />
 
@@ -50,9 +50,9 @@ export default function WebRoutes() {
 
                         <Route path="*" element={<NotFound />} />
 
-                        <Route path='/perfilONG/:id' element={<FirstPageNGOProfile />} />
+                        {/* <Route path='/perfilONG/:id' element={<FirstPageNGOProfile />} />
 
-                        <Route path='/perfilONG2' element={<SecondPageNGOProfile />} />
+                        <Route path='/perfilONG2' element={<SecondPageNGOProfile />} /> */}
 
                         <Route path='/api' element={<APIPage />}/>
                     </Routes>

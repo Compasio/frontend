@@ -1,0 +1,58 @@
+.Profile {
+  width: 100%;
+  height: auto;
+}
+
+.Profile header {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.Profile header nav {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: 1% 3% 1% 0;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Profile header nav figure {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+}
+
+.Profile header nav figure img {
+  width: 15%;
+}
+
+.Profile header nav figure figcaption {
+  letter-spacing: 0.25rem;
+  font-weight: bolder;
+  font-size: 1.25rem;
+  color: var(--green-two);
+}
+
+.Profile header nav div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+  align-items: center;
+}
+
+.Profile header nav div span {
+  color: var(--green-one);
+}
+
+.Profile header .Shadow {
+  height: 30vh;
+  background: linear-gradient(to bottom, var(--green-one), var(--green-two));
+  position: relative;
+}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
 import defaultImg from '../../img/defaultImg.png';
 import "./Search.css";
 import Card from "../../components/Card/Card";
@@ -15,15 +16,18 @@ const Search = () => {
     const [name, setName] = useState("");
     const [page, setPage] = useState(1);
     const [userType, setUserType] = useState("");
+    const [userId, setUserId] = useState("");
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchUserProfile = async () => {
             try {
-                await axios.get("https://backend-production-ff4c.up.railway.app/auth/profile", {
-                    headers: { 'Authorization': `Bearer ${Cookies.get('token')}` }
-                });
-                setUserType(Cookies.get('userType'));
+                const token = Cookies.get('token');
+                if (token) {
+                    const decodedToken = jwtDecode(token);
+                    setUserId(decodedToken.id);
+                    setUserType(decodedToken.type);
+                }
             } catch (error) {
                 setError("Erro ao buscar perfil do usuário.");
             }
@@ -85,7 +89,7 @@ const Search = () => {
             }
         };
 
-        if (userType) fetchData();
+      fetchData();
     }, [page, selectedItems, name, userType]);
 
     const handleItemChange = (e) => {
@@ -94,7 +98,7 @@ const Search = () => {
     };
 
     const handleProfileRedirect = () => {
-        navigate(`/perfil${userType === "ong" ? "Ong" : "Voluntario"}/${Cookies.get('id')}`);
+        navigate(`/perfil/${userId}`);
     };
 
     return (
@@ -158,13 +162,13 @@ const Search = () => {
                         cards.map(card => (
                             <Card
                                 key={card.id}
-                                link={`/${userType === "ong" ? "Voluntario" : "ONG"}/${card.id}`}
+                                link={`/perfil/${card.id}`}
                                 imgsrc={card.profilePicture}
                                 nome={card.name}
                                 descricao={card.description}
                                 topicos={card.items}
                             />
-                        ))
+                        ))                        
                     )}
                 </div>
             </main>

@@ -10,6 +10,7 @@ import Adm from '../pages/Login/Adm';
 import NGO from '../pages/Login/NGO';
 import Voluntary from '../pages/Login/Voluntary';
 import PageVoluntario from '../pages/PageVoluntario/PageVoluntario';
+import APIPage from '../pages/APIPage/APIPage';
 
 function WebRoutes() {
     return (
@@ -27,6 +28,7 @@ function WebRoutes() {
                         <Route path="/loginVoluntario" element={<Voluntary />} />
                         <Route path="/pageVoluntario" element={<PageVoluntario />} />
                         <Route path="*" element={<NotFound />} />
+                        <Route path="api" element={<APIPage />} />
                     </Routes>
                 </Router>
             </div>

@@ -1,37 +1,73 @@
-import React from 'react';
-import './ProfileBanner.css'; 
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import Logo from "../../img/logosemnome.svg";
+import ProfileBanner from "../../components/Banners/ProfileBanner/ProfileBanner";
+import Cookies from "js-cookie";
+import jwtDecode from "jwt-decode";
+import "./Profile.css";
 
-const ProfileBanner = () => {
+const Profile = () => {
+  const { id } = useParams();
+  const [userData, setUserData] = useState(null);
+  const [userType, setUserType] = useState("");
+  const [currentUserId, setCurrentUserId] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      try {
+        const token = Cookies.get('token');
+        if (!token) throw new Error("Token não encontrado.");
+
+        const decodedToken = jwtDecode(token);
+        setUserType(decodedToken.type);
+        setCurrentUserId(decodedToken.id); 
+        const url = userType === "ong" ?
+          `https://backend-production-ff4c.up.railway.app/ongs/getOngById/${id}` :
+          `https://backend-production-ff4c.up.railway.app/voluntarys/getVoluntaryById/${id}`;
+
+        const response = await axios.get(url, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        setUserData(response.data);
+      } catch (error) {
+        setError("Erro ao buscar dados do perfil.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProfileData();
+  }, [id, userType]);
+
+  if (loading) return <p>Carregando...</p>;
+  if (error) return <p style={{ color: "red" }}>{error}</p>;
+
   return (
-    <div className="banner-container">
-      <div className="profile-container">
-        <img 
-          src="https://via.placeholder.com/100" 
-          alt="Profile" 
-          className="profile-image" 
-        />
-        <div className="profile-info">
-          <h2 className="profile-name">Jorge Santos</h2>
-          <div className="follow-container">
-            <span className="following">236 Seguindo</span>
-            <span className="followers">433 Seguidores</span>
+    <div className="Profile">
+      <header>
+        <nav>
+          <figure>
+            <img src={Logo} alt="Logo" />
+            <figcaption>Compasio</figcaption>
+          </figure>
+          <div>
+            <span className="material-symbols-outlined">search</span>
+            <span className="material-symbols-outlined">account_circle</span>
           </div>
-          <button className="contact-button">📬 Contate-me</button>
-        </div>
-        <button className="edit-profile-button">Editar perfil</button>
-      </div>
-      <div className="badge-container">
-        <div className="badge">📘 Engenharia/Tecnologia</div>
-        <div className="badge">🎉 25 de agosto</div>
-        <div className="badge">🔄 Disponibilidade limitada</div>
-        <div className="badge">📍 Santa Catarina</div>
-      </div>
-      <div className="about-container">
-        <h3>Sobre mim</h3>
-        <p>Olá pessoal! Me chamo Jorginho, tenho 22 anos e sou formado em Marketing. Atualmente moro em Palhoça/SC e curso sistemas de informação na UNISUL. Sou muito criativo, divertido e proativo e busco projetos que me permitam aprender mais!</p>
-      </div>
+        </nav>
+        <div className="Shadow"></div>
+      </header>
+      <main>
+        <ProfileBanner
+          userData={userData}
+          currentUserId={currentUserId}
+        />
+      </main>
     </div>
   );
 };
 
-export default ProfileBanner;
+export default Profile;

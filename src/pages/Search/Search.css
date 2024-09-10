@@ -48,6 +48,7 @@
 .Search main .Filter {
     width: 100%;
     display: flex;
+    gap: 1rem;
     justify-content: center;
     align-items: center;
     position: relative;
@@ -70,6 +71,13 @@
 .Search main .Filter select:hover {
     background-color: var(--green-two);
     color: var(--white);
+}
+
+.Search main .Filter button {
+    background-color: var(--green-two);
+    color: var(--white);
+    width: 10%;
+    height: 2.5rem;
 }
 
 .Search main .Filter .Dropdown {

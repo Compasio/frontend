@@ -49,14 +49,15 @@ const Search = () => {
             }
         };
 
-        if (userType) fetchItems();
+        fetchItems();
     }, [userType]);
 
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                let url, data;
+                let url, data = null;
+
                 if (name) {
                     url = userType === "ong" ?
                         `https://backend-production-ff4c.up.railway.app/ongs/getOngByName/${name}` :
@@ -65,13 +66,16 @@ const Search = () => {
                     url = userType === "ong" ?
                         "https://backend-production-ff4c.up.railway.app/ongs/getOngByTheme" :
                         "https://backend-production-ff4c.up.railway.app/voluntarys/getVoluntarysByHabilities";
-                    data = { [userType === "ong" ? "themes" : "hability"]: selectedItems, page };
+
+                    data = {
+                        page: page,
+                        [userType === "ong" ? "themes" : "habilities"]: selectedItems
+                    };
                 } else {
                     url = userType === "ong" ?
                         `https://backend-production-ff4c.up.railway.app/ongs/getAllOngs/${page}` :
                         `https://backend-production-ff4c.up.railway.app/voluntarys/getAllVoluntarys/${page}`;
                 }
-
                 const response = await (data ? axios.post(url, data) : axios.get(url));
                 const formattedData = response.data.response.map(item => ({
                     id: item.id,
@@ -80,21 +84,27 @@ const Search = () => {
                     profilePicture: item.ImageResource[0]?.url || defaultImg,
                     items: (userType === "ong" ? item.ong.themes : item.voluntary.habilities).join(", ")
                 }));
+
                 setCards(formattedData);
                 setError("");
             } catch (err) {
+                console.error("Erro:", err.response?.data || err.message);
                 setError(err.response?.status === 404 ? "Nenhum resultado encontrado." : "Erro ao buscar dados.");
             } finally {
                 setLoading(false);
             }
         };
 
-      fetchData();
+        fetchData();
     }, [page, selectedItems, name, userType]);
 
     const handleItemChange = (e) => {
         const { value, checked } = e.target;
         setSelectedItems(prev => checked ? [...prev, value] : prev.filter(item => item !== value));
+    };
+
+    const clearFilters = () => {
+        setSelectedItems([]);
     };
 
     const handleProfileRedirect = () => {
@@ -108,7 +118,7 @@ const Search = () => {
                     <span onClick={handleProfileRedirect} className="material-symbols-outlined">account_circle</span>
                     <input
                         type="text"
-                        placeholder={userType === "ong" ? "Procurar voluntários" : "Procurar ONGs"}
+                        placeholder={userType === "ong" ? "Procurar ONGs" : "Procurar voluntários"}
                         value={name}
                         onChange={e => setName(e.target.value)}
                     />
@@ -128,19 +138,9 @@ const Search = () => {
                             </option>
                         ))}
                     </select>
+                    <button onClick={clearFilters}>Limpar filtros</button>
                     <div className="Dropdown">
-                        {userType === "ong" && items.map((item, index) => (
-                            <label key={index}>
-                                <input
-                                    type="checkbox"
-                                    value={item}
-                                    checked={selectedItems.includes(item)}
-                                    onChange={handleItemChange}
-                                />
-                                {item}
-                            </label>
-                        ))}
-                        {userType === "voluntary" && items.map((item, index) => (
+                        {items.map((item, index) => (
                             <label key={index}>
                                 <input
                                     type="checkbox"
@@ -153,6 +153,7 @@ const Search = () => {
                         ))}
                     </div>
                 </div>
+
                 <div className="Cards">
                     {loading ? (
                         <p>Carregando...</p>
@@ -168,7 +169,7 @@ const Search = () => {
                                 descricao={card.description}
                                 topicos={card.items}
                             />
-                        ))                        
+                        ))
                     )}
                 </div>
             </main>

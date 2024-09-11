@@ -79,7 +79,6 @@ const Search = () => {
                 }
 
                 const response = await (data ? axios.post(url, data) : axios.get(url));
-                console.log(response.data, typeof (response.data))
 
                 if (userType === "ong") {
                     const formattedData = (response.data).map(item => ({

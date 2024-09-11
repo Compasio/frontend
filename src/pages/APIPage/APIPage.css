@@ -1,7 +1,71 @@
-.Firstpage{
+.Firstpage header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 10vh;
+    padding: 1%;
+    background-color: var(--green-two);
+}
 
+.Firstpage{
+    display: flex;
+}
+
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 header{
-    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
+
+.FirstPage header nav {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.Cards{
+    display: flex;
+    flex-direction: column;
+}
+
+section{
+    display: flex;
+    background-color: var(--green-two);
+}
+
+.card1{
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+}
+
+.card2{
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+.card3{
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+.card4{
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+
+
+

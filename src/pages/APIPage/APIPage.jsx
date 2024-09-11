@@ -1,7 +1,8 @@
 import React from "react";
 import Medico from "../../img/medicosemfronteiras.png";
 import Maismedicos from "../../img/maismedicos.png";
-import Animais from "../../img/cidadaniaanimal.png"
+import Animais from "../../img/cidadaniaanimal.png";
+import "./APIPage.css"
 
 const APIPage = () => {
     return( 
@@ -19,9 +20,10 @@ const APIPage = () => {
                     </nav>
                 </header>
                 <div className="Api"></div>
+                <section>
                 <div className="Cards">
                         <div className="card1">
-                        <img className="Medico" src={Medico} alt="" />
+                        <img src={Medico} alt="" />
                             A sua doação não
                             tem fronteiras!
                             Doe para Médicos
@@ -31,7 +33,7 @@ const APIPage = () => {
                         </div>
 
                         <div className="card2">
-                        <img className="Maismedicos" src={Maismedicos} alt="" />
+                        <img src={Maismedicos} alt="" />
                             O Mais Médicos compõe
                             um conjunto de ações e
                             iniciativas do governo
@@ -40,7 +42,7 @@ const APIPage = () => {
                             Saúde do país.
                         </div>
                         <div className="card3">
-                        <img className="Animais" src={Animais} alt="" />
+                        <img src={Animais} alt="" />
                            Somos um grupo
                             voluntários apaixonados
                             por animais e juntos
@@ -49,8 +51,9 @@ const APIPage = () => {
                             proteção animal.
                             </div>
                     </div>
+                    </section>
                                     </div>
-
+                                   
 
     )
 }

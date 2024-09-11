@@ -1,4 +1,4 @@
-.FooterOne {
+.Footer {
     width: 100%;
     height: 35vh;
     color: var(--white);
@@ -10,23 +10,23 @@
     background-color: var(--green-two);
 }
 
-.FooterOne .Column {
+.Footer .Column {
     display: flex;
     flex-direction: column;
     align-items: self-start;
     gap: 1rem;
 }
 
-.FooterOne .Column h2 {
+.Footer .Column h2 {
     text-transform: uppercase;
 }
 
-.FooterOne .Column a {
+.Footer .Column a {
     color: var(--white);
     text-decoration: none;
 }
 
-.FooterOne .Column div {
+.Footer .Column div {
     display: flex;
     flex-direction: row;
     gap: 1rem;
@@ -34,12 +34,12 @@
     width: 100%;
 }
 
-.FooterOne .Column img {
+.Footer .Column img {
     color: var(--white);
     width: 2vw;
 }
 
-.FooterOne .Column input {
+.Footer .Column input {
     color: var(--white);
     background-color: transparent;
     border: 1px solid var(--white);
@@ -48,11 +48,11 @@
     height: 5vh;
 }
 
-.FooterOne .Column input::placeholder {
+.Footer .Column input::placeholder {
     color: var(--white);
 }
 
-.FooterOne .Column button {
+.Footer .Column button {
     color: var(--green-two);
     background-color: var(--white);
     border: 0;
@@ -62,26 +62,26 @@
     height: 5vh;
 }
 
-.FooterOne .Column button:hover {
+.Footer .Column button:hover {
     color: var(--white);
     background-color: transparent;
     border: 1px solid var(--white);
 }
 
 @media screen and (max-width: 745px) {
-    .FooterOne {
+    .Footer {
         height: 50vh;
         gap: 7rem;
     }
     
-    .FooterOne .Column img {
+    .Footer .Column img {
         width: 4vw;;
     }
   }
 
   
 @media screen and (max-width: 400px) {
-    .FooterOne {
+    .Footer {
         height: auto;
         color: var(--white);
         flex-direction: column;
@@ -90,7 +90,7 @@
         gap: 1rem;
     }
 
-    .FooterOne .Column {
+    .Footer .Column {
         justify-content: center;
         align-items: center;
         gap: 0.25rem;

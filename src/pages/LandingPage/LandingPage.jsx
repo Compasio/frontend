@@ -1,6 +1,6 @@
 import React from "react";
 import "./LandingPage.css"
-import FooterOne from "../../components/Footers/FooterOne/FooterOne";
+import Footer from "../../components/Footer/Footer";
 import { useNavigate } from "react-router-dom";
 import Logo from "../../img/logocomnome.svg"
 import Img1 from "../../img/landingpageimg1.jpeg"
@@ -15,7 +15,6 @@ const LandingPage = () => {
                 <nav>
                     <img src={Logo} alt="" />
                     <ul>
-                        <li><a href="#">Home</a></li>
                         <li><a href="#AboutUs">Sobre</a></li>
                         <li><a href="/login">Login</a></li>
                         <li><a href="#contact">Contato</a></li>
@@ -65,7 +64,7 @@ const LandingPage = () => {
                 </div>
             </section>
             <div id="contact">
-                <FooterOne />
+                <Footer />
             </div>
         </div>
     )

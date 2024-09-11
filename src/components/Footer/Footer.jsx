@@ -1,19 +1,19 @@
 import React from "react";
-import "./FooterOne.css"
-import instagram from "../../../img/instagram.svg"
-import facebook from "../../../img/facebook.svg"
-import whatsapp from "../../../img/whatsapp.svg"
-import xTwitter from "../../../img/x-twitter.svg"
+import "./Footer.css"
+// import instagram from " ../../img/instagram.svg"
+// import facebook from "../../img/facebook.svg"
+// import whatsapp from "../../img/whatsapp.svg"
+// import xTwitter from "../../img/x-twitter.svg"
 
-const FooterOne = () => {
+const Footer = () => {
     return (
-        <footer className="FooterOne">
+        <footer className="Footer">
             <div className="Column">
                 <h2>Contato</h2>
                 <p>Telefone: (48) xxxx-xxxx</p>
                 <p>Email: compasioemail@gmail.com</p>
                 <a href="/loginVoluntario">Continue conectado com a gente</a>
-                <div>
+                {/* <div>
                     <a href="#">
                         <img src={instagram} alt="" />
                     </a>
@@ -26,7 +26,7 @@ const FooterOne = () => {
                     <a href="#">
                         <img src={xTwitter} alt="" />
                     </a>
-                </div>
+                </div> */}
             </div>
 
             <div className="Column">
@@ -41,4 +41,4 @@ const FooterOne = () => {
     )
 }
 
-export default FooterOne
+export default Footer

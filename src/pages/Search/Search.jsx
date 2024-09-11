@@ -43,7 +43,7 @@ const Search = () => {
                     "https://backend-production-ff4c.up.railway.app/sys/getVoluntaryHabilities" :
                     "https://backend-production-ff4c.up.railway.app/sys/getOngThemes";
                 const response = await axios.get(url);
-                setItems(response.data || []); 
+                setItems(response.data || []);
             } catch {
                 setError(userType === "ong" ? "Erro ao buscar habilidades." : "Erro ao buscar temas.");
             }
@@ -71,18 +71,20 @@ const Search = () => {
                         page: page,
                         [userType === "ong" ? "habilities" : "themes"]: selectedItems
                     };
+
                 } else {
                     url = userType === "ong" ?
                         `https://backend-production-ff4c.up.railway.app/voluntarys/getAllVoluntarys/${page}` :
                         `https://backend-production-ff4c.up.railway.app/ongs/getAllOngs/${page}`;
                 }
                 const response = await (data ? axios.post(url, data) : axios.get(url));
+                console.log(response.data)
                 const formattedData = (response.data).map(item => ({
                     id: item.id,
-                    name: userType === "ong" ? item.ong.ong_name : item.voluntary.fullname,
-                    description: userType === "ong" ? item.ong.description : item.voluntary.description,
-                    profilePicture: item.ImageResource[0]?.url || defaultImg,
-                    items: (userType === "ong" ? item.ong.themes : item.voluntary.habilities).join(", ")
+                    name: userType === "ong" && item.ong ? item.ong.ong_name || "Nome não disponível" : item.voluntary?.fullname || "Nome não disponível",
+                    description: userType === "ong" && item.ong ? item.ong.description || "Descrição não disponível" : item.voluntary?.description || "Descrição não disponível",
+                    profilePicture: item.ImageResource?.[0]?.url || defaultImg,
+                    items: userType === "ong" && item.ong ? (item.ong.themes?.join(", ") || "Temas não disponíveis") : (item.voluntary?.habilities?.join(", ") || "Habilidades não disponíveis")
                 }));
 
                 setCards(formattedData);
@@ -94,7 +96,6 @@ const Search = () => {
                 setLoading(false);
             }
         };
-
         fetchData();
     }, [page, selectedItems, name, userType]);
 
@@ -139,19 +140,6 @@ const Search = () => {
                         ))}
                     </select>
                     <button onClick={clearFilters}>Limpar filtros</button>
-                    <div className="Dropdown">
-                        {items.map((item, index) => (
-                            <label key={index}>
-                                <input
-                                    type="checkbox"
-                                    value={item}
-                                    checked={selectedItems.includes(item)}
-                                    onChange={handleItemChange}
-                                />
-                                {item}
-                            </label>
-                        ))}
-                    </div>
                 </div>
 
                 <div className="Cards">

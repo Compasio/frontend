@@ -21,7 +21,7 @@ const PasswordRecovery = () => {
     event.preventDefault();
     setError("");
     try {
-      const response = await axios.post("https://backend-production-ff4c.up.railway.app/auth/passwordRecovery", { email });
+      await axios.post("https://backend-production-ff4c.up.railway.app/auth/passwordRecovery", { email });
       setStep("verify");
     } catch (error) {
       console.error("Erro ao solicitar o código:", error);

@@ -33,7 +33,6 @@ const Login = () => {
         const token = response.data;
         const decodedToken = jwtDecode(token);
         const decodedUserType = decodedToken.userType;
-        console.log(decodedToken)
 
         Cookies.set("token", token, { expires: 7 });
         Cookies.set("userType", decodedUserType, { expires: 7 });

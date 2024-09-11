@@ -11,6 +11,7 @@ const Profile = () => {
   const { id } = useParams();
   const [userData, setUserData] = useState(null);
   const [userType, setUserType] = useState("");
+  const [currentUserId, setCurrentUserId] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -21,7 +22,8 @@ const Profile = () => {
         if (!token) throw new Error("Token não encontrado.");
 
         const decodedToken = jwtDecode(token);
-        setUserType(decodedToken.type);
+        setUserType(decodedToken.userType);
+        setCurrentUserId(decodedToken.id); 
         const url = userType === "ong" ?
           `https://backend-production-ff4c.up.railway.app/ongs/getOngById/${id}` :
           `https://backend-production-ff4c.up.railway.app/voluntarys/getVoluntaryById/${id}`;
@@ -61,7 +63,7 @@ const Profile = () => {
       <main>
         <ProfileBanner
           userData={userData}
-          userType={userType}
+          currentUserId={currentUserId}
         />
       </main>
     </div>

@@ -26,7 +26,7 @@ const Search = () => {
                 if (token) {
                     const decodedToken = jwtDecode(token);
                     setUserId(decodedToken.id);
-                    setUserType(decodedToken.type);
+                    setUserType(decodedToken.userType);
                 }
             } catch (error) {
                 setError("Erro ao buscar perfil do usuário.");
@@ -40,12 +40,12 @@ const Search = () => {
         const fetchItems = async () => {
             try {
                 const url = userType === "ong" ?
-                    "https://backend-production-ff4c.up.railway.app/sys/getOngThemes" :
-                    "https://backend-production-ff4c.up.railway.app/sys/getVoluntaryHabilities";
+                    "https://backend-production-ff4c.up.railway.app/sys/getVoluntaryHabilities" :
+                    "https://backend-production-ff4c.up.railway.app/sys/getOngThemes";
                 const response = await axios.get(url);
-                setItems(response.data);
+                setItems(response.data || []); 
             } catch {
-                setError(userType === "ong" ? "Erro ao buscar temas." : "Erro ao buscar habilidades.");
+                setError(userType === "ong" ? "Erro ao buscar habilidades." : "Erro ao buscar temas.");
             }
         };
 
@@ -60,24 +60,24 @@ const Search = () => {
 
                 if (name) {
                     url = userType === "ong" ?
-                        `https://backend-production-ff4c.up.railway.app/ongs/getOngByName/${name}` :
-                        `https://backend-production-ff4c.up.railway.app/voluntarys/getVoluntarysByName/${name}`;
+                        `https://backend-production-ff4c.up.railway.app/voluntarys/getVoluntarysByName/${name}` :
+                        `https://backend-production-ff4c.up.railway.app/ongs/getOngByName/${name}`;
                 } else if (selectedItems.length) {
                     url = userType === "ong" ?
-                        "https://backend-production-ff4c.up.railway.app/ongs/getOngByTheme" :
-                        "https://backend-production-ff4c.up.railway.app/voluntarys/getVoluntarysByHabilities";
+                        "https://backend-production-ff4c.up.railway.app/voluntarys/getVoluntarysByHabilities" :
+                        "https://backend-production-ff4c.up.railway.app/ongs/getOngByTheme";
 
                     data = {
                         page: page,
-                        [userType === "ong" ? "themes" : "habilities"]: selectedItems
+                        [userType === "ong" ? "habilities" : "themes"]: selectedItems
                     };
                 } else {
                     url = userType === "ong" ?
-                        `https://backend-production-ff4c.up.railway.app/ongs/getAllOngs/${page}` :
-                        `https://backend-production-ff4c.up.railway.app/voluntarys/getAllVoluntarys/${page}`;
+                        `https://backend-production-ff4c.up.railway.app/voluntarys/getAllVoluntarys/${page}` :
+                        `https://backend-production-ff4c.up.railway.app/ongs/getAllOngs/${page}`;
                 }
                 const response = await (data ? axios.post(url, data) : axios.get(url));
-                const formattedData = response.data.response.map(item => ({
+                const formattedData = (response.data).map(item => ({
                     id: item.id,
                     name: userType === "ong" ? item.ong.ong_name : item.voluntary.fullname,
                     description: userType === "ong" ? item.ong.description : item.voluntary.description,
@@ -129,9 +129,9 @@ const Search = () => {
                 <div className="Filter">
                     <select
                         value=""
-                        onChange={(e) => handleItemChange({ target: { value: e.target.value, checked: e.target.value } })}
+                        onChange={(e) => handleItemChange({ target: { value: e.target.value, checked: e.target.selected } })}
                     >
-                        <option value="">{userType === "ong" ? "Selecionar temas" : "Selecionar habilidades"}</option>
+                        <option value="">{userType === "ong" ? "Selecionar habilidades" : "Selecionar temas"}</option>
                         {items.map((item, index) => (
                             <option key={index} value={item}>
                                 {item}

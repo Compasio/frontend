@@ -7,7 +7,7 @@ const Card = (props) => {
 
     return (
         <div onClick={() => navigate(props.link)} className="Card">
-            <img src={props.imgsrc} alt={props.nome} />
+                <img src={props.imgsrc} alt={props.nome} />
             <h3>{props.nome}</h3>
             <hr />
             <div>

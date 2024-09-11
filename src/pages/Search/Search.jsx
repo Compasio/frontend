@@ -12,7 +12,7 @@ const Search = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [items, setItems] = useState([]);
-    const [selectedItems, setSelectedItems] = useState([]);
+    const [selectedItem, setSelectedItem] = useState("");
     const [name, setName] = useState("");
     const [page, setPage] = useState(1);
     const [userType, setUserType] = useState("");
@@ -62,14 +62,14 @@ const Search = () => {
                     url = userType === "ong" ?
                         `https://backend-production-ff4c.up.railway.app/voluntarys/getVoluntarysByName/${name}` :
                         `https://backend-production-ff4c.up.railway.app/ongs/getOngByName/${name}`;
-                } else if (selectedItems.length) {
+                } else if (selectedItem) {
                     url = userType === "ong" ?
                         "https://backend-production-ff4c.up.railway.app/voluntarys/getVoluntarysByHabilities" :
                         "https://backend-production-ff4c.up.railway.app/ongs/getOngByTheme";
 
                     data = {
                         page: page,
-                        [userType === "ong" ? "habilities" : "themes"]: selectedItems
+                        [userType === "ong" ? "habilities" : "themes"]: [selectedItem]
                     };
 
                 } else {
@@ -77,17 +77,31 @@ const Search = () => {
                         `https://backend-production-ff4c.up.railway.app/voluntarys/getAllVoluntarys/${page}` :
                         `https://backend-production-ff4c.up.railway.app/ongs/getAllOngs/${page}`;
                 }
-                const response = await (data ? axios.post(url, data) : axios.get(url));
-                console.log(response.data)
-                const formattedData = (response.data).map(item => ({
-                    id: item.id,
-                    name: userType === "ong" && item.ong ? item.ong.ong_name || "Nome não disponível" : item.voluntary?.fullname || "Nome não disponível",
-                    description: userType === "ong" && item.ong ? item.ong.description || "Descrição não disponível" : item.voluntary?.description || "Descrição não disponível",
-                    profilePicture: item.ImageResource?.[0]?.url || defaultImg,
-                    items: userType === "ong" && item.ong ? (item.ong.themes?.join(", ") || "Temas não disponíveis") : (item.voluntary?.habilities?.join(", ") || "Habilidades não disponíveis")
-                }));
 
-                setCards(formattedData);
+                const response = await (data ? axios.post(url, data) : axios.get(url));
+                console.log(response.data, typeof (response.data))
+
+                if (userType === "ong") {
+                    const formattedData = (response.data).map(item => ({
+                        id: item.id,
+                        name: item.voluntary.fullname,
+                        description: item.voluntary.description,
+                        profilePicture: item.ImageResource?.[0]?.url || defaultImg,
+                        items: item.voluntary.habilites.join(", ")
+                    }));
+                    setCards(formattedData);
+
+                } else if (userType === "voluntary") {
+                    const formattedData = (response.data).map(item => ({
+                        id: item.id,
+                        name: item.ong.ong_name,
+                        description: item.ong.description,
+                        profilePicture: item.ImageResource?.[0]?.url || defaultImg,
+                        items: item.ong.themes.join(", ")
+                    }));
+                    setCards(formattedData);
+                }
+
                 setError("");
             } catch (err) {
                 console.error("Erro:", err.response?.data || err.message);
@@ -97,15 +111,14 @@ const Search = () => {
             }
         };
         fetchData();
-    }, [page, selectedItems, name, userType]);
+    }, [page, selectedItem, name, userType]);
 
     const handleItemChange = (e) => {
-        const { value, checked } = e.target;
-        setSelectedItems(prev => checked ? [...prev, value] : prev.filter(item => item !== value));
+        setSelectedItem(e.target.value);
     };
 
     const clearFilters = () => {
-        setSelectedItems([]);
+        setSelectedItem("");
     };
 
     const handleProfileRedirect = () => {
@@ -129,8 +142,8 @@ const Search = () => {
             <main>
                 <div className="Filter">
                     <select
-                        value=""
-                        onChange={(e) => handleItemChange({ target: { value: e.target.value, checked: e.target.selected } })}
+                        value={selectedItem}
+                        onChange={handleItemChange}
                     >
                         <option value="">{userType === "ong" ? "Selecionar habilidades" : "Selecionar temas"}</option>
                         {items.map((item, index) => (
@@ -139,8 +152,10 @@ const Search = () => {
                             </option>
                         ))}
                     </select>
-                    <button onClick={clearFilters}>Limpar filtros</button>
+
+                    <button onClick={clearFilters}>Limpar filtro</button>
                 </div>
+
 
                 <div className="Cards">
                     {loading ? (

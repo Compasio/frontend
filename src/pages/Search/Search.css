@@ -33,8 +33,6 @@
     width: 50%;
     height: 2.5rem;
     padding: 0.5rem 1rem;
-    border: 1px solid var(--black);
-    border-radius: 2%;
     font-size: 1rem;
 }
 
@@ -58,7 +56,6 @@
     width: 30%;
     height: 2.5rem;
     padding: 0.5rem 1rem;
-    border: 1px solid var(--black);
     font-size: 1rem;
     background-color: var(--white);
     color: var(--black);
@@ -77,16 +74,25 @@
     background-color: var(--green-two);
     color: var(--white);
     width: 10%;
+    border: none;
+    transition: background-color 0.2s ease;
+    box-shadow: 2px 2px 8px var(--black);
     height: 2.5rem;
+}
+
+.Search main .Filter button:hover {
+    background-color: var(--white);
+    color: var(--green-two);
 }
 
 .Search main .Cards {
     width: 100%;
     height: auto;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    grid-template-rows: repeat(2, auto);  
+    place-items: center;
+    gap: 1.5rem; 
 }
 
 .Search footer {

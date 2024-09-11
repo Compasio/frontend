@@ -57,7 +57,7 @@ const Search = () => {
             setLoading(true);
             try {
                 let url, data = null;
-
+    
                 if (name) {
                     url = userType === "ong" ?
                         `https://backend-production-ff4c.up.railway.app/voluntarys/getVoluntarysByName/${name}` :
@@ -66,41 +66,63 @@ const Search = () => {
                     url = userType === "ong" ?
                         "https://backend-production-ff4c.up.railway.app/voluntarys/getVoluntarysByHabilities" :
                         "https://backend-production-ff4c.up.railway.app/ongs/getOngByTheme";
-
+    
                     data = {
                         page: page,
                         [userType === "ong" ? "habilities" : "themes"]: [selectedItem]
                     };
-
+    
                 } else {
                     url = userType === "ong" ?
                         `https://backend-production-ff4c.up.railway.app/voluntarys/getAllVoluntarys/${page}` :
                         `https://backend-production-ff4c.up.railway.app/ongs/getAllOngs/${page}`;
                 }
-
+    
                 const response = await (data ? axios.post(url, data) : axios.get(url));
-
-                if (userType === "ong") {
-                    const formattedData = (response.data).map(item => ({
-                        id: item.id,
-                        name: item.voluntary.fullname,
-                        description: item.voluntary.description,
-                        profilePicture: item.ImageResource?.[0]?.url || defaultImg,
-                        items: item.voluntary.habilites.join(", ")
-                    }));
-                    setCards(formattedData);
-
-                } else if (userType === "voluntary") {
-                    const formattedData = (response.data).map(item => ({
-                        id: item.id,
-                        name: item.ong.ong_name,
-                        description: item.ong.description,
-                        profilePicture: item.ImageResource?.[0]?.url || defaultImg,
-                        items: item.ong.themes.join(", ")
-                    }));
-                    setCards(formattedData);
+    
+                let formattedData;
+    
+                // Verificar se a resposta contém a chave "response"
+                if (response.data.response) {
+                    if (userType === "ong") {
+                        formattedData = response.data.response.map(item => ({
+                            id: item.id,
+                            name: item.voluntary.fullname,
+                            description: item.voluntary.description,
+                            profilePicture: item.ImageResource?.[0]?.url || defaultImg,
+                            items: item.voluntary.habilites.join(", ")
+                        }));
+                    } else if (userType === "voluntary") {
+                        formattedData = response.data.response.map(item => ({
+                            id: item.id,
+                            name: item.ong.ong_name,
+                            description: item.ong.description,
+                            profilePicture: item.ImageResource?.[0]?.url || defaultImg,
+                            items: item.ong.themes.join(", ")
+                        }));
+                    }
+                } else {
+                    // Quando não há a chave "response" e a resposta é uma lista direta
+                    if (userType === "ong") {
+                        formattedData = (response.data || []).map(item => ({
+                            id: item.id,
+                            name: item.voluntary.fullname,
+                            description: item.voluntary.description,
+                            profilePicture: item.ImageResource?.[0]?.url || defaultImg,
+                            items: item.voluntary.habilites.join(", ")
+                        }));
+                    } else if (userType === "voluntary") {
+                        formattedData = (response.data || []).map(item => ({
+                            id: item.id,
+                            name: item.ong.ong_name,
+                            description: item.ong.description,
+                            profilePicture: item.ImageResource?.[0]?.url || defaultImg,
+                            items: item.ong.themes.join(", ")
+                        }));
+                    }
                 }
-
+    
+                setCards(formattedData || []);
                 setError("");
             } catch (err) {
                 console.error("Erro:", err.response?.data || err.message);
@@ -111,6 +133,7 @@ const Search = () => {
         };
         fetchData();
     }, [page, selectedItem, name, userType]);
+    
 
     const handleItemChange = (e) => {
         setSelectedItem(e.target.value);

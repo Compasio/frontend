@@ -23,7 +23,8 @@ const Profile = () => {
 
         const decodedToken = jwtDecode(token);
         setUserType(decodedToken.userType);
-        setCurrentUserId(decodedToken.id); 
+        setCurrentUserId(decodedToken.id);
+
         const url = userType === "ong" ?
           `https://backend-production-ff4c.up.railway.app/ongs/getOngById/${id}` :
           `https://backend-production-ff4c.up.railway.app/voluntarys/getVoluntaryById/${id}`;
@@ -31,6 +32,7 @@ const Profile = () => {
         const response = await axios.get(url, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
+
         setUserData(response.data);
       } catch (error) {
         setError("Erro ao buscar dados do perfil.");

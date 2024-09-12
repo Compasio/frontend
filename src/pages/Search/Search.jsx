@@ -3,6 +3,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import defaultImg from '../../img/defaultImg.png';
+import Logo from "../../img/logocomnome.svg"
 import "./Search.css";
 import Card from "../../components/Card/Card";
 import { useNavigate } from "react-router-dom";
@@ -57,7 +58,7 @@ const Search = () => {
             setLoading(true);
             try {
                 let url, data = null;
-    
+
                 if (name) {
                     url = userType === "ong" ?
                         `https://backend-production-ff4c.up.railway.app/voluntarys/getVoluntarysByName/${name}` :
@@ -66,23 +67,22 @@ const Search = () => {
                     url = userType === "ong" ?
                         "https://backend-production-ff4c.up.railway.app/voluntarys/getVoluntarysByHabilities" :
                         "https://backend-production-ff4c.up.railway.app/ongs/getOngByTheme";
-    
+
                     data = {
                         page: page,
                         [userType === "ong" ? "habilities" : "themes"]: [selectedItem]
                     };
-    
+
                 } else {
                     url = userType === "ong" ?
                         `https://backend-production-ff4c.up.railway.app/voluntarys/getAllVoluntarys/${page}` :
                         `https://backend-production-ff4c.up.railway.app/ongs/getAllOngs/${page}`;
                 }
-    
+
                 const response = await (data ? axios.post(url, data) : axios.get(url));
-    
+
                 let formattedData;
-    
-                // Verificar se a resposta contém a chave "response"
+
                 if (response.data.response) {
                     if (userType === "ong") {
                         formattedData = response.data.response.map(item => ({
@@ -102,7 +102,6 @@ const Search = () => {
                         }));
                     }
                 } else {
-                    // Quando não há a chave "response" e a resposta é uma lista direta
                     if (userType === "ong") {
                         formattedData = (response.data || []).map(item => ({
                             id: item.id,
@@ -121,7 +120,7 @@ const Search = () => {
                         }));
                     }
                 }
-    
+
                 setCards(formattedData || []);
                 setError("");
             } catch (err) {
@@ -133,7 +132,7 @@ const Search = () => {
         };
         fetchData();
     }, [page, selectedItem, name, userType]);
-    
+
 
     const handleItemChange = (e) => {
         setSelectedItem(e.target.value);
@@ -151,18 +150,25 @@ const Search = () => {
         <div className="Search">
             <header>
                 <nav>
-                    <span onClick={handleProfileRedirect} className="material-symbols-outlined">account_circle</span>
-                    <input
-                        type="text"
-                        placeholder={userType === "ong" ? "Procurar ONGs" : "Procurar voluntários"}
-                        value={name}
-                        onChange={e => setName(e.target.value)}
-                    />
-                    {userType === "ong" && <span onClick={() => navigate('/maps')} className="material-symbols-outlined">location_on</span>}
+                    <figure>
+                        <img src={Logo} alt="Logo" />
+                        <figcaption>Compasio</figcaption>
+                    </figure>
+                    <div>
+                        <span className="material-symbols-outlined">search</span>
+                        <span onClick={handleProfileRedirect} className="material-symbols-outlined">account_circle</span>
+                        {userType === "voluntary" && <span onClick={() => navigate('/maps')} className="material-symbols-outlined">location_on</span>}
+                    </div>
                 </nav>
             </header>
             <main>
                 <div className="Filter">
+                    <input
+                        type="text"
+                        placeholder={userType === "ong" ? "Procurar voluntários" : "Procurar ONGs"}
+                        value={name}
+                        onChange={e => setName(e.target.value)}
+                    />
                     <select
                         value={selectedItem}
                         onChange={handleItemChange}

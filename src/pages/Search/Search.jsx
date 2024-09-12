@@ -39,96 +39,99 @@ const Search = () => {
 
     useEffect(() => {
         const fetchItems = async () => {
-            try {
-                const url = userType === "ong" ?
-                    "https://backend-production-ff4c.up.railway.app/sys/getVoluntaryHabilities" :
-                    "https://backend-production-ff4c.up.railway.app/sys/getOngThemes";
-                const response = await axios.get(url);
-                setItems(response.data || []);
-            } catch {
-                setError(userType === "ong" ? "Erro ao buscar habilidades." : "Erro ao buscar temas.");
-            }
-        };
-
+            if (userType) {
+                try {
+                    const url = userType === "ong" ?
+                        "https://backend-production-ff4c.up.railway.app/sys/getVoluntaryHabilities" :
+                        "https://backend-production-ff4c.up.railway.app/sys/getOngThemes";
+                    const response = await axios.get(url);
+                    setItems(response.data || []);
+                } catch {
+                    setError(userType === "ong" ? "Erro ao buscar habilidades." : "Erro ao buscar temas.");
+                }
+            };
+        }
         fetchItems();
     }, [userType]);
 
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
-            try {
-                let url, data = null;
+            if (userType) {
+                try {
+                    let url, data = null;
 
-                if (name) {
-                    url = userType === "ong" ?
-                        `https://backend-production-ff4c.up.railway.app/voluntarys/getVoluntarysByName/${name}` :
-                        `https://backend-production-ff4c.up.railway.app/ongs/getOngByName/${name}`;
-                } else if (selectedItem) {
-                    url = userType === "ong" ?
-                        "https://backend-production-ff4c.up.railway.app/voluntarys/getVoluntarysByHabilities" :
-                        "https://backend-production-ff4c.up.railway.app/ongs/getOngByTheme";
+                    if (name) {
+                        url = userType === "ong" ?
+                            `https://backend-production-ff4c.up.railway.app/voluntarys/getVoluntarysByName/${name}` :
+                            `https://backend-production-ff4c.up.railway.app/ongs/getOngByName/${name}`;
+                    } else if (selectedItem) {
+                        url = userType === "ong" ?
+                            "https://backend-production-ff4c.up.railway.app/voluntarys/getVoluntarysByHabilities" :
+                            "https://backend-production-ff4c.up.railway.app/ongs/getOngByTheme";
 
-                    data = {
-                        page: page,
-                        [userType === "ong" ? "hability" : "themes"]: [selectedItem]
-                    };
+                        data = {
+                            page: page,
+                            [userType === "ong" ? "hability" : "themes"]: [selectedItem]
+                        };
 
-                } else {
-                    url = userType === "ong" ?
-                        `https://backend-production-ff4c.up.railway.app/voluntarys/getAllVoluntarys/${page}` :
-                        `https://backend-production-ff4c.up.railway.app/ongs/getAllOngs/${page}`;
-                }
-
-                const response = await (data ? axios.post(url, data) : axios.get(url));
-                let formattedData;
-
-                if (response.data.response) {
-                    if (userType === "ong") {
-                        formattedData = response.data.response.map(item => ({
-                            id: item.id,
-                            name: item.voluntary.fullname,
-                            description: item.voluntary.description,
-                            profilePicture: item.ImageResource?.[0]?.url || defaultImg,
-                            items: item.voluntary.habilities.join(", ") 
-                        }));
-                    } else if (userType === "voluntary") {
-                        formattedData = response.data.response.map(item => ({
-                            id: item.id,
-                            name: item.ong.ong_name,
-                            description: item.ong.description,
-                            profilePicture: item.ImageResource?.[0]?.url || defaultImg,
-                            items: item.ong.themes.join(", ")
-                        }));
+                    } else {
+                        url = userType === "ong" ?
+                            `https://backend-production-ff4c.up.railway.app/voluntarys/getAllVoluntarys/${page}` :
+                            `https://backend-production-ff4c.up.railway.app/ongs/getAllOngs/${page}`;
                     }
-                } else {
-                    if (userType === "ong") {
-                        formattedData = (response.data || []).map(item => ({
-                            id: item.id,
-                            name: item.voluntary.fullname,
-                            description: item.voluntary.description,
-                            profilePicture: item.ImageResource?.[0]?.url || defaultImg,
-                            items: item.voluntary.habilities.join(", ")
-                        }));
-                    } else if (userType === "voluntary") {
-                        formattedData = (response.data || []).map(item => ({
-                            id: item.id,
-                            name: item.ong.ong_name,
-                            description: item.ong.description,
-                            profilePicture: item.ImageResource?.[0]?.url || defaultImg,
-                            items: item.ong.themes.join(", ")
-                        }));
-                    }
-                }
 
-                setCards(formattedData || []);
-                setError("");
-            } catch (err) {
-                console.error("Erro:", err.response?.data || err.message);
-                setError(err.response?.status === 404 ? "Nenhum resultado encontrado." : "Erro ao buscar dados.");
-            } finally {
-                setLoading(false);
-            }
-        };
+                    const response = await (data ? axios.post(url, data) : axios.get(url));
+                    let formattedData;
+
+                    if (response.data.response) {
+                        if (userType === "ong") {
+                            formattedData = response.data.response.map(item => ({
+                                id: item.id,
+                                name: item.voluntary.fullname,
+                                description: item.voluntary.description,
+                                profilePicture: item.ImageResource?.[0]?.url || defaultImg,
+                                items: item.voluntary.habilities.join(", ")
+                            }));
+                        } else if (userType === "voluntary") {
+                            formattedData = response.data.response.map(item => ({
+                                id: item.id,
+                                name: item.ong.ong_name,
+                                description: item.ong.description,
+                                profilePicture: item.ImageResource?.[0]?.url || defaultImg,
+                                items: item.ong.themes.join(", ")
+                            }));
+                        }
+                    } else {
+                        if (userType === "ong") {
+                            formattedData = (response.data || []).map(item => ({
+                                id: item.id,
+                                name: item.voluntary.fullname,
+                                description: item.voluntary.description,
+                                profilePicture: item.ImageResource?.[0]?.url || defaultImg,
+                                items: item.voluntary.habilities.join(", ")
+                            }));
+                        } else if (userType === "voluntary") {
+                            formattedData = (response.data).map(item => ({
+                                id: item.id,
+                                name: item.ong.ong_name,
+                                description: item.ong.description,
+                                profilePicture: item.ImageResource?.[0]?.url || defaultImg,
+                                items: item.ong.themes.join(", ")
+                            }));
+                        }
+                    }
+
+                    setCards(formattedData || []);
+                    setError("");
+                } catch (err) {
+                    console.error("Erro:", err.response?.data || err.message);
+                    setError(err.response?.status === 404 ? "Nenhum resultado encontrado." : "Erro ao buscar dados.");
+                } finally {
+                    setLoading(false);
+                }
+            };
+        }
         fetchData();
     }, [page, selectedItem, name, userType]);
 
@@ -171,7 +174,7 @@ const Search = () => {
                     <select
                         value={selectedItem}
                         onChange={handleItemChange}
-                        
+
                     >
                         <option value="">{userType === "ong" ? "Selecionar habilidades" : "Selecionar temas"}</option>
                         {items.map((item, index) => (

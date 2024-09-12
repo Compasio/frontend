@@ -48,21 +48,22 @@ const EditProfile = () => {
     event.preventDefault();
     const form = event.target;
     const description = form.descricao.value.trim();
-    const selectedItems = items.filter(item => form[item.toLowerCase()]?.checked);
+    const selectedItems = Array.from(form.querySelectorAll('input[type="checkbox"]:checked')).map(checkbox => checkbox.name);
 
     if (description && selectedItems.length > 0) {
-      const userData = {
-        description: description,
-        [userType === "ong" ? 'themes' : 'habilities']: selectedItems
-      };
-
-      if (userType === "voluntary") {
-        if (!fullName) {
-          setFeedbackMessage("O nome completo é obrigatório para voluntários.");
-          return;
-        }
-        userData.fullName = fullName;
+      if (userType === "voluntary" && !fullName) {
+        setFeedbackMessage("O nome completo é obrigatório para voluntários.");
+        return;
       }
+
+      const userData = userType === "voluntary" ? {
+        description: description,
+        fullName: fullName,
+        habilities: selectedItems
+      } : {
+        description: description,
+        themes: selectedItems
+      };
 
       try {
         const updateUrl = userType === "ong" ?
@@ -106,7 +107,7 @@ const EditProfile = () => {
         {items.map((item, index) => (
           <span key={index}>
             <label htmlFor={item.toLowerCase()}>{item}</label>
-            <input type="checkbox" name={item.toLowerCase()} />
+            <input type="checkbox" name={item} id={item.toLowerCase()} />
           </span>
         ))}
       </div>

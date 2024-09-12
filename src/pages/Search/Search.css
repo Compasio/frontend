@@ -113,8 +113,8 @@
 }
 
 .Search main .Filter button:hover {
-    background-color: var(--white);
-    color: var(--green-two);
+    background-color: var(--green-one);
+    color: var(--white);
 }
 
 .Search main .Cards {

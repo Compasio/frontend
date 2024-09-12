@@ -14,26 +14,41 @@ const Profile = () => {
   const [currentUserId, setCurrentUserId] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [editPerfil, setEditPerfil] = useState(false)
 
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
         const token = Cookies.get('token');
-        if (!token) throw new Error("Token não encontrado.");
+        let decodedToken = null;
+        let url = "";
 
-        const decodedToken = jwtDecode(token);
-        setUserType(decodedToken.userType);
-        setCurrentUserId(decodedToken.id);
+        if (token) {
+          decodedToken = jwtDecode(token);
+          const numericUserId = Number(decodedToken.id);
+          const numericProfileId = Number(id);
+          setCurrentUserId(numericUserId);
+          setUserType(decodedToken.userType);
 
-        const url = userType === "ong" ?
-          `https://backend-production-ff4c.up.railway.app/ongs/getOngById/${id}` :
-          `https://backend-production-ff4c.up.railway.app/voluntarys/getVoluntaryById/${id}`;
+          if (decodedToken.userType === "ong") {
+            if (numericUserId === numericProfileId) {
+              url = `https://backend-production-ff4c.up.railway.app/ongs/getOngById/${numericProfileId}`;
+              setEditPerfil(true)
+            } else {
+              url = `https://backend-production-ff4c.up.railway.app/voluntarys/getVoluntaryById/${numericProfileId}`;
+            }
+          } else {
+            if (numericUserId === numericProfileId) {
+              url = `https://backend-production-ff4c.up.railway.app/voluntarys/getVoluntaryById/${numericProfileId}`;
+              setEditPerfil(true)
+            } else {
+              url = `https://backend-production-ff4c.up.railway.app/ongs/getOngById/${numericProfileId}`;
+            }
+          }
 
-        const response = await axios.get(url, {
-          headers: { 'Authorization': `Bearer ${token}` }
-        });
-
-        setUserData(response.data);
+          const response = await axios.get(url);
+          setUserData(response.data);
+        }
       } catch (error) {
         setError("Erro ao buscar dados do perfil.");
       } finally {
@@ -42,7 +57,7 @@ const Profile = () => {
     };
 
     fetchProfileData();
-  }, [id, userType]);
+  }, [id]);
 
   if (loading) return <p>Carregando...</p>;
   if (error) return <p style={{ color: "red" }}>{error}</p>;
@@ -64,8 +79,8 @@ const Profile = () => {
       </header>
       <main>
         <ProfileBanner
+          editPerfil={editPerfil}
           userData={userData}
-          currentUserId={currentUserId}
         />
       </main>
     </div>

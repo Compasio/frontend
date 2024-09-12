@@ -3,7 +3,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import defaultImg from '../../img/defaultImg.png';
-import Logo from "../../img/logocomnome.svg"
+import Logo from "../../img/logosemnome.svg"
 import "./Search.css";
 import Card from "../../components/Card/Card";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +13,7 @@ const Search = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [items, setItems] = useState([]);
-    const [selectedItem, setSelectedItem] = useState("");
+    const [selectedItem, setSelectedItem] = useState([]);
     const [name, setName] = useState("");
     const [page, setPage] = useState(1);
     const [userType, setUserType] = useState("");
@@ -70,7 +70,7 @@ const Search = () => {
 
                     data = {
                         page: page,
-                        [userType === "ong" ? "habilities" : "themes"]: [selectedItem]
+                        [userType === "ong" ? "hability" : "themes"]: [selectedItem]
                     };
 
                 } else {
@@ -80,7 +80,6 @@ const Search = () => {
                 }
 
                 const response = await (data ? axios.post(url, data) : axios.get(url));
-
                 let formattedData;
 
                 if (response.data.response) {
@@ -90,7 +89,7 @@ const Search = () => {
                             name: item.voluntary.fullname,
                             description: item.voluntary.description,
                             profilePicture: item.ImageResource?.[0]?.url || defaultImg,
-                            items: item.voluntary.habilites.join(", ")
+                            items: item.voluntary.habilities.join(", ") 
                         }));
                     } else if (userType === "voluntary") {
                         formattedData = response.data.response.map(item => ({
@@ -98,7 +97,7 @@ const Search = () => {
                             name: item.ong.ong_name,
                             description: item.ong.description,
                             profilePicture: item.ImageResource?.[0]?.url || defaultImg,
-                            items: item.ong.themes.join(", ")
+                            items: item.ong.themes
                         }));
                     }
                 } else {
@@ -108,7 +107,7 @@ const Search = () => {
                             name: item.voluntary.fullname,
                             description: item.voluntary.description,
                             profilePicture: item.ImageResource?.[0]?.url || defaultImg,
-                            items: item.voluntary.habilites.join(", ")
+                            items: item.voluntary.habilities.join(", ")
                         }));
                     } else if (userType === "voluntary") {
                         formattedData = (response.data || []).map(item => ({

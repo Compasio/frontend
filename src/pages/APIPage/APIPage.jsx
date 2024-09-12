@@ -1,11 +1,12 @@
 import React from "react";
-import medico from "../../img/medico.png";
-import animal from "../../img/animal.png";
-import mais from "../../img/mais.jpeg"
+import Medico from "../../img/medicosemfronteiras.png";
+import Maismedicos from "../../img/maismedicos.png";
+import Animais from "../../img/cidadaniaanimal.png";
+import "./APIPage.css"
 
 const APIPage = () => {
     return (
-        <div className="FirstPage">
+        <div className="Firstpage">
             <header>
                 <nav>
                     <span class="material-symbols-outlined">
@@ -19,36 +20,38 @@ const APIPage = () => {
                 </nav>
             </header>
             <div className="Api"></div>
-            <div className="Cards">
-                <div className="card1"
+            <section>
+                <div className="Cards">
+                    <div className="card1">
+                        <img src={Medico} alt="" />
+                        A sua doação não
+                        tem fronteiras!
+                        Doe para Médicos
+                        sem fronteiras e ajude
+                        a levar cuidados para
+                        quem precisa.
+                    </div>
 
-                    imgsrc={medico}
-                    text="Médico sem Fronteiras"
-                    descricao="A sua doação não
-                            tem fronteiras!
-                            Doe para Médicos
-                            sem fronteiras e ajude
-                            a levar cuidados para
-                            quem precisa."/>
-                <div className="card2"
-                    imgsrc={mais}
-                    text="Mais Medicos"
-                    descricao="O Mais Médicos compõe
-                            um conjunto de ações e
-                            iniciativas do governo
-                            para o fortalecimento
-                            da Atenção Primária à
-                            Saúde do país."/>
-                <div className="card3"
-                    imgsrc={animal}
-                    text="Cidadania Animal"
-                    descricao="Somos um grupo
-                            voluntários apaixonados
-                            por animais e juntos
-                            realizamos um lindo
-                            trabalho de defesa e
-                            proteção animal."/>
-            </div>
+                    <div className="card2">
+                        <img src={Maismedicos} alt="" />
+                        O Mais Médicos compõe
+                        um conjunto de ações e
+                        iniciativas do governo
+                        para o fortalecimento
+                        da Atenção Primária à
+                        Saúde do país.
+                    </div>
+                    <div className="card3">
+                        <img src={Animais} alt="" />
+                        Somos um grupo
+                        voluntários apaixonados
+                        por animais e juntos
+                        realizamos um lindo
+                        trabalho de defesa e
+                        proteção animal.
+                    </div>
+                </div>
+            </section>
         </div>
 
 

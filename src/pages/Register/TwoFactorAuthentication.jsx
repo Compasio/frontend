@@ -12,6 +12,7 @@ const TwoFactorAuthentication = () => {
   const handleCodeSubmit = async (event) => {
     event.preventDefault();
     setError("");
+    console.log(code)
     try {
       await axios.post("https://backend-production-ff4c.up.railway.app/auth/verifyUserCreation", { code });
         navigate("/login");
@@ -26,7 +27,7 @@ const TwoFactorAuthentication = () => {
       <header>
         <nav>
           <img src={Logo} alt="Logo" />
-          <a href="/criarVoluntario">
+          <a href="/">
             <span className="material-symbols-outlined">arrow_back</span>
           </a>
         </nav>

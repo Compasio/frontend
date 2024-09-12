@@ -14,7 +14,7 @@ import NGORegister from '../pages/Register/NGORegister';
 import TwoFactorAuthentication from '../pages/Register/TwoFactorAuthentication';
 import Maps from '../pages/Maps/Maps';
 import Donation from '../pages/Donation/Donation';
-// import APIPage from '../pages/APIPage/APIPage';
+import APIPage from '../pages/APIPage/APIPage';
 
 export default function WebRoutes() {
     return (
@@ -49,7 +49,7 @@ export default function WebRoutes() {
 
                         <Route path="*" element={<NotFound />} />
 
-                        {/* <Route path='/api' element={<APIPage />} /> */}
+                        <Route path='/api' element={<APIPage />} />
                     </Routes>
                 </Router>
             </div>

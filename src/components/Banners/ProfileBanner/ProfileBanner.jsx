@@ -1,7 +1,7 @@
 import React from 'react';
 import './ProfileBanner.css';
 
-const ProfileBanner = ({ userData, currentUserId }) => {
+const ProfileBanner = ({ userData, editPerfil }) => {
   const { userType, ong, voluntary, ImageResource } = userData || {};
 
   return (
@@ -13,14 +13,27 @@ const ProfileBanner = ({ userData, currentUserId }) => {
         />
         <div className="Info">
           <h2>{userType === "ong" ? ong?.ong_name : voluntary?.fullname}</h2>
-          <button>Chamar</button>
-          {userType === "ong" ? ong?.id : voluntary?.id === currentUserId && (
+          {editPerfil && (
             <button>Editar perfil</button>
           )}
         </div>
       </div>
       <div className="Badges">
-        <div className="badge">{userType === "ong" ? ong?.themes : voluntary?.habilities}</div>
+        <div className="badge">
+          {userType === "ong" ?
+            ong?.themes.map((theme, index) => (
+              <div key={index} className="badge-item">
+                {theme}
+              </div>
+            ))
+            :
+            voluntary?.habilities.map((hability, index) => (
+              <div key={index} className="badge-item">
+                {hability}
+              </div>
+            ))
+          }
+        </div>
         <div className="badge">{userType === "ong" ? "" : voluntary?.birthDate}</div>
       </div>
       <div className="About">

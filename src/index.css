@@ -57,6 +57,11 @@ p {
   font-weight: 200;
 }
 
+figcaption {
+  font-family: "Mulish", sans-serif;
+  font-style: normal;
+}
+
 span.material-symbols-outlined {
   scale: 2;
   cursor: pointer;

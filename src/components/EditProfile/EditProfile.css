@@ -1,0 +1,36 @@
+.EditProfile {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.EditProfile textarea {
+  width: 30rem;
+  height: 2.5rem;
+  resize: none;
+  padding: 1%;
+}
+
+.EditProfile .Skills {
+  width: min-content;
+  height: 20rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.EditProfile .Skills span {
+  display: flex;
+  width: min-content;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 5% 0 2%;
+  width: 100%;
+  background-color: var(--green-two);
+  color: var(--white);
+  align-items: center;
+  font-family: inherit;
+}
+
+.EditProfile form .Skills span>input[type="checkbox"] {
+  width: 15%;
+}

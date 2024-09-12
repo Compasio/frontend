@@ -27,39 +27,32 @@
   border: 2px solid var(--green-two);
 }
 
-/* .Info {
-  margin-left: 20px;
-  flex-grow: 1;
+.Info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
 .Info h2 {
-  font-size: 24px;
-  margin: 0;
+  font-size: 1.5rem;
 }
 
-.Info button:first-child {
-  background-color: #007bff;
-  color: #fff;
+.Info button {
+  background-color: var(--green-one);
+  color: var(--white);
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 0.5rem;
+  width: fit-content;
+  border-radius: 1rem;
   cursor: pointer;
 }
-
-.Info button:last-child {
-  background-color: #f1f1f1;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-} */
 
 .Badges {
   display: flex;
   gap: 1rem;
 }
 
-.Badges div {
+.Badge {
   background-color: var(--green-two);
   color: var(--white);
   padding: 1.5% 1%;
@@ -70,9 +63,46 @@
   font-style: normal;
 }
 
+.badgeHidden {
+  overflow: hidden;
+}
+
 .About {
   background-color: var(--green-two);
   color: var(--white);
   border-radius: 1rem;
   padding: 2%;
+}
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 1rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Modal {
+  background-color: var(--white);
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-radius: 1rem;
+  width: 80%;
+}
+
+.Modal button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 1.5% 1%;
+  width: 40%;
+  cursor: pointer;
+  border-radius: 1rem;
 }

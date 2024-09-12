@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './ProfileBanner.css';
+import EditProfile from '../../EditProfile/EditProfile';
 
-const ProfileBanner = ({ userData, editPerfil }) => {
+const ProfileBanner = ({ userData, editPerfil, currentUserId }) => {
   const { userType, ong, voluntary, ImageResource } = userData || {};
+  const [isEditProfileVisible, setIsEditProfileVisible] = useState(false);
+
+  const redirectEditProfile = () => {
+    setIsEditProfileVisible(true);
+  };
+
+  const closeEditProfile = () => {
+    setIsEditProfileVisible(false);
+  };
 
   return (
     <div className="ProfileBanner">
@@ -14,12 +24,12 @@ const ProfileBanner = ({ userData, editPerfil }) => {
         <div className="Info">
           <h2>{userType === "ong" ? ong?.ong_name : voluntary?.fullname}</h2>
           {editPerfil && (
-            <button>Editar perfil</button>
+            <button onClick={redirectEditProfile}>Editar perfil</button>
           )}
         </div>
       </div>
       <div className="Badges">
-        <div className="badge">
+        <div className="Badge">
           {userType === "ong" ?
             ong?.themes.map((theme, index) => (
               <div key={index} className="badge-item">
@@ -28,18 +38,27 @@ const ProfileBanner = ({ userData, editPerfil }) => {
             ))
             :
             voluntary?.habilities.map((hability, index) => (
-              <div key={index} className="badge-item">
+              <div key={index}>
                 {hability}
               </div>
             ))
           }
         </div>
-        <div className="badge">{userType === "ong" ? "" : voluntary?.birthDate}</div>
+        <div className={userType === "ong" ? "BadgeHidden" : "Badge"}>{userType === "ong" ? "" : voluntary?.birthDate}</div>
       </div>
       <div className="About">
         <h3>Sobre mim</h3>
         <p>{userType === "ong" ? ong?.description : voluntary?.description}</p>
       </div>
+
+      {isEditProfileVisible && (
+        <div className="Overlay">
+          <div className="Modal">
+            <EditProfile />
+            <button onClick={closeEditProfile}>Fechar</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

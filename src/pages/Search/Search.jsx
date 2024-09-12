@@ -13,7 +13,7 @@ const Search = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [items, setItems] = useState([]);
-    const [selectedItem, setSelectedItem] = useState([]);
+    const [selectedItem, setSelectedItem] = useState("");
     const [name, setName] = useState("");
     const [page, setPage] = useState(1);
     const [userType, setUserType] = useState("");
@@ -97,7 +97,7 @@ const Search = () => {
                             name: item.ong.ong_name,
                             description: item.ong.description,
                             profilePicture: item.ImageResource?.[0]?.url || defaultImg,
-                            items: item.ong.themes
+                            items: item.ong.themes.join(", ")
                         }));
                     }
                 } else {
@@ -171,6 +171,7 @@ const Search = () => {
                     <select
                         value={selectedItem}
                         onChange={handleItemChange}
+                        
                     >
                         <option value="">{userType === "ong" ? "Selecionar habilidades" : "Selecionar temas"}</option>
                         {items.map((item, index) => (

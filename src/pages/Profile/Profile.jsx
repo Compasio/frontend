@@ -81,6 +81,7 @@ const Profile = () => {
         <ProfileBanner
           editPerfil={editPerfil}
           userData={userData}
+          currentUserId={currentUserId}
         />
       </main>
     </div>

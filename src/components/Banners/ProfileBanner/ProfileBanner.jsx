@@ -105,7 +105,7 @@ const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery, logout
         <div className="Gallery">
           {gallery.map((picture) => (
             <img key={picture.id} src={picture.url} alt="" />
-          ))}
+          ))}     
         </div>
       )}
       {isEditProfileVisible && (

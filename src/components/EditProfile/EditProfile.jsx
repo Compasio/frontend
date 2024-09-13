@@ -50,7 +50,6 @@ const EditProfile = () => {
     event.preventDefault();
     const form = event.target;
     const description = form.descricao.value.trim();
-    
     const selectedItems = Array.from(form.querySelectorAll('input[type="checkbox"]:checked')).map(checkbox => checkbox.name);
 
     if (description && selectedItems.length > 0) {

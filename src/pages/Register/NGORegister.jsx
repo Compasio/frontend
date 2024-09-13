@@ -9,6 +9,7 @@ const NGORegister = () => {
     const [ngoDetails, setNgoDetails] = useState({});
     const [ngoList, setNgoList] = useState([]);
     const [fileError, setFileError] = useState("");
+    const [formError, setFormError] = useState(""); 
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -52,8 +53,9 @@ const NGORegister = () => {
             
             setNgoDetails(ngoData);
             setFirstInputsFilled(true);
+            setFormError(""); 
         } else {
-            alert("Por favor, preencha todos os campos corretamente, verifique a confirmação da senha e selecione uma foto de perfil.");
+            setFormError("Por favor, preencha todos os campos corretamente, verifique a confirmação da senha e selecione uma foto de perfil.");
         }
     };
 
@@ -80,7 +82,7 @@ const NGORegister = () => {
                 .then(() => navigate("/autenticacaoDe2Fatores?tipo=ong"))
                 .catch(error => console.error("Erro ao enviar os dados: ", error));
         } else {
-            alert("Por favor, preencha todos os campos corretamente e selecione pelo menos uma área.");
+            setFormError("Por favor, preencha todos os campos corretamente e selecione pelo menos uma área.");
         }
     };
 
@@ -95,7 +97,7 @@ const NGORegister = () => {
                         <div className="Skills">
                             {ngoList.map(theme => (
                                 <span key={theme} id={theme}>
-                                    <label htmlFor={theme.toLowerCase()}>{theme}</label>
+                                    <label htmlFor={theme.toLowerCase()}>{theme.replace(/_/g, ' ')}</label>
                                     <input type="checkbox" name={theme.toLowerCase()} />
                                 </span>
                             ))}
@@ -116,6 +118,7 @@ const NGORegister = () => {
                         <input type="password" placeholder="Confirme sua senha" name="senha_confirmacao" required />
                         <input name="foto" type="file" onChange={handleFileChange} />
                         {fileError && <p className="error">{fileError}</p>}
+                        {formError && <p className="error">{formError}</p>} 
                         <div className="Buttons">
                             <button type="submit">Continuar</button>
                         </div>

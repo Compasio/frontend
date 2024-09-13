@@ -84,13 +84,13 @@ const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery, logout
           {userType === "ong" ?
             ong?.themes.map((theme, index) => (
               <div key={index}>
-                {theme}
+                {theme.replace(/_/g, ' ')}
               </div>
             ))
             :
             voluntary?.habilities.map((hability, index) => (
               <div key={index}>
-                {hability}
+                {hability.replace(/_/g, ' ')}
               </div>
             ))
           }

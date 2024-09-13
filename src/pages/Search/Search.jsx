@@ -179,7 +179,7 @@ const Search = () => {
                         <option value="">{userType === "ong" ? "Selecionar habilidades" : "Selecionar temas"}</option>
                         {items.map((item, index) => (
                             <option key={index} value={item}>
-                                {item.replace("_", " ")}
+                                {item.replace(/_/g, ' ')}
                             </option>
                         ))}
                     </select>
@@ -201,7 +201,7 @@ const Search = () => {
                                 imgsrc={card.profilePicture}
                                 nome={card.name}
                                 descricao={card.description}
-                                topicos={(card.items).replace("_", " ")}
+                                topicos={(card.items).replace(/_/g, ' ')}
                             />
                         ))
                     )}

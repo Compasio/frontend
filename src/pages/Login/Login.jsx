@@ -17,6 +17,10 @@ const Login = () => {
     navigate("/recuperarSenha");
   };
 
+  const landingPage = () => {
+    navigate("/")
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -77,6 +81,9 @@ const Login = () => {
           {error && <p style={{ color: "red" }}>{error}</p>}
           <p onClick={handlePasswordRecovery} style={{ cursor: "pointer" }}>
             Esqueceu a senha?
+          </p>
+          <p onClick={landingPage} style={{ cursor: "pointer" }}>
+            Não possui conta?
           </p>
         </form>
       </section>

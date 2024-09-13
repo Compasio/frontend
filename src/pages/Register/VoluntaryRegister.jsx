@@ -9,6 +9,7 @@ const VoluntaryRegister = () => {
     const [userDetails, setUserDetails] = useState({});
     const [habilitiesList, setHabilitiesList] = useState([]);
     const [fileError, setFileError] = useState("");
+    const [formError, setFormError] = useState("");
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -52,8 +53,9 @@ const VoluntaryRegister = () => {
 
             setUserDetails(userData);
             setFirstInputsFilled(true);
+            setFormError("");
         } else {
-            alert("Por favor, preencha todos os campos corretamente e verifique a confirmação da senha.");
+            setFormError("Por favor, preencha todos os campos corretamente, verifique a confirmação da senha e selecione uma foto de perfil.");
         }
     };
 
@@ -82,7 +84,7 @@ const VoluntaryRegister = () => {
                 .then(() => navigate("/autenticacaoDe2Fatores?tipo=voluntario"))
                 .catch(error => console.error("Erro ao enviar os dados: ", error));
         } else {
-            alert("Por favor, preencha todos os campos corretamente e selecione pelo menos uma habilidade.");
+            setFormError("Por favor, preencha todos os campos corretamente e selecione pelo menos uma área.");
         }
     };
 
@@ -101,7 +103,7 @@ const VoluntaryRegister = () => {
                         <div className="Skills">
                             {habilitiesList.map(hability => (
                                 <span key={hability} id={hability}>
-                                    <label htmlFor={hability.toLowerCase()}>{hability}</label>
+                                    <label htmlFor={hability.toLowerCase()}>{hability.replace(/_/g, ' ')}</label>
                                     <input type="checkbox" name={hability.toLowerCase()} />
                                 </span>
                             ))}
@@ -122,6 +124,7 @@ const VoluntaryRegister = () => {
                         <input type="password" placeholder="Confirme sua senha" name="senha_confirmacao" required />
                         <input name="foto" required type="file" onChange={handleFileChange} />
                         {fileError && <p className="error">{fileError}</p>}
+                        {formError && <p className="error">{formError}</p>}
                         <div className="Buttons">
                             <button type="submit">Continuar</button>
                         </div>

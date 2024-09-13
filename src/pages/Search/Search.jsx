@@ -159,7 +159,7 @@ const Search = () => {
                     <div>
                         <span className="material-symbols-outlined">search</span>
                         <span onClick={handleProfileRedirect} className="material-symbols-outlined">account_circle</span>
-                        {userType === "voluntary" && <span onClick={() => navigate('/maps')} className="material-symbols-outlined">location_on</span>}
+                        {/* {userType === "voluntary" && <span onClick={() => navigate('/maps')} className="material-symbols-outlined">location_on</span>} */}
                     </div>
                 </nav>
             </header>
@@ -179,7 +179,7 @@ const Search = () => {
                         <option value="">{userType === "ong" ? "Selecionar habilidades" : "Selecionar temas"}</option>
                         {items.map((item, index) => (
                             <option key={index} value={item}>
-                                {item}
+                                {item.replace("_", " ")}
                             </option>
                         ))}
                     </select>
@@ -201,7 +201,7 @@ const Search = () => {
                                 imgsrc={card.profilePicture}
                                 nome={card.name}
                                 descricao={card.description}
-                                topicos={card.items}
+                                topicos={(card.items).replace("_", " ")}
                             />
                         ))
                     )}

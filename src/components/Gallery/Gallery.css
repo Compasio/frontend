@@ -1,0 +1,20 @@
+.Gallery {
+    display: flex;
+    flex-direction: row;
+    gap: 0.25rem;
+    overflow-x: scroll;
+    width: 90%;
+    position: relative;
+    bottom: 0;
+}
+
+.Gallery::-webkit-scrollbar {
+    width: 13rem;         
+}
+
+
+
+.Gallery img {
+   height: auto;
+   width: auto;
+}

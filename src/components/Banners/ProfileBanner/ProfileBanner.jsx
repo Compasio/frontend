@@ -50,26 +50,28 @@ const ProfileBanner = ({ userData, editPerfil, deletePerfil, id }) => {
         />
         <div className="Info">
           <h2>{userType === "ong" ? ong?.ong_name : voluntary?.fullname}</h2>
-          {editPerfil && (
-            <button onClick={redirectEditProfile}>Editar perfil</button>
-          )}
-          {deletePerfil && (
-            <button onClick={reqDelete}>Deletar perfil</button>
-          )}
+          <div>
+            {editPerfil && (
+              <button onClick={redirectEditProfile}>Editar perfil</button>
+            )}
+            {deletePerfil && (
+              <button onClick={reqDelete}>Deletar perfil</button>
+            )}
+          </div>
         </div>
       </div>
       <div className="Badges">
         <div className="Badge">
           {userType === "ong" ?
             ong?.themes.map((theme, index) => (
-              <div key={index} className="badge-item">
-                {theme}
+              <div key={index}>
+                {theme.replace("_", " ")}
               </div>
             ))
             :
             voluntary?.habilities.map((hability, index) => (
               <div key={index}>
-                {hability}
+                {hability.replace("_", " ")}
               </div>
             ))
           }

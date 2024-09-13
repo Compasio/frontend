@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Logo from "../../img/logosemnome.svg";
 import ProfileBanner from "../../components/Banners/ProfileBanner/ProfileBanner";
 import Cookies from "js-cookie";
+import Gallery from "../../components/Gallery/Gallery";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import "./Profile.css";
@@ -16,8 +17,26 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [editPerfil, setEditPerfil] = useState(false)
+  const [gallery, setGallery] = useState([])
   const [deletePerfil, setDeletePerfil] = useState(false)
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const fetchGallery = async () => {
+      try {
+        if (id) {
+          const response = await axios.get(`https://backend-production-ff4c.up.railway.app/ongs/getPictures/${id}`)
+          setGallery(response.data)
+        }
+      }
+      catch (error) {
+        setError("Erro ao buscar dados do perfil.");
+      }
+    }
+
+    fetchGallery()
+  }, [])
+
 
   useEffect(() => {
     const fetchProfileData = async () => {
@@ -68,7 +87,7 @@ const Profile = () => {
   if (error) return <p style={{ color: "red" }}>{error}</p>;
 
   const redirectHome = () => {
-      navigate('/busca')
+    navigate('/busca')
   }
 
   return (
@@ -94,6 +113,8 @@ const Profile = () => {
           id={id}
           currentUserId={currentUserId}
         />
+
+          <Gallery gallery={gallery} />
       </main>
     </div>
   );

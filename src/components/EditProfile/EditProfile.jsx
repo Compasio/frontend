@@ -77,6 +77,7 @@ const EditProfile = () => {
           }
         });
         setFeedbackMessage("Perfil atualizado com sucesso!");
+        window.location.reload();
       } catch (e) {
         console.error("Error:", e.response?.data || e.message);
         setFeedbackMessage("Erro ao atualizar o perfil.");
@@ -124,7 +125,7 @@ const EditProfile = () => {
       <div className="Skills">
         {items.map((item, index) => (
           <span key={index}>
-            <label htmlFor={item.toLowerCase()}>{item}</label>
+            <label htmlFor={item.toLowerCase()}>{item.replace("_", " ")}</label>
             <input type="checkbox" name={item} id={item.toLowerCase()} />
           </span>
         ))}

@@ -51,15 +51,9 @@
   color: var(--green-one);
 }
 
-.Profile header .Shadow {
+.Shadow {
   height: 30vh;
   background: linear-gradient(to bottom, var(--green-one), var(--green-two));
   position: relative;
-}
-
-.Profile main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
+  z-index: 1;
 }

@@ -125,7 +125,7 @@ const EditProfile = () => {
       <div className="Skills">
         {items.map((item, index) => (
           <span key={index}>
-            <label htmlFor={item.toLowerCase()}>{item.replace("_", " ")}</label>
+            <label htmlFor={item.toLowerCase()}>{item}</label>
             <input type="checkbox" name={item} id={item.toLowerCase()} />
           </span>
         ))}

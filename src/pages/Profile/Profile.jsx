@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import Logo from "../../img/logosemnome.svg";
 import ProfileBanner from "../../components/Banners/ProfileBanner/ProfileBanner";
 import Cookies from "js-cookie";
-import Gallery from "../../components/Gallery/Gallery";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import "./Profile.css";
@@ -17,7 +16,7 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [editPerfil, setEditPerfil] = useState(false)
-  const [gallery, setGallery] = useState([])
+  const [gallery, setGallery] = useState([]);
   const [deletePerfil, setDeletePerfil] = useState(false)
   const navigate = useNavigate()
 
@@ -25,17 +24,17 @@ const Profile = () => {
     const fetchGallery = async () => {
       try {
         if (id) {
-          const response = await axios.get(`https://backend-production-ff4c.up.railway.app/ongs/getPictures/${id}`)
-          setGallery(response.data)
+          const response = await axios.get(`https://backend-production-ff4c.up.railway.app/ongs/getPictures/${id}`);
+          setGallery(response.data.pictures || []);
         }
-      }
-      catch (error) {
+      } catch (error) {
         setError("Erro ao buscar dados do perfil.");
       }
-    }
+    };
 
-    fetchGallery()
-  }, [])
+    fetchGallery();
+  }, [id]);
+
 
 
   useEffect(() => {
@@ -112,9 +111,8 @@ const Profile = () => {
           userData={userData}
           id={id}
           currentUserId={currentUserId}
+          gallery={gallery}
         />
-
-          <Gallery gallery={gallery} />
       </main>
     </div>
   );

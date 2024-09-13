@@ -5,10 +5,10 @@ import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const ProfileBanner = ({ userData, editPerfil, deletePerfil, id }) => {
+const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery }) => {
   const { userType, ong, voluntary, ImageResource } = userData || {};
   const [isEditProfileVisible, setIsEditProfileVisible] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const redirectEditProfile = () => {
     setIsEditProfileVisible(true);
@@ -26,20 +26,19 @@ const ProfileBanner = ({ userData, editPerfil, deletePerfil, id }) => {
         headers: {
           'Authorization': `Bearer ${token}`
         }
-      })
-      Cookies.remove('token', 'userType')
-      navigate('/')
-    }
-    else if (userType === "voluntary") {
+      });
+      Cookies.remove('token', 'userType');
+      navigate('/');
+    } else if (userType === "voluntary") {
       axios.delete(`https://backend-production-ff4c.up.railway.app/voluntarys/removeVoluntary/${id}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
-      })
-      Cookies.remove('token', 'userType')
-      navigate('/')
+      });
+      Cookies.remove('token', 'userType');
+      navigate('/');
     }
-  }
+  };
 
   return (
     <div className="ProfileBanner">
@@ -62,16 +61,16 @@ const ProfileBanner = ({ userData, editPerfil, deletePerfil, id }) => {
       </div>
       <div className="Badges">
         <div className="Badge">
-          {userType === "ong" ?
+          {userType === "ong" ? 
             ong?.themes.map((theme, index) => (
               <div key={index}>
-                {theme.replace("_", " ")}
+                {theme}
               </div>
             ))
             :
             voluntary?.habilities.map((hability, index) => (
               <div key={index}>
-                {hability.replace("_", " ")}
+                {hability}
               </div>
             ))
           }
@@ -82,7 +81,13 @@ const ProfileBanner = ({ userData, editPerfil, deletePerfil, id }) => {
         <h3>Sobre mim</h3>
         <p>{userType === "ong" ? ong?.description : voluntary?.description}</p>
       </div>
-
+      {userType === "ong" && (Array.isArray(gallery) && gallery.length > 0) && (
+        <div className="Gallery">
+          {gallery.map((picture) => (
+            <img key={picture.id} src={picture.url} alt="" />
+          ))}
+        </div>
+      )}
       {isEditProfileVisible && (
         <div className="Overlay">
           <div className="Modal">

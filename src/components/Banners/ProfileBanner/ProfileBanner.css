@@ -1,18 +1,18 @@
 .ProfileBanner {
-  background-color: #f5f7fa;
+  background-color: var(--white);
   border-radius: 1rem;
   padding: 2%;
   width: 50rem;
-  position: absolute;
-  top: -40%;
+  position: relative;
   display: flex;
   flex-direction: column;
+  top: -5rem; 
   gap: 1rem;
   left: 50%;
   transform: translateX(-50%);
   box-shadow: 1px 1px 4px var(--black);
+  z-index: 10; 
 }
-
 .Container {
   display: flex;
   align-items: center;
@@ -65,7 +65,6 @@
   background-color: #ff2b2b;
 }
 
-
 .Badges {
   display: flex;
   gap: 1rem;
@@ -93,8 +92,20 @@
   padding: 2%;
 }
 
+.Gallery {
+  overflow-x: scroll;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.Gallery img {
+  height: auto;
+  width: auto;
+}
+
 .Overlay {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;

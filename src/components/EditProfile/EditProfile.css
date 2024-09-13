@@ -1,36 +1,66 @@
 .EditProfile {
   display: flex;
-  justify-content: center;
-  gap: 1rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: var(--white);
+  border-radius: 0.5rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+.EditProfile textarea, 
+.EditProfile input[type="text"], 
+.EditProfile input[type="date"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: 0.063rem solid #ccc; 
+  border-radius: 0.25rem; 
+  font-size: 1rem;
+  font-family: inherit;
+  resize: none;
 }
 
 .EditProfile textarea {
-  width: 30rem;
-  height: 2.5rem;
-  resize: none;
-  padding: 1%;
+  height: 5rem; 
 }
 
 .EditProfile .Skills {
-  width: min-content;
-  height: 20rem;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  width: 100%;
+  max-height: 20rem;
+  overflow-y: auto;
+  border: 0.063rem solid #ccc;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
 }
 
 .EditProfile .Skills span {
   display: flex;
-  width: min-content;
-  flex-direction: row;
   justify-content: space-between;
-  padding: 0 5% 0 2%;
-  width: 100%;
+  align-items: center;
+  padding: 0.5rem;
   background-color: var(--green-two);
   color: var(--white);
-  align-items: center;
   font-family: inherit;
+  margin-bottom: 0.5rem;
 }
 
-.EditProfile form .Skills span>input[type="checkbox"] {
-  width: 15%;
+.EditProfile .Skills span input {
+  width: 1rem;
+  height: 1rem;
+}
+
+.EditProfile button {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--green-two);
+  color: var(--white);
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.EditProfile button:hover {
+  background-color: var(--green-one);
 }

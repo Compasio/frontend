@@ -30,7 +30,7 @@ const Profile = () => {
           setCurrentUserId(numericUserId);
           setUserType(decodedToken.userType);
 
-          if (decodedToken.userType === "ong") {
+          if (userType === "ong") {
             if (numericUserId === numericProfileId) {
               url = `https://backend-production-ff4c.up.railway.app/ongs/getOngById/${numericProfileId}`;
               setEditPerfil(true)
@@ -57,7 +57,7 @@ const Profile = () => {
     };
 
     fetchProfileData();
-  }, [id]);
+  }, [id, userType]);
 
   if (loading) return <p>Carregando...</p>;
   if (error) return <p style={{ color: "red" }}>{error}</p>;

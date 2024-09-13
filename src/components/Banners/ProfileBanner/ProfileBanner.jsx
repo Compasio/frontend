@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './ProfileBanner.css';
 import EditProfile from '../../EditProfile/EditProfile';
 
-const ProfileBanner = ({ userData, editPerfil, currentUserId }) => {
+const ProfileBanner = ({ userData, editPerfil }) => {
   const { userType, ong, voluntary, ImageResource } = userData || {};
   const [isEditProfileVisible, setIsEditProfileVisible] = useState(false);
 

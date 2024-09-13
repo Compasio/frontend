@@ -8,7 +8,9 @@ const EditProfile = () => {
   const [items, setItems] = useState([]);
   const [userType, setUserType] = useState("");
   const [userId, setUserId] = useState("");
-  const [fullName, setFullName] = useState("");
+  const [fullname, setFullName] = useState("");
+  const [birthDate, setBirthDate] = useState("");
+  const [ongName, setOngName] = useState("");
   const [feedbackMessage, setFeedbackMessage] = useState("");
 
   useEffect(() => {
@@ -48,20 +50,18 @@ const EditProfile = () => {
     event.preventDefault();
     const form = event.target;
     const description = form.descricao.value.trim();
+    
     const selectedItems = Array.from(form.querySelectorAll('input[type="checkbox"]:checked')).map(checkbox => checkbox.name);
 
     if (description && selectedItems.length > 0) {
-      if (userType === "voluntary" && !fullName) {
-        setFeedbackMessage("O nome completo é obrigatório para voluntários.");
-        return;
-      }
-
       const userData = userType === "voluntary" ? {
         description: description,
-        fullName: fullName,
+        fullname: fullname  ,
+        birthDate: birthDate,
         habilities: selectedItems
       } : {
         description: description,
+        ong_name: ongName,
         themes: selectedItems
       };
 
@@ -92,11 +92,30 @@ const EditProfile = () => {
       {feedbackMessage && <p>{feedbackMessage}</p>}
 
       {userType === "voluntary" && (
+        <>
+          <input
+            type="text"
+            value={fullname}
+            onChange={(e) => setFullName(e.target.value)}
+            placeholder="Nome Completo"
+            required
+          />
+          <input
+            type="date"
+            value={birthDate}
+            onChange={(e) => setBirthDate(e.target.value)}
+            placeholder="Data de Nascimento"
+            required
+          />
+        </>
+      )}
+
+      {userType === "ong" && (
         <input
           type="text"
-          value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
-          placeholder="Nome Completo"
+          value={ongName}
+          onChange={(e) => setOngName(e.target.value)}
+          placeholder="Nome da ONG"
           required
         />
       )}

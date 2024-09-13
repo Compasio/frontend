@@ -5,9 +5,10 @@ import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery, logout }) => {
+const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery, logout, addImg }) => {
   const { userType, ong, voluntary, ImageResource } = userData || {};
   const [isEditProfileVisible, setIsEditProfileVisible] = useState(false);
+  const [galleryImages, setGalleryImages] = useState(gallery || []);
   const navigate = useNavigate();
 
   const redirectEditProfile = () => {
@@ -42,7 +43,7 @@ const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery, logout
 
   const reqLogout = async () => {
     const token = Cookies.get('token');
-  
+
     try {
       await axios.post(`https://backend-production-ff4c.up.railway.app/auth/logoutUser`, {}, {
         headers: {
@@ -55,7 +56,31 @@ const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery, logout
     } catch (error) {
       console.error('Erro ao fazer logout:', error);
     }
-  }  
+  }
+
+  // const handleAddImage = async (event) => {
+  //   const file = event.target.files[0];
+
+  //   if (!file) return;
+
+  //   const token = Cookies.get('token');
+  //   const formData = new FormData();
+  //   formData.append('image', file);
+  //   formData.append('id', id);
+
+  //   try {
+  //     const response = await axios.post(`https://backend-production-ff4c.up.railway.app/ongs/postPicture`, formData, {
+  //       headers: {
+  //         'Authorization': `Bearer ${token}`,
+  //         'Content-Type': 'multipart/form-data'
+  //       }
+  //     });
+
+  //     setGalleryImages([...galleryImages, response.data]);
+  //   } catch (error) {
+  //     console.error('Erro ao adicionar a imagem:', error);
+  //   }
+  // };
 
   return (
     <div className="ProfileBanner">
@@ -101,11 +126,14 @@ const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery, logout
         <h3>Sobre mim</h3>
         <p>{userType === "ong" ? ong?.description : voluntary?.description}</p>
       </div>
-      {userType === "ong" && (Array.isArray(gallery) && gallery.length > 0) && (
+      {userType === "ong" && (
         <div className="Gallery">
-          {gallery.map((picture) => (
+          {galleryImages.map((picture) => (
             <img key={picture.id} src={picture.url} alt="" />
-          ))}     
+          ))}
+          {/* {addImg && (
+            <input type="file" onChange={handleAddImage} />
+          )} */}
         </div>
       )}
       {isEditProfileVisible && (

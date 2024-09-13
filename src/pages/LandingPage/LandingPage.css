@@ -36,8 +36,7 @@
 
 .LandingPage .Presentation {
   background-image: url("../../img/landingpagebackground.jpg");
-  filter: brightness(85%);
-  
+  filter: brightness(90%);
   width: 100%;
   height: 80vh;
   background-repeat: no-repeat;

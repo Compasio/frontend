@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Logo from "../../img/logocomnome.svg"
 import Img1 from "../../img/landingpageimg1.jpeg"
 import Img2 from "../../img/landingpageimg2.jpg"
-
+    
 const LandingPage = () => {
     const navigate = useNavigate()
 
@@ -57,9 +57,9 @@ const LandingPage = () => {
                         <p>A Compasio conecta quem tem e quem precisa,
                             executamos uma associação com programas e projetos variados com foco nas pessoas.
                             Clique no coração abaixo para fazer sua contribuição!</p>
-                            <span onClick={() => navigate('/doacao')} className="material-symbols-outlined">
-                                heart_plus
-                            </span>
+                        <span onClick={() => navigate('/doacao')} className="material-symbols-outlined">
+                            heart_plus
+                        </span>
                     </div>
                 </div>
             </section>

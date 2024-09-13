@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery }) => {
+const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery, logout }) => {
   const { userType, ong, voluntary, ImageResource } = userData || {};
   const [isEditProfileVisible, setIsEditProfileVisible] = useState(false);
   const navigate = useNavigate();
@@ -40,6 +40,23 @@ const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery }) => {
     }
   };
 
+  const reqLogout = async () => {
+    const token = Cookies.get('token');
+  
+    try {
+      await axios.post(`https://backend-production-ff4c.up.railway.app/auth/logoutUser`, {}, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      Cookies.remove('token');
+      Cookies.remove('userType');
+      navigate('/login');
+    } catch (error) {
+      console.error('Erro ao fazer logout:', error);
+    }
+  }  
+
   return (
     <div className="ProfileBanner">
       <div className="Container">
@@ -56,12 +73,15 @@ const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery }) => {
             {deletePerfil && (
               <button onClick={reqDelete}>Deletar perfil</button>
             )}
+            {logout && (
+              <button onClick={reqLogout}>Sair</button>
+            )}
           </div>
         </div>
       </div>
       <div className="Badges">
         <div className="Badge">
-          {userType === "ong" ? 
+          {userType === "ong" ?
             ong?.themes.map((theme, index) => (
               <div key={index}>
                 {theme}

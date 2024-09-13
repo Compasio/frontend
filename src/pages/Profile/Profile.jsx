@@ -18,6 +18,7 @@ const Profile = () => {
   const [editPerfil, setEditPerfil] = useState(false)
   const [gallery, setGallery] = useState([]);
   const [deletePerfil, setDeletePerfil] = useState(false)
+  const [logout, setLogout] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -56,6 +57,7 @@ const Profile = () => {
               url = `https://backend-production-ff4c.up.railway.app/ongs/getOngById/${numericProfileId}`;
               setEditPerfil(true)
               setDeletePerfil(true)
+              setLogout(true)
             } else {
               url = `https://backend-production-ff4c.up.railway.app/voluntarys/getVoluntaryById/${numericProfileId}`;
             }
@@ -64,6 +66,7 @@ const Profile = () => {
               url = `https://backend-production-ff4c.up.railway.app/voluntarys/getVoluntaryById/${numericProfileId}`;
               setEditPerfil(true)
               setDeletePerfil(true)
+              setLogout(true)
             } else {
               url = `https://backend-production-ff4c.up.railway.app/ongs/getOngById/${numericProfileId}`;
             }
@@ -89,6 +92,10 @@ const Profile = () => {
     navigate('/busca')
   }
 
+  const handleProfileRedirect = () => {
+    navigate(`/perfil/${currentUserId}`);
+  }
+
   return (
     <div className="Profile">
       <header>
@@ -99,7 +106,7 @@ const Profile = () => {
           </figure>
           <div>
             <span onClick={redirectHome} className="material-symbols-outlined">search</span>
-            <span className="material-symbols-outlined">account_circle</span>
+            <span onClick={handleProfileRedirect} className="material-symbols-outlined">account_circle</span>
           </div>
         </nav>
         <div className="Shadow"></div>
@@ -112,6 +119,7 @@ const Profile = () => {
           id={id}
           currentUserId={currentUserId}
           gallery={gallery}
+          logout={logout}
         />
       </main>
     </div>

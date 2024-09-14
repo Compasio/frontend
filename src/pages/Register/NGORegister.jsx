@@ -9,7 +9,7 @@ const NGORegister = () => {
     const [ngoDetails, setNgoDetails] = useState({});
     const [ngoList, setNgoList] = useState([]);
     const [fileError, setFileError] = useState("");
-    const [formError, setFormError] = useState(""); 
+    const [formError, setFormError] = useState("");
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -50,10 +50,10 @@ const NGORegister = () => {
             ngoData.append('cpf_founder', cpf);
             ngoData.append('password', password);
             ngoData.append('file', file);
-            
+
             setNgoDetails(ngoData);
             setFirstInputsFilled(true);
-            setFormError(""); 
+            setFormError("");
         } else {
             setFormError("Por favor, preencha todos os campos corretamente, verifique a confirmação da senha e selecione uma foto de perfil.");
         }
@@ -97,8 +97,8 @@ const NGORegister = () => {
                         <div className="Skills">
                             {ngoList.map(theme => (
                                 <span key={theme} id={theme}>
-                                    <label htmlFor={theme.toLowerCase()}>{theme.replace(/_/g, ' ')}</label>
-                                    <input type="checkbox" name={theme.toLowerCase()} />
+                                    <label htmlFor={theme.toLowerCase()}>{theme}</label>
+                                    <input type="checkbox" name={theme.toLowerCase().replace(/_/g, ' ')} />
                                 </span>
                             ))}
                         </div>
@@ -112,13 +112,14 @@ const NGORegister = () => {
                         <h2>Crie sua Organização!</h2>
                         <input type="text" placeholder="Nome da ONG" name="nome" required />
                         <input type="email" placeholder="Email" name="email" required />
-                        <input type="text" placeholder="CNPJ" name="cnpj" required />
-                        <input type="text" placeholder="CPF do fundador" name="cpf" required />
-                        <input type="password" placeholder="Senha" name="senha" required />
+                        <input type="text" placeholder="CNPJ (apenas números)" name="cnpj" required />
+                        <input type="text" placeholder="CPF do fundador (apenas números)" name="cpf" required />
+                        <input type="password" placeholder="Senha (min: 8, 1 simbolo, 1 número e 1 letra maiúscula)" name="senha" required />
                         <input type="password" placeholder="Confirme sua senha" name="senha_confirmacao" required />
                         <input name="foto" type="file" onChange={handleFileChange} />
+                        <label htmlFor="foto">Foto de Perfil</label>
                         {fileError && <p className="error">{fileError}</p>}
-                        {formError && <p className="error">{formError}</p>} 
+                        {formError && <p className="error">{formError}</p>}
                         <div className="Buttons">
                             <button type="submit">Continuar</button>
                         </div>

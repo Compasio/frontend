@@ -118,10 +118,11 @@ const VoluntaryRegister = () => {
                         <h2>Crie sua conta!</h2>
                         <input type="text" placeholder="Nome completo" name="nome" required />
                         <input type="date" name="data_nascimento" required />
-                        <input type="text" placeholder="CPF" name="cpf" required />
+                        <input type="text" placeholder="CPF (apenas números)" name="cpf" required />
                         <input type="email" placeholder="Email" name="email" required />
-                        <input type="password" placeholder="Senha" name="senha" required />
+                        <input type="password" placeholder="Senha (min: 8, 1 simbolo, 1 número e 1 letra maiúscula)" name="senha" required />
                         <input type="password" placeholder="Confirme sua senha" name="senha_confirmacao" required />
+                        <label htmlFor="foto">Foto de Perfil</label>
                         <input name="foto" required type="file" onChange={handleFileChange} />
                         {fileError && <p className="error">{fileError}</p>}
                         {formError && <p className="error">{formError}</p>}

@@ -3,7 +3,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import defaultImg from '../../img/defaultImg.png';
-import Logo from "../../img/logosemnome.svg"
+import Logo from "../../img/logosemnome.svg";
 import "./Search.css";
 import Card from "../../components/Card/Card";
 import { useNavigate } from "react-router-dom";
@@ -18,6 +18,7 @@ const Search = () => {
     const [page, setPage] = useState(1);
     const [userType, setUserType] = useState("");
     const [userId, setUserId] = useState("");
+    const [hasMoreResults, setHasMoreResults] = useState(true); 
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -49,7 +50,7 @@ const Search = () => {
                 } catch {
                     setError(userType === "ong" ? "Erro ao buscar habilidades." : "Erro ao buscar temas.");
                 }
-            };
+            }
         }
         fetchItems();
     }, [userType]);
@@ -124,17 +125,18 @@ const Search = () => {
 
                     setCards(formattedData || []);
                     setError("");
+
+                    setHasMoreResults(formattedData.length === 8);
                 } catch (err) {
                     console.error("Erro:", err.response?.data || err.message);
                     setError(err.response?.status === 404 ? "Nenhum resultado encontrado." : "Erro ao buscar dados.");
                 } finally {
                     setLoading(false);
                 }
-            };
+            }
         }
         fetchData();
     }, [page, selectedItem, name, userType]);
-
 
     const handleItemChange = (e) => {
         setSelectedItem(e.target.value);
@@ -148,6 +150,12 @@ const Search = () => {
         navigate(`/perfil/${userId}`);
     };
 
+    const handleNextPage = () => {
+        if (hasMoreResults) {
+            setPage(prevPage => prevPage + 1);
+        }
+    };
+
     return (
         <div className="Search">
             <header>
@@ -159,7 +167,7 @@ const Search = () => {
                     <div>
                         <span className="material-symbols-outlined">search</span>
                         <span onClick={handleProfileRedirect} className="material-symbols-outlined">account_circle</span>
-                        {/* {userType === "voluntary" && <span onClick={() => navigate('/maps')} className="material-symbols-outlined">location_on</span>} */}
+                        {userType === "voluntary" && <span onClick={() => navigate('/maps')} className="material-symbols-outlined">location_on</span>}
                     </div>
                 </nav>
             </header>
@@ -174,7 +182,6 @@ const Search = () => {
                     <select
                         value={selectedItem}
                         onChange={handleItemChange}
-
                     >
                         <option value="">{userType === "ong" ? "Selecionar habilidades" : "Selecionar temas"}</option>
                         {items.map((item, index) => (
@@ -186,7 +193,6 @@ const Search = () => {
 
                     <button onClick={clearFilters}>Limpar filtro</button>
                 </div>
-
 
                 <div className="Cards">
                     {loading ? (
@@ -211,7 +217,7 @@ const Search = () => {
                 <span className="material-symbols-outlined" onClick={() => setPage(prevPage => Math.max(prevPage - 1, 1))}>
                     arrow_back
                 </span>
-                <span className="material-symbols-outlined" onClick={() => setPage(prevPage => prevPage + 1)}>
+                <span className="material-symbols-outlined" onClick={handleNextPage}>
                     arrow_forward
                 </span>
             </footer>

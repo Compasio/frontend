@@ -11,6 +11,8 @@ const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery, logout
   const [galleryImages, setGalleryImages] = useState(gallery || []);
   const navigate = useNavigate();
 
+  const numericId = Number(id);
+
   const redirectEditProfile = () => {
     setIsEditProfileVisible(true);
   };
@@ -23,7 +25,7 @@ const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery, logout
     const token = Cookies.get('token');
 
     if (userType === "ong") {
-      axios.delete(`https://backend-production-ff4c.up.railway.app/ongs/removeOng/${id}`, {
+      axios.delete(`https://backend-production-ff4c.up.railway.app/ongs/removeOng/${numericId}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -31,7 +33,7 @@ const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery, logout
       Cookies.remove('token', 'userType');
       navigate('/');
     } else if (userType === "voluntary") {
-      axios.delete(`https://backend-production-ff4c.up.railway.app/voluntarys/removeVoluntary/${id}`, {
+      axios.delete(`https://backend-production-ff4c.up.railway.app/voluntarys/removeVoluntary/${numericId}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -58,30 +60,44 @@ const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery, logout
     }
   }
 
-  // const handleAddImage = async (event) => {
-  //   const file = event.target.files[0];
-
-  //   if (!file) return;
-
-  //   const token = Cookies.get('token');
-  //   const formData = new FormData();
-  //   formData.append('image', file);
-  //   formData.append('id', id);
-
-  //   try {
-  //     const response = await axios.post(`https://backend-production-ff4c.up.railway.app/ongs/postPicture`, formData, {
-  //       headers: {
-  //         'Authorization': `Bearer ${token}`,
-  //         'Content-Type': 'multipart/form-data'
-  //       }
-  //     });
-
-  //     setGalleryImages([...galleryImages, response.data]);
-  //   } catch (error) {
-  //     console.error('Erro ao adicionar a imagem:', error);
-  //   }
-  // };
-
+  const handleAddImage = async (event) => {
+    const allFiles = event.target.files;
+  
+    if (allFiles.length === 0) {
+      console.error('Nenhum arquivo selecionado.');
+      return;
+    }
+  
+    const maxFilesPerUpload = 5;
+  
+    if (allFiles.length > maxFilesPerUpload) {
+      console.error(`Você pode adicionar no máximo ${maxFilesPerUpload} imagens por vez.`);
+      return;
+    }
+  
+    const token = Cookies.get('token');
+  
+    try {
+      const uploadedImages = [];
+      for (const file of allFiles) {
+        const formData = new FormData();
+        formData.append('files', file); 
+        formData.append('id', numericId); 
+  
+        const response = await axios.post('https://backend-production-ff4c.up.railway.app/ongs/postPicture', formData, {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        });
+  
+        uploadedImages.push(response.data);
+      }
+      setGalleryImages([...galleryImages, ...uploadedImages]);
+    } catch (error) {
+      console.error('Erro ao adicionar a(s) imagem(ns):', error);
+    }
+  };
+  
   return (
     <div className="ProfileBanner">
       <div className="Container">
@@ -131,9 +147,9 @@ const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery, logout
           {galleryImages.map((picture) => (
             <img key={picture.id} src={picture.url} alt="" />
           ))}
-          {/* {addImg && (
+          {addImg && (
             <input type="file" onChange={handleAddImage} />
-          )} */}
+          )}
         </div>
       )}
       {isEditProfileVisible && (

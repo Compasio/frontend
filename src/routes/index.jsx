@@ -6,6 +6,7 @@ import Search from '../pages/Search/Search';
 import Login from '../pages/Login/Login';
 import Profile from '../pages/Profile/Profile';
 import VoluntaryRegister from '../pages/Register/VoluntaryRegister';
+import Maps from '../pages/Maps/Maps';
 import PasswordRecovery from '../pages/Login/PasswordRecovery';
 import NGORegister from '../pages/Register/NGORegister';
 import TwoFactorAuthentication from '../pages/Register/TwoFactorAuthentication';
@@ -20,16 +21,21 @@ export default function WebRoutes() {
 
                     <Route path="/recuperarSenha" element={<PasswordRecovery />} />
 
-                    <Route 
-                        path="/busca" 
-                        element={<PrivateRoute element={<Search />} />} 
+                    <Route
+                        path="/busca"
+                        element={<PrivateRoute element={<Search />} />}
                     />
 
                     <Route path="/login" element={<Login />} />
 
-                    <Route 
-                        path="/perfil/:id" 
-                        element={<PrivateRoute element={<Profile />} />} 
+                    <Route
+                        path="/perfil/:id"
+                        element={<PrivateRoute element={<Profile />} />}
+                    />
+
+                    <Route
+                        path="/maps"
+                        element={<PrivateRoute element={<Maps />} />}
                     />
 
                     <Route path="/criarONG" element={<NGORegister />} />

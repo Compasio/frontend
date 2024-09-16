@@ -15,12 +15,13 @@ const Profile = () => {
   const [currentUserId, setCurrentUserId] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [editPerfil, setEditPerfil] = useState(false)
+  const [editPerfil, setEditPerfil] = useState(false);
   const [gallery, setGallery] = useState([]);
-  const [deletePerfil, setDeletePerfil] = useState(false)
-  const [logout, setLogout] = useState(false)
-  const [addImg, setAddImg] = useState(false)
-  const navigate = useNavigate()
+  const [deletePerfil, setDeletePerfil] = useState(false);
+  const [logout, setLogout] = useState(false);
+  const [addImg, setAddImg] = useState(false);
+  const [isFetching, setIsFetching] = useState(true); 
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchGallery = async () => {
@@ -37,9 +38,13 @@ const Profile = () => {
     fetchGallery();
   }, [id]);
 
-
-
   useEffect(() => {
+    setEditPerfil(false);
+    setDeletePerfil(false);
+    setLogout(false);
+    setAddImg(false);
+    setIsFetching(true); 
+
     const fetchProfileData = async () => {
       try {
         const token = Cookies.get('token');
@@ -59,7 +64,7 @@ const Profile = () => {
               setEditPerfil(true);
               setDeletePerfil(true);
               setLogout(true);
-              setAddImg(true)
+              setAddImg(true);
             } else {
               url = `https://backend-production-ff4c.up.railway.app/voluntarys/getVoluntaryById/${numericProfileId}`;
             }
@@ -81,23 +86,23 @@ const Profile = () => {
         setError("Erro ao buscar dados do perfil.");
       } finally {
         setLoading(false);
+        setIsFetching(false); 
       }
     };
 
     fetchProfileData();
   }, [id, userType]);
 
-
-  if (loading) return <p>Carregando...</p>;
+  if (loading || isFetching) return <p>Carregando...</p>; 
   if (error) return <p style={{ color: "red" }}>{error}</p>;
 
   const redirectHome = () => {
-    navigate('/busca')
-  }
+    navigate('/busca');
+  };
 
   const handleProfileRedirect = () => {
     navigate(`/perfil/${currentUserId}`);
-  }
+  };
 
   return (
     <div className="Profile">
@@ -115,16 +120,18 @@ const Profile = () => {
         <div className="Shadow"></div>
       </header>
       <main>
-        <ProfileBanner
-          editPerfil={editPerfil}
-          deletePerfil={deletePerfil}
-          userData={userData}
-          id={id}
-          currentUserId={currentUserId}
-          gallery={gallery}
-          logout={logout}
-          addImg={addImg}
-        />
+        {!isFetching && (
+          <ProfileBanner
+            editPerfil={editPerfil}
+            deletePerfil={deletePerfil}
+            userData={userData}
+            id={id}
+            currentUserId={currentUserId}
+            gallery={gallery}
+            logout={logout}
+            addImg={addImg}
+          />
+        )}
       </main>
     </div>
   );

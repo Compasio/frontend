@@ -33,7 +33,7 @@ const Maps = () => {
                 .get(`https://backend-production-ff4c.up.railway.app/maps/getNearestOngs/${location.latitude}/${location.longitude}/${10}`)
                 .then((response) => {
                     console.log("ONGs mais próximas:", response.data);
-                    setOngs(response.data); 
+                    setOngs(response.data);
                 })
                 .catch((error) => {
                     console.log("Erro ao obter ONGs:", error.message);
@@ -56,10 +56,10 @@ const Maps = () => {
                     {ongs.map((ong, index) => (
                         <li key={index}>
                             <MapsNGO
-                                img={defaultImg} 
+                                img={defaultImg}
                                 nome={ong.name}
                                 descricao={ong.description}
-                            />  
+                            />
                             <p>Latitude: {location.latitude}</p>
                             <p>Longitude: {location.longitude}</p>
                         </li>

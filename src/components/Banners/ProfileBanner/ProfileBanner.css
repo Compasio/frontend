@@ -6,12 +6,12 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  top: -5rem; 
+  top: -5rem;
   gap: 1rem;
-  left: 50%;
+  left: 30%;
   transform: translateX(-50%);
   box-shadow: 1px 1px 4px var(--black);
-  z-index: 10; 
+  z-index: 10;
 }
 
 .Container {
@@ -38,7 +38,6 @@
   font-size: 1.5rem;
 }
 
-
 .Info div {
   display: flex;
   gap: 0.25rem;
@@ -50,12 +49,9 @@
   padding: 0.5rem;
   width: fit-content;
   border-radius: 1rem;
+  border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
-}
-
-.Info div button:hover {
-  filter: opacity(0.9);
 }
 
 .Info div button:first-child {
@@ -64,7 +60,16 @@
 
 .Info div button:last-child,
 .Info div button:nth-child(2) {
-  background-color: #ff2b2b;
+  background-color: #ff0000;
+}
+
+.Info div button:first-child:hover {
+  background-color: var(--green-two);
+}
+
+.Info div button:last-child:hover,
+.Info div button:nth-child(2):hover {
+  background-color: #ff4343;
 }
 
 .Badges {

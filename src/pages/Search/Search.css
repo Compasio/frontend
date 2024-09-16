@@ -69,7 +69,7 @@
 .Search main .Filter {
     width: 100%;
     display: flex;
-    gap: 1rem;
+    gap: 1.75rem;
     justify-content: center;
     align-items: center;
     position: relative;
@@ -117,6 +117,19 @@
     color: var(--white);
 }
 
+.Search main .Filter .material-symbols-outlined {
+    cursor: pointer;
+    font-size: 1.35rem;
+    background-color: var(--black);
+    border-radius: 100%;
+    color: var(--green-two);
+    transition: color 0.3s ease;
+}
+
+.Search main .Filter .material-symbols-outlined:hover {
+    color: var(--white);
+}
+
 .Search main .Cards {
     width: 100%;
     height: auto;
@@ -125,28 +138,6 @@
     grid-template-rows: repeat(2, auto);
     place-items: center;
     gap: 1.5rem;
-}
-
-.Search footer {
-    width: 100%;
-    height: 4rem;
-    background-color: var(--green-two);
-    box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 2rem;
-}
-
-.Search footer .material-symbols-outlined {
-    cursor: pointer;
-    font-size: 1.5rem;
-    color: var(--white);
-    transition: color 0.3s ease;
-}
-
-.Search footer .material-symbols-outlined:hover {
-    color: var(--green-one);
 }
 
 @media screen and (max-width: 745px) {

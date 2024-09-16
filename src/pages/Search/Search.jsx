@@ -18,7 +18,7 @@ const Search = () => {
     const [page, setPage] = useState(1);
     const [userType, setUserType] = useState("");
     const [userId, setUserId] = useState("");
-    const [hasMoreResults, setHasMoreResults] = useState(true); 
+    const [hasMoreResults, setHasMoreResults] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -140,6 +140,7 @@ const Search = () => {
 
     const handleItemChange = (e) => {
         setSelectedItem(e.target.value);
+        setPage(1);
     };
 
     const clearFilters = () => {
@@ -173,6 +174,9 @@ const Search = () => {
             </header>
             <main>
                 <div className="Filter">
+                    <span className="material-symbols-outlined" onClick={() => setPage(prevPage => Math.max(prevPage - 1, 1))}>
+                        arrow_back
+                    </span>
                     <input
                         type="text"
                         placeholder={userType === "ong" ? "Procurar voluntários" : "Procurar ONGs"}
@@ -190,8 +194,10 @@ const Search = () => {
                             </option>
                         ))}
                     </select>
-
                     <button onClick={clearFilters}>Limpar filtro</button>
+                    <span className="material-symbols-outlined" onClick={handleNextPage}>
+                        arrow_forward
+                    </span>
                 </div>
 
                 <div className="Cards">
@@ -213,14 +219,6 @@ const Search = () => {
                     )}
                 </div>
             </main>
-            <footer>
-                <span className="material-symbols-outlined" onClick={() => setPage(prevPage => Math.max(prevPage - 1, 1))}>
-                    arrow_back
-                </span>
-                <span className="material-symbols-outlined" onClick={handleNextPage}>
-                    arrow_forward
-                </span>
-            </footer>
         </div>
     );
 };

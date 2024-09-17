@@ -61,43 +61,45 @@ const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery, logout
   }
 
   const handleAddImage = async (event) => {
-    const allFiles = event.target.files;
-  
-    if (allFiles.length === 0) {
+    const files = Array.from(event.target.files);
+    console.log(files)
+
+    if (files.length === 0) {
       console.error('Nenhum arquivo selecionado.');
       return;
     }
-  
+
     const maxFilesPerUpload = 5;
-  
-    if (allFiles.length > maxFilesPerUpload) {
+
+    if (files.length > maxFilesPerUpload) {
       console.error(`Você pode adicionar no máximo ${maxFilesPerUpload} imagens por vez.`);
       return;
     }
-  
+
     const token = Cookies.get('token');
-  
+
     try {
       const uploadedImages = [];
-      for (const file of allFiles) {
+      for (const file of files) {
         const formData = new FormData();
-        formData.append('files', file); 
-        formData.append('id', numericId); 
-  
+        formData.append('files', file);
+        formData.append('ong', numericId);
+
         const response = await axios.post('https://backend-production-ff4c.up.railway.app/ongs/postPicture', formData, {
           headers: {
             'Authorization': `Bearer ${token}`,
           },
         });
-  
+
         uploadedImages.push(response.data);
+        console.log(response.data)
       }
       setGalleryImages([...galleryImages, ...uploadedImages]);
     } catch (error) {
       console.error('Erro ao adicionar a(s) imagem(ns):', error);
     }
   };
-  
+
   return (
     <div className="ProfileBanner">
       <div className="Container">

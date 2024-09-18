@@ -5,13 +5,13 @@ import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery, logout, addImg }) => {
+const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery, logout, img }) => {
   const { userType, ong, voluntary, ImageResource } = userData || {};
   const [isEditProfileVisible, setIsEditProfileVisible] = useState(false);
   const [galleryImages, setGalleryImages] = useState(gallery || []);
   const navigate = useNavigate();
-  const fileInputRef = useRef(null); 
-  
+  const fileInputRef = useRef(null);
+
   const redirectEditProfile = () => {
     setIsEditProfileVisible(true);
   };
@@ -57,7 +57,7 @@ const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery, logout
     } catch (error) {
       console.error('Erro ao fazer logout:', error);
     }
-  }
+  };
 
   const handleAddImage = async (event) => {
     const files = event.target.files;
@@ -93,8 +93,25 @@ const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery, logout
         uploadedImages.push(response.data);
       }
       setGalleryImages([...galleryImages, ...uploadedImages]);
+      window.location.reload();
     } catch (error) {
       console.error('Erro ao adicionar a(s) imagem(ns):', error);
+    }
+  };
+
+  const handleDeleteImage = async (pictureId) => {
+    const token = Cookies.get('token');
+
+    try {
+      await axios.delete(`https://backend-production-ff4c.up.railway.app/ongs/deletePictures/${id}/${pictureId}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
+      setGalleryImages(galleryImages.filter(picture => picture.id !== pictureId));
+    } catch (error) {
+      console.error('Erro ao deletar a imagem:', error);
     }
   };
 
@@ -145,19 +162,29 @@ const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery, logout
       {userType === "ong" && (
         <div className="Gallery">
           {galleryImages.map((picture, index) => (
-            <img key={picture.id || index} src={picture.url} alt="" />
+            <div key={picture.id || index}>
+              <img src={picture.url} alt="" />
+              {img && (
+                <span
+                  className="material-symbols-outlined"
+                  onClick={() => handleDeleteImage(picture.id)}
+                >
+                  delete
+                </span>
+              )}
+            </div>
           ))}
-          {addImg && (
+          {img && (
             <>
               <button onClick={() => fileInputRef.current.click()}>
                 Adicionar Imagem
               </button>
               <input
                 type="file"
-                ref={fileInputRef} 
+                ref={fileInputRef}
                 onChange={handleAddImage}
-                style={{ display: 'none' }} 
-                multiple 
+                style={{ display: 'none' }}
+                multiple
               />
             </>
           )}

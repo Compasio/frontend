@@ -19,7 +19,7 @@ const Profile = () => {
   const [gallery, setGallery] = useState([]);
   const [deletePerfil, setDeletePerfil] = useState(false);
   const [logout, setLogout] = useState(false);
-  const [addImg, setAddImg] = useState(false);
+  const [img, setImg] = useState(false);
   const [isFetching, setIsFetching] = useState(true); 
   const navigate = useNavigate();
 
@@ -42,7 +42,7 @@ const Profile = () => {
     setEditPerfil(false);
     setDeletePerfil(false);
     setLogout(false);
-    setAddImg(false);
+    setImg(false);
     setIsFetching(true); 
 
     const fetchProfileData = async () => {
@@ -64,7 +64,7 @@ const Profile = () => {
               setEditPerfil(true);
               setDeletePerfil(true);
               setLogout(true);
-              setAddImg(true);
+              setImg(true);
             } else {
               url = `https://backend-production-ff4c.up.railway.app/voluntarys/getVoluntaryById/${numericProfileId}`;
             }
@@ -129,7 +129,7 @@ const Profile = () => {
             currentUserId={currentUserId}
             gallery={gallery}
             logout={logout}
-            addImg={addImg}
+            img={img}
           />
         )}
       </main>

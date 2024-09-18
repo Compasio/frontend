@@ -112,7 +112,7 @@
 }
 
 .Gallery button {
-  background-color: var(--green-two); 
+  background-color: var(--green-two);
   color: var(--white);
   font-size: 1rem;
   border: none;
@@ -122,12 +122,44 @@
 }
 
 .Gallery button:hover {
-  background-color: var(--green-one); 
+  background-color: var(--green-one);
 }
 
 .Gallery button:active {
   background-color: var(--green-one);
-  transform: scale(0.98); 
+  transform: scale(0.98);
+}
+
+.Gallery div {
+  position: relative;
+  display: inline-block;
+}
+
+.Gallery div img {
+  height: 10rem;
+  width: auto;
+}
+
+.Gallery div span {
+  position: absolute;
+  top: 60%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  color: white;
+  padding: 0.5rem;
+  display: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Gallery div:hover span {
+  display: block;
+}
+
+.Gallery div span:hover {
+  background-color: rgba(255, 0, 0, 0.8);
 }
 
 .Overlay {

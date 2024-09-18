@@ -111,6 +111,25 @@
   width: auto;
 }
 
+.Gallery button {
+  background-color: var(--green-two); 
+  color: var(--white);
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  padding: 1%;
+  transition: background-color 0.3s ease;
+}
+
+.Gallery button:hover {
+  background-color: var(--green-one); 
+}
+
+.Gallery button:active {
+  background-color: var(--green-one);
+  transform: scale(0.98); 
+}
+
 .Overlay {
   position: absolute;
   top: 0;

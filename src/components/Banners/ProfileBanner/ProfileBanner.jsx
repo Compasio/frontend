@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './ProfileBanner.css';
 import EditProfile from '../../EditProfile/EditProfile';
 import Cookies from 'js-cookie';
@@ -10,9 +10,8 @@ const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery, logout
   const [isEditProfileVisible, setIsEditProfileVisible] = useState(false);
   const [galleryImages, setGalleryImages] = useState(gallery || []);
   const navigate = useNavigate();
-
-  const numericId = Number(id);
-
+  const fileInputRef = useRef(null); 
+  
   const redirectEditProfile = () => {
     setIsEditProfileVisible(true);
   };
@@ -25,7 +24,7 @@ const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery, logout
     const token = Cookies.get('token');
 
     if (userType === "ong") {
-      axios.delete(`https://backend-production-ff4c.up.railway.app/ongs/removeOng/${numericId}`, {
+      axios.delete(`https://backend-production-ff4c.up.railway.app/ongs/removeOng/${id}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -33,7 +32,7 @@ const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery, logout
       Cookies.remove('token', 'userType');
       navigate('/');
     } else if (userType === "voluntary") {
-      axios.delete(`https://backend-production-ff4c.up.railway.app/voluntarys/removeVoluntary/${numericId}`, {
+      axios.delete(`https://backend-production-ff4c.up.railway.app/voluntarys/removeVoluntary/${id}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -61,8 +60,7 @@ const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery, logout
   }
 
   const handleAddImage = async (event) => {
-    const files = Array.from(event.target.files);
-    console.log(files)
+    const files = event.target.files;
 
     if (files.length === 0) {
       console.error('Nenhum arquivo selecionado.');
@@ -80,10 +78,11 @@ const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery, logout
 
     try {
       const uploadedImages = [];
+      const idImg = String(id);
       for (const file of files) {
         const formData = new FormData();
         formData.append('files', file);
-        formData.append('ong', numericId);
+        formData.append('id', idImg);
 
         const response = await axios.post('https://backend-production-ff4c.up.railway.app/ongs/postPicture', formData, {
           headers: {
@@ -92,7 +91,6 @@ const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery, logout
         });
 
         uploadedImages.push(response.data);
-        console.log(response.data)
       }
       setGalleryImages([...galleryImages, ...uploadedImages]);
     } catch (error) {
@@ -126,13 +124,13 @@ const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery, logout
         <div className="Badge">
           {userType === "ong" ?
             ong?.themes.map((theme, index) => (
-              <div key={index}>
+              <div key={theme || index}>
                 {theme.replace(/_/g, ' ')}
               </div>
             ))
             :
             voluntary?.habilities.map((hability, index) => (
-              <div key={index}>
+              <div key={hability || index}>
                 {hability.replace(/_/g, ' ')}
               </div>
             ))
@@ -146,11 +144,22 @@ const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery, logout
       </div>
       {userType === "ong" && (
         <div className="Gallery">
-          {galleryImages.map((picture) => (
-            <img key={picture.id} src={picture.url} alt="" />
+          {galleryImages.map((picture, index) => (
+            <img key={picture.id || index} src={picture.url} alt="" />
           ))}
           {addImg && (
-            <input type="file" onChange={handleAddImage} />
+            <>
+              <button onClick={() => fileInputRef.current.click()}>
+                Adicionar Imagem
+              </button>
+              <input
+                type="file"
+                ref={fileInputRef} 
+                onChange={handleAddImage}
+                style={{ display: 'none' }} 
+                multiple 
+              />
+            </>
           )}
         </div>
       )}

@@ -4,11 +4,7 @@ const MapsNGO = (props) => {
 
     return (
         <div className="MapsNGO">
-            <img src={props.img} alt="ong" />
-            <div>
-                <h2>{props.nome}</h2>
-                <p>{props.descricao}</p>
-            </div>
+            <h2>{props.name}</h2>
         </div>
     );
 };

@@ -1,0 +1,13 @@
+.Maps {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+}
+
+.Maps .Near {
+    position: absolute;
+    height: 80vh;
+    width: auto;
+    padding: 1%;
+}

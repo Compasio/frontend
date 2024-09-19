@@ -1,13 +1,12 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import MapsNGO from "../../components/MapsNGO/MapsNGO";
-import defaultImg from '../../img/defaultImg.png'
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import Map from 'react-map-gl';
+import axios from 'axios';
+import MapsNGO from '../../components/MapsNGO/MapsNGO';
+import './Maps.css';
 
-const Maps = () => {
-    const navigate = useNavigate();
+function Maps() {
     const [location, setLocation] = useState({ latitude: null, longitude: null });
-    const [ongs, setOngs] = useState([]);
+    const [ongs, setOngs] = useState([])
 
     useEffect(() => {
         if (navigator.geolocation) {
@@ -29,8 +28,9 @@ const Maps = () => {
 
     useEffect(() => {
         if (location.latitude && location.longitude) {
+            console.log(location.latitude, location.longitude)
             axios
-                .get(`https://backend-production-ff4c.up.railway.app/maps/getNearestOngs/${location.latitude}/${location.longitude}/${10}`)
+                .get(`https://backend-production-ff4c.up.railway.app/maps/getNearestOngs/${location.latitude}/${location.longitude}/${20}`)
                 .then((response) => {
                     console.log("ONGs mais próximas:", response.data);
                     setOngs(response.data);
@@ -41,33 +41,33 @@ const Maps = () => {
         }
     }, [location]);
 
+    if (location.latitude === null || location.longitude === null) {
+        return null;
+    }
+
+
     return (
-        <div className="Maps">
-            <header>
-                <span onClick={() => navigate('/buscarONG')} className="material-symbols-outlined">
-                    arrow_back
-                </span>
-                <h1>Encontrar ONGs em sua região</h1>
-                <input placeholder="Procure pelo endereço/nome" type="text" name="" />
-            </header>
-            <main>
-                <section></section>
-                <ul>
-                    {ongs.map((ong, index) => (
-                        <li key={index}>
-                            <MapsNGO
-                                img={defaultImg}
-                                nome={ong.name}
-                                descricao={ong.description}
-                            />
-                            <p>Latitude: {location.latitude}</p>
-                            <p>Longitude: {location.longitude}</p>
-                        </li>
-                    ))}
-                </ul>
-            </main>
+        <div className='Maps'>
+            <Map
+                mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+                initialViewState={{
+                    longitude: location.longitude,
+                    latitude: location.latitude,
+                    zoom: 15,
+                }}
+                mapStyle="mapbox://styles/mapbox/streets-v9"
+            />
+
+            <section className='Near'>
+                {ongs.map(ong => (
+                    <MapsNGO
+                        key={ong.id_user}
+                        nome={ong.ong_name}
+                    />
+                ))}
+            </section>
         </div>
     );
-};
+}
 
 export default Maps;

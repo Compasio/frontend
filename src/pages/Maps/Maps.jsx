@@ -32,7 +32,6 @@ function Maps() {
             axios
                 .get(`https://backend-production-ff4c.up.railway.app/maps/getNearestOngs/${location.latitude}/${location.longitude}/${20}`)
                 .then((response) => {
-                    console.log("ONGs mais próximas:", response.data);
                     setOngs(response.data);
                 })
                 .catch((error) => {
@@ -46,7 +45,6 @@ function Maps() {
             axios
                 .get(`https://backend-production-ff4c.up.railway.app/maps/getAddressFromOng/${searchTerm}`)
                 .then((response) => {
-                    console.log("Endereços de ONGs:", response.data);
                     setOngs(response.data);
                     if (response.data.length > 0 && response.data[0].lat && response.data[0].lng) {
                         setLocation({

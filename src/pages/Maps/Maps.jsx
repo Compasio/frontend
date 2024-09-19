@@ -8,7 +8,6 @@ function Maps() {
     const [location, setLocation] = useState({ latitude: null, longitude: null });
     const [ongs, setOngs] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const [selectedOng, setSelectedOng] = useState(null);
 
     useEffect(() => {
         if (navigator.geolocation) {
@@ -49,19 +48,16 @@ function Maps() {
                 .then((response) => {
                     console.log("Endereços de ONGs:", response.data);
                     setOngs(response.data);
+                    if (response.data.length > 0 && response.data[0].lat && response.data[0].lng) {
+                        setLocation({
+                            latitude: response.data[0].lat,
+                            longitude: response.data[0].lng
+                        });
+                    }
                 })
                 .catch((error) => {
                     console.log("Erro ao buscar ONGs por nome:", error.message);
                 });
-        }
-    };
-
-    const handleOngClick = (ong) => {
-        if (ong.lat && ong.lng) { 
-            setSelectedOng(ong);
-            setLocation({ latitude: ong.lat, longitude: ong.lng });
-        } else {
-            console.log("Coordenadas inválidas para a ONG selecionada.");
         }
     };
 
@@ -73,22 +69,23 @@ function Maps() {
         <div className='Maps'>
             <Map
                 mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-                initialViewState={{
+                viewState={{
                     longitude: location.longitude,
                     latitude: location.latitude,
                     zoom: 15,
                 }}
+                onMove={(evt) => setLocation({
+                    latitude: evt.viewState.latitude,
+                    longitude: evt.viewState.longitude
+                })}
                 mapStyle="mapbox://styles/mapbox/streets-v9"
-                longitude={location.longitude || 0}
-                latitude={location.latitude || 0}
             >
                 {ongs.map(ong => (
-                    ong.lat && ong.lng ? ( 
+                    ong.lat && ong.lng ? (
                         <Marker
-                            key={ong.ongid} 
-                            longitude={ong.lng} 
-                            latitude={ong.lat} 
-                            onClick={() => handleOngClick(ong)}
+                            key={ong.ongid}
+                            longitude={ong.lng}
+                            latitude={ong.lat}
                         >
                             <div className="marker"></div>
                         </Marker>
@@ -97,8 +94,8 @@ function Maps() {
             </Map>
 
             <section className='Near'>
-                <input 
-                    type="text" 
+                <input
+                    type="text"
                     placeholder='Digite o nome da ONG'
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
@@ -107,10 +104,8 @@ function Maps() {
                 <ul>
                     <h2>ONGs encontradas</h2>
                     {ongs.map(ong => (
-                        <li key={ong.ongid} onClick={() => handleOngClick(`perfil/${ong.ongid}`)}>
-                            <MapsNGO
-                                nome={ong.ongname}
-                            />
+                        <li key={ong.ongid}>
+                            <MapsNGO name={ong.ongname} />
                         </li>
                     ))}
                 </ul>

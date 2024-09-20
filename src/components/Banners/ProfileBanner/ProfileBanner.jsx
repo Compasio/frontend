@@ -92,8 +92,9 @@ const ProfileBanner = ({ userData, editPerfil, deletePerfil, id, gallery, logout
 
         uploadedImages.push(response.data);
       }
-      setGalleryImages([...galleryImages, ...uploadedImages]);
-      window.location.reload();
+
+      setGalleryImages(prevImages => [...prevImages, ...uploadedImages]);
+
     } catch (error) {
       console.error('Erro ao adicionar a(s) imagem(ns):', error);
     }

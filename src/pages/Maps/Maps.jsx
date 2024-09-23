@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Map, { Marker } from 'react-map-gl';
 import axios from 'axios';
 import MapsNGO from '../../components/MapsNGO/MapsNGO';
+import Address from '../../components/Address/Address';
 import './Maps.css';
 
 function Maps() {
@@ -58,14 +59,13 @@ function Maps() {
                 const response = await axios.get(
                     `https://backend-production-ff4c.up.railway.app/maps/getAllAddress/${page}`
                 );
-                setOngs(response.data);
+                setAllAddress(response.data.requests);
             } catch (error) {
                 console.log("Erro ao obter ONGs:", error.message);
             }
         };
         getAllOngs();
-    }, []);
-
+    }, [page]);
 
     const handleSearch = async () => {
         if (searchTerm) {
@@ -75,11 +75,15 @@ function Maps() {
                     `https://backend-production-ff4c.up.railway.app/maps/getAddressFromOng/${searchTerm}`
                 );
                 setSearchOngs(response.data);
-                if (response.data.length > 0 && response.data[0].lat && response.data[0].lng) {
-                    setLocation({
-                        latitude: response.data[0].lat,
-                        longitude: response.data[0].lng
-                    });
+                if (response.data.length > 0) {
+                    const { lat, lng } = response.data[0];
+                    const tolerance = 0.001;
+                    if (
+                        Math.abs(location.latitude - lat) > tolerance ||
+                        Math.abs(location.longitude - lng) > tolerance
+                    ) {
+                        setLocation({ latitude: lat, longitude: lng });
+                    }
                 }
             } catch (error) {
                 console.log("Erro ao buscar ONGs por nome:", error.message);
@@ -91,7 +95,6 @@ function Maps() {
 
     const handleMove = (evt) => {
         const { latitude, longitude } = evt.viewState;
-
         const tolerance = 0.0001;
 
         if (
@@ -154,12 +157,25 @@ function Maps() {
 
             <section className='All'>
                 <ul>
-                    <h2>ONGs encontradas</h2>
-                    {(searchOngs.length > 0 ? searchOngs : ongs).map(ong => (
-                        <li key={ong.ongid}>
-                            <MapsNGO name={ong.ongname} />
-                        </li>
-                    ))}
+                    <h2>Todos os endereços de ONGs</h2>
+                    {Array.isArray(allAddress) && allAddress.length > 0 ? (
+                        allAddress.map(ong => (
+                            <li key={ong.id_user}>
+                                <Address
+                                    name={ong.ong_name}
+                                    img={ong.ImageResource && ong.ImageResource.length > 0 ? ong.ImageResource[0].url : null}
+                                    city={ong.city}
+                                    state={ong.state}
+                                    street={ong.street}
+                                    num={ong.num}
+                                    neighborhood={ong.neighborhood}
+                                />
+                            </li>
+                        ))
+                    ) : (
+                        <p>Nenhuma ONG encontrada.</p>
+                    )}
+                    <button onClick={() => setPage(page + 1)}>Carregar mais ONGs</button>
                 </ul>
             </section>
         </div>

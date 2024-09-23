@@ -7,9 +7,11 @@ import './Maps.css';
 function Maps() {
     const [location, setLocation] = useState({ latitude: null, longitude: null });
     const [ongs, setOngs] = useState([]);
-    const [searchOngs, setSearchOngs] = useState([]); 
+    const [searchOngs, setSearchOngs] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const [isSearching, setIsSearching] = useState(false); 
+    const [isSearching, setIsSearching] = useState(false);
+    const [page, setPage] = useState(1);
+    const [allAddress, setAllAddress] = useState([]);
     const locationRef = useRef(location);
 
     useEffect(() => {
@@ -48,16 +50,31 @@ function Maps() {
             }
         };
         fetchOngs();
-    }, [location, isSearching]); 
+    }, [location, isSearching]);
+
+    useEffect(() => {
+        const getAllOngs = async () => {
+            try {
+                const response = await axios.get(
+                    `https://backend-production-ff4c.up.railway.app/maps/getAllAddress/${page}`
+                );
+                setOngs(response.data);
+            } catch (error) {
+                console.log("Erro ao obter ONGs:", error.message);
+            }
+        };
+        getAllOngs();
+    }, []);
+
 
     const handleSearch = async () => {
         if (searchTerm) {
-            setIsSearching(true); 
+            setIsSearching(true);
             try {
                 const response = await axios.get(
                     `https://backend-production-ff4c.up.railway.app/maps/getAddressFromOng/${searchTerm}`
                 );
-                setSearchOngs(response.data); 
+                setSearchOngs(response.data);
                 if (response.data.length > 0 && response.data[0].lat && response.data[0].lng) {
                     setLocation({
                         latitude: response.data[0].lat,
@@ -102,17 +119,17 @@ function Maps() {
                 onMove={handleMove}
                 mapStyle="mapbox://styles/mapbox/streets-v9"
             >
-                {(searchOngs.length > 0 ? searchOngs : ongs).map(ong => ( 
+                {(searchOngs.length > 0 ? searchOngs : ongs).map(ong => (
                     ong.lat && ong.lng ? (
                         <Marker
-                        key={ong.ongid}
-                        longitude={ong.lng}
-                        latitude={ong.lat}
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="red" viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="10" fill="red" />
-                        </svg>
-                    </Marker>                                       
+                            key={ong.ongid}
+                            longitude={ong.lng}
+                            latitude={ong.lat}
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="red" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10" fill="red" />
+                            </svg>
+                        </Marker>
                     ) : null
                 ))}
             </Map>
@@ -127,7 +144,18 @@ function Maps() {
                 <button onClick={handleSearch}>Buscar ONG</button>
                 <ul>
                     <h2>ONGs encontradas</h2>
-                    {(searchOngs.length > 0 ? searchOngs : ongs).map(ong => ( 
+                    {(searchOngs.length > 0 ? searchOngs : ongs).map(ong => (
+                        <li key={ong.ongid}>
+                            <MapsNGO name={ong.ongname} />
+                        </li>
+                    ))}
+                </ul>
+            </section>
+
+            <section className='All'>
+                <ul>
+                    <h2>ONGs encontradas</h2>
+                    {(searchOngs.length > 0 ? searchOngs : ongs).map(ong => (
                         <li key={ong.ongid}>
                             <MapsNGO name={ong.ongname} />
                         </li>

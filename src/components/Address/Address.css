@@ -1,0 +1,24 @@
+.Address {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ccc;
+    padding: 2%;
+    border-radius: 1rem;
+    box-shadow: 1px 1px 5px var(--black);
+}
+
+.Address div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+}
+
+.Address div img {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    object-fit: contain;
+    border: 2px solid var(--green-two);
+}

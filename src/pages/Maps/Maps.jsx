@@ -163,7 +163,7 @@ function Maps() {
                             <li key={ong.id_user}>
                                 <Address
                                     name={ong.ong_name}
-                                    img={ong.ImageResource && ong.ImageResource.length > 0 ? ong.ImageResource[0].url : null}
+                                    img={ong.profilePic}
                                     city={ong.city}
                                     state={ong.state}
                                     street={ong.street}

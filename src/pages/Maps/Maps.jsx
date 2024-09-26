@@ -13,6 +13,7 @@ function Maps() {
     const [isSearching, setIsSearching] = useState(false);
     const [page, setPage] = useState(1);
     const [allAddress, setAllAddress] = useState([]);
+    const [hasMoreOngs, setHasMoreOngs] = useState(true);
     const locationRef = useRef(location);
 
     useEffect(() => {
@@ -53,37 +54,51 @@ function Maps() {
         fetchOngs();
     }, [location, isSearching]);
 
-    useEffect(() => {
-        const getAllOngs = async () => {
-            try {
-                const response = await axios.get(
-                    `https://backend-production-ff4c.up.railway.app/maps/getAllAddress/${page}`
-                );
+    const getAllOngs = async (currentPage) => {
+        try {
+            const response = await axios.get(
+                `https://backend-production-ff4c.up.railway.app/maps/getAllAddress/${currentPage}`
+            );
+
+            if (response.data.requests.length > 0) {
                 setAllAddress(response.data.requests);
-            } catch (error) {
-                console.log("Erro ao obter ONGs:", error.message);
+                setHasMoreOngs(true);
+            } else {
+                setHasMoreOngs(false);
             }
-        };
-        getAllOngs();
+        } catch (error) {
+            console.log("Erro ao obter ONGs:", error.message);
+        }
+    };
+
+    useEffect(() => {
+        getAllOngs(page);
     }, [page]);
 
+    const handleNextPage = () => {
+        if (hasMoreOngs) {
+            setPage((prevPage) => prevPage + 1);
+        }
+    };
+
+    const handlePreviousPage = () => {
+        if (page > 1) {
+            setPage((prevPage) => prevPage - 1);
+        }
+    };
+
     const handleSearch = async () => {
-        if (searchTerm) {
+        const cleanSearchTerm = searchTerm.trim();
+        if (cleanSearchTerm) {
             setIsSearching(true);
             try {
                 const response = await axios.get(
-                    `https://backend-production-ff4c.up.railway.app/maps/getAddressFromOng/${searchTerm}`
+                    `https://backend-production-ff4c.up.railway.app/maps/getAddressFromOng/${cleanSearchTerm}`
                 );
-                setSearchOngs(response.data);
-                if (response.data.length > 0) {
-                    const { lat, lng } = response.data[0];
-                    const tolerance = 0.001;
-                    if (
-                        Math.abs(location.latitude - lat) > tolerance ||
-                        Math.abs(location.longitude - lng) > tolerance
-                    ) {
-                        setLocation({ latitude: lat, longitude: lng });
-                    }
+                if (response.data && Array.isArray(response.data.address)) {
+                    setSearchOngs(response.data.address);
+                } else {
+                    setSearchOngs([]);
                 }
             } catch (error) {
                 console.log("Erro ao buscar ONGs por nome:", error.message);
@@ -91,6 +106,11 @@ function Maps() {
                 setIsSearching(false);
             }
         }
+    };
+
+
+    const goToLocation = (lat, lng) => {
+        setLocation({ latitude: lat, longitude: lng });
     };
 
     const handleMove = (evt) => {
@@ -128,11 +148,8 @@ function Maps() {
                             key={ong.ongid}
                             longitude={ong.lng}
                             latitude={ong.lat}
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="red" viewBox="0 0 24 24">
-                                <circle cx="12" cy="12" r="10" fill="red" />
-                            </svg>
-                        </Marker>
+                            color="red"
+                        />
                     ) : null
                 ))}
             </Map>
@@ -140,16 +157,24 @@ function Maps() {
             <section className='Near'>
                 <input
                     type="text"
-                    placeholder='Digite o nome da ONG'
+                    placeholder='Pesquise o nome da ONG'
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
                 <button onClick={handleSearch}>Buscar ONG</button>
                 <ul>
-                    <h2>ONGs encontradas</h2>
-                    {(searchOngs.length > 0 ? searchOngs : ongs).map(ong => (
+                    {searchOngs.map(ong => (
                         <li key={ong.ongid}>
-                            <MapsNGO name={ong.ongname} />
+                            <MapsNGO
+                                picture={ong.profilePic}
+                                name={ong.ongname}
+                                description={ong.description}
+                                themes={ong.themes.join(', ').replace(/_/g, ' ')}
+                                lat={ong.lat}
+                                lng={ong.lng}
+                                func={() => goToLocation(ong.lat, ong.lng)}
+                            />
+
                         </li>
                     ))}
                 </ul>
@@ -175,8 +200,18 @@ function Maps() {
                     ) : (
                         <p>Nenhuma ONG encontrada.</p>
                     )}
-                    <button onClick={() => setPage(page + 1)}>Carregar mais ONGs</button>
                 </ul>
+                <div className='Options'>
+                    <button
+                        onClick={handlePreviousPage}
+                        disabled={page === 1}
+                    >
+                        Página Anterior
+                    </button>
+                    {hasMoreOngs && (
+                        <button onClick={handleNextPage}>Próxima Página</button>
+                    )}
+                </div>
             </section>
         </div>
     );

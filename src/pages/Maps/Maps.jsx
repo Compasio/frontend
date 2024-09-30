@@ -13,6 +13,7 @@ function Maps() {
     const [isSearching, setIsSearching] = useState(false);
     const [page, setPage] = useState(1);
     const [allAddress, setAllAddress] = useState([]);
+    const [selectedOng, setSelectedOng] = useState(null);
     const [hasMoreOngs, setHasMoreOngs] = useState(true);
     const locationRef = useRef(location);
 
@@ -92,14 +93,16 @@ function Maps() {
         if (cleanSearchTerm) {
             setIsSearching(true);
             try {
-                const response = await axios.get(
-                    `https://backend-production-ff4c.up.railway.app/maps/getAddressFromOng/${cleanSearchTerm}`
-                );
-                if (response.data && Array.isArray(response.data.address)) {
-                    setSearchOngs(response.data.address);
-                } else {
-                    setSearchOngs([]);
-                }
+                const [addressResponse, placeResponse] = await axios.all([
+                    axios.get(`https://backend-production-ff4c.up.railway.app/maps/getAddressFromOng/${cleanSearchTerm}`),
+                    axios.get(`https://backend-production-ff4c.up.railway.app/maps/getOngsByPlace/${cleanSearchTerm}`)
+                ]);
+
+                const addressData = addressResponse.data.address || [];
+                const placeData = placeResponse.data || [];
+
+                setSearchOngs([...addressData, ...placeData]);
+
             } catch (error) {
                 console.log("Erro ao buscar ONGs por nome:", error.message);
             } finally {
@@ -107,7 +110,6 @@ function Maps() {
             }
         }
     };
-
 
     const goToLocation = (lat, lng) => {
         setLocation({ latitude: lat, longitude: lng });
@@ -121,15 +123,19 @@ function Maps() {
             Math.abs(locationRef.current.latitude - latitude) > tolerance ||
             Math.abs(locationRef.current.longitude - longitude) > tolerance
         ) {
-            setLocation({ latitude, longitude });
-            locationRef.current = { latitude, longitude };
+            setLocation((prevLocation) => {
+                if (
+                    Math.abs(prevLocation.latitude - latitude) <= tolerance &&
+                    Math.abs(prevLocation.longitude - longitude) <= tolerance
+                ) {
+                    return prevLocation;
+                }
+
+                locationRef.current = { latitude, longitude };
+                return { latitude, longitude };
+            });
         }
     };
-
-    if (location.latitude === null || location.longitude === null) {
-        return null;
-    }
-
     return (
         <div className='Maps'>
             <Map
@@ -137,27 +143,25 @@ function Maps() {
                 viewState={{
                     longitude: location.longitude,
                     latitude: location.latitude,
-                    zoom: 15,
+                    zoom: 12,
                 }}
                 onMove={handleMove}
                 mapStyle="mapbox://styles/mapbox/streets-v9"
             >
-                {(searchOngs.length > 0 ? searchOngs : ongs).map(ong => (
-                    ong.lat && ong.lng ? (
-                        <Marker
-                            key={ong.ongid}
-                            longitude={ong.lng}
-                            latitude={ong.lat}
-                            color="red"
-                        />
-                    ) : null
-                ))}
+                {selectedOng && selectedOng.lat && selectedOng.lng ? (
+                    <Marker
+                        key={selectedOng.ongid}
+                        longitude={selectedOng.lng}
+                        latitude={selectedOng.lat}
+                        color="green"
+                    />
+                ) : null}
             </Map>
 
             <section className='Near'>
                 <input
                     type="text"
-                    placeholder='Pesquise o nome da ONG'
+                    placeholder='Pesquise por nome ou endereço'
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -167,14 +171,10 @@ function Maps() {
                         <li key={ong.ongid}>
                             <MapsNGO
                                 picture={ong.profilePic}
-                                name={ong.ongname}
+                                name={ong.ong_name}
                                 description={ong.description}
-                                themes={ong.themes.join(', ').replace(/_/g, ' ')}
-                                lat={ong.lat}
-                                lng={ong.lng}
                                 func={() => goToLocation(ong.lat, ong.lng)}
                             />
-
                         </li>
                     ))}
                 </ul>
@@ -194,6 +194,7 @@ function Maps() {
                                     street={ong.street}
                                     num={ong.num}
                                     neighborhood={ong.neighborhood}
+                                    func={() => goToLocation(ong.lat, ong.lng)}
                                 />
                             </li>
                         ))

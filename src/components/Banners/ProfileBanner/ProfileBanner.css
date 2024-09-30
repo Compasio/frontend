@@ -142,8 +142,8 @@
 
 .Gallery div span {
   position: absolute;
-  top: 60%;
-  left: 60%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 50%;

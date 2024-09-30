@@ -82,6 +82,10 @@
     position: relative;
 }
 
+.Search main .Filter span {
+    scale: 1.75;
+}
+
 .Search main .Filter input {
     width: 30%;
     height: 2.5rem;

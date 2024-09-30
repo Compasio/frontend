@@ -9,7 +9,6 @@ const MapsNGO = (props) => {
                 <h1>{props.name}</h1>
             </figure>
             <p>{props.description}</p>
-            <p>{props.themes}</p>
             <button onClick={() => props.func()}>
                 Ir para o local
             </button>

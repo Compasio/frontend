@@ -10,12 +10,19 @@ const VoluntaryRegister = () => {
     const [habilitiesList, setHabilitiesList] = useState([]);
     const [fileError, setFileError] = useState("");
     const [formError, setFormError] = useState("");
+    const [profileImage, setProfileImage] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('https://backend-production-ff4c.up.railway.app/sys/getVoluntaryHabilities')
-            .then(response => setHabilitiesList(response.data))
-            .catch(error => console.error("Houve um erro ao buscar habilidades: ", error));
+        const fetchHabilities = async () => {
+            try {
+                const response = await axios.get('https://backend-production-ff4c.up.railway.app/sys/getVoluntaryHabilities');
+                setHabilitiesList(response.data);
+            } catch (error) {
+                console.error("Houve um erro ao buscar habilidades: ", error);
+            }
+        };
+        fetchHabilities();
     }, []);
 
     const handleFileChange = (event) => {
@@ -27,8 +34,21 @@ const VoluntaryRegister = () => {
                 event.target.value = null;
             } else {
                 setFileError('');
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    setProfileImage(reader.result);
+                };
+                reader.readAsDataURL(file);
             }
         }
+    };
+
+    const validateAge = (birthDate) => {
+        const today = new Date();
+        const birth = new Date(birthDate);
+        const age = today.getFullYear() - birth.getFullYear();
+        const monthDifference = today.getMonth() - birth.getMonth();
+        return (age > 18 && age < 65) || (age === 18 && monthDifference >= 0) || (age === 65 && monthDifference <= 0);
     };
 
     const handleSubmit = (event) => {
@@ -42,7 +62,7 @@ const VoluntaryRegister = () => {
         const file = form.foto.files[0];
         const confirmPassword = form.senha_confirmacao.value.trim();
 
-        if (fullname && cpf_voluntary && birthDate && email && password && confirmPassword && password === confirmPassword && file) {
+        if (fullname && cpf_voluntary && birthDate && email && password && confirmPassword && password === confirmPassword && file && validateAge(birthDate)) {
             const userData = new FormData();
             userData.append('fullname', fullname);
             userData.append('birthDate', birthDate);
@@ -55,11 +75,11 @@ const VoluntaryRegister = () => {
             setFirstInputsFilled(true);
             setFormError("");
         } else {
-            setFormError("Por favor, preencha todos os campos corretamente, verifique a confirmação da senha e selecione uma foto de perfil.");
+            setFormError("Por favor, preencha todos os campos corretamente, verifique a confirmação da senha, selecione uma foto de perfil e tenha entre 18 e 65 anos.");
         }
     };
 
-    const handleFinalSubmit = (event) => {
+    const handleFinalSubmit = async (event) => {
         event.preventDefault();
         const form = event.target;
         const description = form.descricao.value.trim();
@@ -76,13 +96,16 @@ const VoluntaryRegister = () => {
             userData.append('description', description);
             habilities.forEach(hability => userData.append('habilities[]', hability));
 
-            axios.post('https://backend-production-ff4c.up.railway.app/voluntarys/createVoluntary', userData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                }
-            })
-                .then(() => navigate("/autenticacaoDe2Fatores?tipo=voluntario"))
-                .catch(error => console.error("Erro ao enviar os dados: ", error));
+            try {
+                await axios.post('https://backend-production-ff4c.up.railway.app/voluntarys/createVoluntary', userData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    }
+                });
+                navigate("/autenticacaoDe2Fatores?tipo=voluntario");
+            } catch (error) {
+                console.error("Erro ao enviar os dados: ", error);
+            }
         } else {
             setFormError("Por favor, preencha todos os campos corretamente e selecione pelo menos uma área.");
         }
@@ -122,8 +145,18 @@ const VoluntaryRegister = () => {
                         <input type="email" placeholder="Email" name="email" required />
                         <input type="password" placeholder="Senha (min: 8, 1 simbolo, 1 número e 1 letra maiúscula)" name="senha" required />
                         <input type="password" placeholder="Confirme sua senha" name="senha_confirmacao" required />
-                        <label htmlFor="foto">Foto de Perfil</label>
-                        <input name="foto" required type="file" onChange={handleFileChange} />
+                        <input
+                            name="foto"
+                            required
+                            type="file"
+                            onChange={handleFileChange}
+                            id="profilePictureInput"
+                        />
+                        <label htmlFor="profilePictureInput" className="ProfilePicture" style={{ backgroundImage: `url(${profileImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                            {!profileImage && <span class="material-symbols-outlined">
+                                account_circle
+                            </span>}
+                        </label>
                         {fileError && <p className="error">{fileError}</p>}
                         {formError && <p className="error">{formError}</p>}
                         <div className="Buttons">

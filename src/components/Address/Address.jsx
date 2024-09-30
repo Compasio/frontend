@@ -11,6 +11,11 @@ const Address = (props) => {
             <h2>{props.city}, {props.state}</h2>
             <p>{props.street}, {props.num}</p>
             <p>{props.neighborhood}</p>
+            <div>
+                <button onClick={() => props.func()}>
+                    Ir para o local
+                </button>
+            </div>
         </div>
     );
 };

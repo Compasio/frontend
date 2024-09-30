@@ -51,6 +51,7 @@
 
 .Profile header nav div span {
   color: var(--green-one);
+  scale: 1.75;
 }
 
 .Shadow {

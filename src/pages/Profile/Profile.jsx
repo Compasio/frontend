@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import Logo from "../../img/logosemnome.svg";
 import ProfileBanner from "../../components/Banners/ProfileBanner/ProfileBanner";
+import Projects from "../../components/Projects/Projects";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
@@ -20,7 +21,7 @@ const Profile = () => {
   const [deletePerfil, setDeletePerfil] = useState(false);
   const [logout, setLogout] = useState(false);
   const [img, setImg] = useState(false);
-  const [isFetching, setIsFetching] = useState(true); 
+  const [isFetching, setIsFetching] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -43,7 +44,7 @@ const Profile = () => {
     setDeletePerfil(false);
     setLogout(false);
     setImg(false);
-    setIsFetching(true); 
+    setIsFetching(true);
 
     const fetchProfileData = async () => {
       try {
@@ -86,14 +87,14 @@ const Profile = () => {
         setError("Erro ao buscar dados do perfil.");
       } finally {
         setLoading(false);
-        setIsFetching(false); 
+        setIsFetching(false);
       }
     };
 
     fetchProfileData();
   }, [id, userType]);
 
-  if (loading || isFetching) return <p>Carregando...</p>; 
+  if (loading || isFetching) return <p>Carregando...</p>;
   if (error) return <p style={{ color: "red" }}>{error}</p>;
 
   const redirectHome = () => {
@@ -132,6 +133,7 @@ const Profile = () => {
             img={img}
           />
         )}
+        <Projects ongId={id} />
       </main>
     </div>
   );

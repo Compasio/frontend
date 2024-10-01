@@ -2,16 +2,12 @@
   background-color: var(--white);
   border-radius: 1rem;
   padding: 2%;
-  width: 50rem;
-  position: relative;
+  height: 32rem;
+  width: 45rem;
   display: flex;
   flex-direction: column;
-  top: -5rem;
   gap: 1rem;
-  left: 30%;
-  transform: translateX(-50%);
   box-shadow: 1px 1px 4px var(--black);
-  z-index: 10;
 }
 
 .Container {

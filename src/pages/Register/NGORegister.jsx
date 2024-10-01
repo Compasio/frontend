@@ -10,12 +10,19 @@ const NGORegister = () => {
     const [ngoList, setNgoList] = useState([]);
     const [fileError, setFileError] = useState("");
     const [formError, setFormError] = useState("");
+    const [profileImage, setProfileImage] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('https://backend-production-ff4c.up.railway.app/sys/getOngThemes')
-            .then(response => setNgoList(response.data))
-            .catch(error => console.error("Erro ao buscar temas: ", error));
+        const fetchThemes = async () => {
+            try {
+                const response = await axios.get('https://backend-production-ff4c.up.railway.app/sys/getOngThemes');
+                setNgoList(response.data);
+            } catch (error) {
+                console.error("Erro ao buscar temas: ", error);
+            }
+        };
+        fetchThemes();
     }, []);
 
     const handleFileChange = (event) => {
@@ -27,6 +34,11 @@ const NGORegister = () => {
                 event.target.value = null;
             } else {
                 setFileError('');
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    setProfileImage(reader.result);
+                };
+                reader.readAsDataURL(file);
             }
         }
     };
@@ -59,7 +71,7 @@ const NGORegister = () => {
         }
     };
 
-    const handleFinalSubmit = (event) => {
+    const handleFinalSubmit = async (event) => {
         event.preventDefault();
         const form = event.target;
         const description = form.descricao.value.trim();
@@ -76,11 +88,14 @@ const NGORegister = () => {
             ngoData.append('description', description);
             themes.forEach(theme => ngoData.append('themes[]', theme));
 
-            axios.post('https://backend-production-ff4c.up.railway.app/ongs/createOng', ngoData, {
-                headers: { 'Content-Type': 'multipart/form-data' }
-            })
-                .then(() => navigate("/autenticacaoDe2Fatores?tipo=ong"))
-                .catch(error => console.error("Erro ao enviar os dados: ", error));
+            try {
+                await axios.post('https://backend-production-ff4c.up.railway.app/ongs/createOng', ngoData, {
+                    headers: { 'Content-Type': 'multipart/form-data' }
+                });
+                navigate("/autenticacaoDe2Fatores?tipo=ong");
+            } catch (error) {
+                console.error("Erro ao enviar os dados: ", error);
+            }
         } else {
             setFormError("Por favor, preencha todos os campos corretamente e selecione pelo menos uma área.");
         }
@@ -116,8 +131,18 @@ const NGORegister = () => {
                         <input type="text" placeholder="CPF do fundador (apenas números)" name="cpf" required />
                         <input type="password" placeholder="Senha (min: 8, 1 simbolo, 1 número e 1 letra maiúscula)" name="senha" required />
                         <input type="password" placeholder="Confirme sua senha" name="senha_confirmacao" required />
-                        <input name="foto" type="file" onChange={handleFileChange} />
-                        <label htmlFor="foto">Foto de Perfil</label>
+                        <input
+                            name="foto"
+                            required
+                            type="file"
+                            onChange={handleFileChange}
+                            id="profilePictureInput"
+                        />
+                        <label htmlFor="profilePictureInput" className="ProfilePicture" style={{ backgroundImage: `url(${profileImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                            {!profileImage && <span className="material-symbols-outlined">
+                                account_circle
+                            </span>}
+                        </label>
                         {fileError && <p className="error">{fileError}</p>}
                         {formError && <p className="error">{formError}</p>}
                         <div className="Buttons">

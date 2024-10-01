@@ -63,7 +63,6 @@
 
 .Search header nav div span:hover {
     color: var(--black);
-    scale: 1.75;
 }
 
 .Search main {

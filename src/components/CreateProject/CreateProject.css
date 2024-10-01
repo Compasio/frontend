@@ -1,0 +1,89 @@
+.CreateProject {
+    background-color: var(--white);
+    border-radius: 1rem;
+    padding: 2%;
+    height: auto;
+    width: 40rem;
+    display: flex;
+    overflow-y: scroll;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: 1px 1px 4px var(--black);
+}
+
+.CreateProject form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1rem;
+}
+
+.CreateProject form input {
+   width: 100%;
+    padding: 1%
+}
+
+.CreateProject form textarea {
+    width: 100%;
+    min-height: 10vh;
+    resize: none;
+    padding: 1%;
+}
+
+.CreateProject .NGOThemes {
+    width: 100%;
+    min-height: min-content;
+    overflow-y: auto;
+    border: 0.063rem solid #ccc;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.CreateProject .NGOThemes span {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: var(--black);
+    color: var(--white);
+    font-family: inherit;
+}
+
+.CreateProject .NGOThemes span input {
+    width: 1rem;
+    height: 1rem;
+}
+
+.CreateProject .Themes {
+    width: 100%;
+    height: 40vh;
+    overflow-y: scroll;
+    border: 0.063rem solid #ccc;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    border-radius: 0.25rem;
+}
+
+.CreateProject .Themes span {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: var(--green-two);
+    color: var(--white);
+    font-family: inherit;
+}
+
+.CreateProject .Themes span input {
+    width: 1rem;
+    height: 1rem;
+}

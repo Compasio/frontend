@@ -1,7 +1,6 @@
 .Profile {
   width: 100%;
-  height: auto;
-  min-height: 100vh;
+  height: 100vh;
   background-color: var(--white);
 }
 
@@ -59,4 +58,14 @@
   background: linear-gradient(to bottom, var(--green-one), var(--green-two));
   position: relative;
   z-index: 1;
+}
+
+.Profile main {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2%;
+  position: relative;
+  top: -12rem;
+  z-index: 2;
 }

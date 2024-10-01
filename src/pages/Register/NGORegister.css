@@ -65,6 +65,30 @@
     width: 7%;
 }
 
+.NGORegister form input[type="file"] {
+    display: none;
+}
+
+.NGORegister form .ProfilePicture {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    background-color: #9b9b9b;
+    color: var(--green-one);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.1s all ease;
+}
+
+.NGORegister form .ProfilePicture span {
+    font-size: 4rem;
+}
+
 .NGORegister form .Buttons {
     display: flex;
     gap: 1rem;
